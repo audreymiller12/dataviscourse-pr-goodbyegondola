@@ -5,22 +5,22 @@ async function loadData () {
 }
 
 const globalApplicationState = {
-   wordData: null,
-   bubble_chart: null,
-   table: null,
+   mapData: null,
+   map: null,
+   info_svg: null,
    selectedData: []
   };
 
   //******* APPLICATION MOUNTING *******
 loadData().then((loadedData) => {
-    globalApplicationState.wordData = loadedData.wordData
+    globalApplicationState.mapData = loadedData.data
 
-    let bubble_chart = new BubbleChart(globalApplicationState);
-    bubble_chart.drawChart()
+    let map = new GondolaMap(globalApplicationState);
+   
+  // TODO add the info_svg connection here
 
-    let table = new Table(globalApplicationState)
-    table.drawChart()
+  
 
-    globalApplicationState.bubble_chart = bubble_chart
-    globalApplicationState.table = table
+    globalApplicationState.map = map
+
   });

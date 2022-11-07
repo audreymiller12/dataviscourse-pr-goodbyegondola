@@ -7,3 +7,21 @@ header > div {
     text-align: center;
     font-family: "Montserrat", sans-serif;
 }
+
+div {
+    width: 100%;
+    height: 100%;
+}
+
+#map {
+    width: 800px;
+    height: 800px;
+
+}
+
+.tower .station{
+    height: 10px;
+    fill: '#9c1010';
+    width: 10px;
+
+}
