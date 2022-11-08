@@ -31,3 +31,8 @@ div {
     height: 800px;
 
 }
+
+#card > .subcard {
+    width: 380px;
+    height: 380px;
+}
