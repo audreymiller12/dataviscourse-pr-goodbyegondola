@@ -16,6 +16,7 @@ loadData().then((loadedData) => {
     globalApplicationState.mapData = loadedData.data
 
     let map = new GondolaMap(globalApplicationState);
+    let infoCard = new InfoCard(globalApplicationState);
    
   // TODO add the info_svg connection here
 

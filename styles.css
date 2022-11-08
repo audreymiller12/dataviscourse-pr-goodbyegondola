@@ -6,6 +6,7 @@ h1 {
 body{
     font-family: "Montserrat", sans-serif;
 }
+
 header > div {
     text-align: center;
     font-family: "Montserrat", sans-serif;
@@ -35,7 +36,14 @@ div {
 
 }
 
-#card > .subcard {
-    width: 380px;
-    height: 380px;
+#card > .subcard-left {
+    width: 350px;
+    height: 400px;
+    float: left;
+}
+
+#card > .subcard-right {
+    width: 350px;
+    height: 400px;
+    float: right;
 }

@@ -11,6 +11,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS73DSFMzDo-CGWZK1cT1rrpNbCngU3Y"
     defer></script>
     <script src="js/map.js"></script>
+    <script src="js/info.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap" rel="stylesheet">
 </head>
 
@@ -27,16 +28,25 @@
 
         </div>
 
-        <div id="card" style="display: flex; column-gap: 10px;">
-        <h1>Current area: </h1>
-            <div id="card-1" class="subcard">
+        <div id="card">
+        <h2>Current area: </h1>
+            <div id="card-1" class="subcard-left">
                 <h2>Total Boulders Affected:</h1>
             </div>
-            <div id="card-2" class="subcard">
+            <div id="card-2" class="subcard-right">
                 <h2>Popular Boulders</h1>
             </div>
-            <div id="card-3" class="subcard"></div>
-            <div id="card-4" class="subcard"></div>
+            <div id="card-3" class="subcard-left">
+                <h2>Boulders Affected by Grade</h1>
+                <svg id="grade-barchart">
+                    <g id="y-axis"></g>
+                    <g id="x-axis"></g>
+                </svg>
+            </div>
+            <div id="card-4" class="subcard-right">
+                <h2>Boulders in Area</h1>
+                <svg id="area-barchart"></svg>
+            </div>
         </div>
     </div>
 </body>
