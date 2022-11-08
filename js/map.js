@@ -46,7 +46,7 @@ class GondolaMap{
             }
         ];
         
-        return new google.maps.Map(selection.node(), {
+        var map = new google.maps.Map(selection.node(), {
             zoom: 13,
             // change to mapBounds
             center: new google.maps.LatLng(40.574215, -111.715113),
@@ -56,6 +56,17 @@ class GondolaMap{
             gestureHandling: "cooperative",
             styles: styling 
           });
+
+          map.addListener('zoom_changed', () => {
+            var latBound = map.getBounds().eb
+            var longBound = map.getBounds().Ha
+            var bounds = {
+                latBound : latBound,
+                longBound : longBound
+            }
+            this.onZoomChanged(bounds)
+          })
+          return map;
     }
 
     drawInitData(mapData, map){
@@ -72,5 +83,10 @@ class GondolaMap{
         //           }
         // }
         // overlay.setMap(map)
+    }
+
+    onZoomChanged(bounds){
+        console.log(bounds)
+        
     }
 }
