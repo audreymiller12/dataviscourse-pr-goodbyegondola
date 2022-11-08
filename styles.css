@@ -11,6 +11,11 @@ header > div {
     font-family: "Montserrat", sans-serif;
 }
 
+#header-wrap{
+    padding: 10px;
+    margin: 10px;
+}
+
 #content {
     width: 100%;
     height: 100%;

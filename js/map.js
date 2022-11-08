@@ -57,7 +57,15 @@ class GondolaMap{
             styles: styling 
           });
 
-          map.addListener('zoom_changed', this.onZoomChanged())
+          map.addListener('zoom_changed', () => {
+            var latBound = map.getBounds().eb
+            var longBound = map.getBounds().Ha
+            var bounds = {
+                latBound : latBound,
+                longBound : longBound
+            }
+            this.onZoomChanged(bounds)
+          })
           return map;
     }
 
@@ -77,14 +85,8 @@ class GondolaMap{
         // overlay.setMap(map)
     }
 
-    onZoomChanged(){
-        console.log(map.getBounds())
-        var latBound = map.getBounds().eb
-        var longBound = map.getBounds().Ha
-        var bounds = {
-            latBound : latBound,
-            longBound : longBound
-        }
+    onZoomChanged(bounds){
+        console.log(bounds)
         
     }
 }
