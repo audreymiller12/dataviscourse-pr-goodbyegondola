@@ -34,11 +34,27 @@ class GondolaMap{
     }
 
     drawInitMap(selection, mapBounds){
+
+        var styling =[
+            {
+                featureType: "poi",
+                elementType: "all",
+                stylers: [
+                      { visibility: "off" }
+                ],
+                
+            }
+        ];
+        
         return new google.maps.Map(selection.node(), {
-            zoom: 15,
+            zoom: 13,
             // change to mapBounds
             center: new google.maps.LatLng(40.574215, -111.715113),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            zoomControl: true,
+            scaleControl: true,
+            gestureHandling: "cooperative",
+            styles: styling 
           });
     }
 
@@ -55,6 +71,6 @@ class GondolaMap{
               
         //           }
         // }
-         overlay.setMap(map)
+        // overlay.setMap(map)
     }
 }
