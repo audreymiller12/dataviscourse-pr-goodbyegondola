@@ -12,6 +12,8 @@ class GondolaMap {
             bottom: 30,
         }
         this.globalAppState = globalAppState
+        this.towerData = globalAppState.towerData
+
 
 
         // setup initial data
@@ -24,7 +26,7 @@ class GondolaMap {
         // get initial bounds to use in drawing towers to know where to draw
         google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
             var bounds = map.getBounds()
-            this.drawTowers(globalAppState.towerData, map, bounds)
+            this.drawTowers(bounds, 13)
         })
 
 
@@ -57,13 +59,7 @@ class GondolaMap {
         })
 
         map.addListener('zoom_changed', () => {
-            var latBound = map.getBounds().eb
-            var longBound = map.getBounds().Ha
-            var bounds = {
-                latBound: latBound,
-                longBound: longBound
-            }
-            this.onZoomChanged(bounds)
+            this.onZoomChanged(map.getBounds(), map.getZoom())
         })
         return map
     }
@@ -84,13 +80,19 @@ class GondolaMap {
         // overlay.setMap(map)
     }
 
-    drawTowers(towerData, map, bounds) {
-        console.log(bounds)
+    drawTowers(bounds, zoom) {
+
+        var currData = this.towerData.filter(function (d) {
+            return d.long > bounds.Ha.lo && d.long < bounds.Ha.hi
+        })
 
         var width = parseInt(d3.select("#map").style("width"))
         var height = parseInt(d3.select("#map").style("height"))
 
         var map = d3.select('#map')
+
+        map.selectAll('svg').remove()
+
         var svg = map.append('svg')
             .attr('width', width)
             .attr('height', height - 100)
@@ -98,20 +100,28 @@ class GondolaMap {
             .attr('left', map.style('left'))
             .attr('class', 'mapsvg')
 
+        var transition = svg.transition().duration(10000)
+
         svg.selectAll('rect')
-            .data(towerData)
-            .enter()
-            .append('rect')
+            .data(currData)
+            .join(
+                enter => enter.append('rect'),
+                update => update,
+                exit => exit
+                    .call(d => d.transition(transition).remove())
+                    .attr("y", 41))
             .attr('x', d => convertToXY(d).y)
             .attr('y', d => convertToXY(d).x)
-            .attr('width', 10)
-            .attr('height', 10)
+            .call(d => d.transition(transition))
+            .attr('width', (zoom * 0.7))
+            .attr('height', (zoom * 0.7))
             .attr('class', 'tower')
+
 
         function convertToXY(d) {
 
-            var width = parseInt(d3.select("#map").style("width"))
-            var height = parseInt(d3.select("#map").style("height"))
+            var width = parseFloat(d3.select("#map").style("width"))
+            var height = parseFloat(d3.select("#map").style("height"))
 
             var xDiff = Math.abs(bounds.eb.hi - bounds.eb.lo)
             var yDiff = Math.abs(bounds.Ha.hi - bounds.Ha.lo)
@@ -133,8 +143,8 @@ class GondolaMap {
 
 
 
-    onZoomChanged(bounds) {
-        console.log(bounds)
+    onZoomChanged(bounds, zoom) {
+        this.drawTowers(bounds, zoom)
 
     }
 }
