@@ -71,3 +71,7 @@ header > div {
 .mapOverlay{
     position: absolute;
 }
+
+.mapsvg{
+    position: absolute;
+}

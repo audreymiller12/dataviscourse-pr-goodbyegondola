@@ -18,12 +18,6 @@ class GondolaMap {
         var initData
 
         const mapSelection = d3.select("#map")
-
-        // bound lat and long of init map to data
-        var mapBounds = new google.maps.LatLngBounds()
-
-
-
         // draw initial map with bounds
         var map = this.drawInitMap(mapSelection)
 
@@ -91,54 +85,53 @@ class GondolaMap {
     }
 
     drawTowers(towerData, map, bounds) {
-
         console.log(bounds)
 
-        var overlay = new google.maps.OverlayView();
+        var width = parseInt(d3.select("#map").style("width"))
+        var height = parseInt(d3.select("#map").style("height"))
 
-        overlay.onAdd = function () {
+        var map = d3.select('#map')
+        var svg = map.append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('top', map.style('top'))
+            .attr('left', map.style('left'))
+            .attr('class', 'mapsvg')
 
-            overlay.draw = function () {
+        svg.selectAll('rect')
+            .data(towerData)
+            .enter()
+            .append('rect')
+            .attr('x', d => convertToXY(d).y)
+            .attr('y', d => convertToXY(d).x)
+            .attr('width', 10)
+            .attr('height', 10)
+            .attr('class', 'tower')
 
-                function projCalc(projection) {
-                    return (lnglat) => {
-                        var ret = projection.fromLatLngToDivPixel(new google.maps.LatLng(lnglat[1], lnglat[0]))
-                        return [ret.x, ret.y]
-                    };
-                }
+        function convertToXY(d) {
 
-                var projection = projCalc(overlay.getProjection())
+            var width = parseInt(d3.select("#map").style("width"))
+            var height = parseInt(d3.select("#map").style("height"))
 
-                var northWest = projection([bounds.Ha.lo, bounds.eb.lo])
-                var southEast = projection([bounds.Ha.hi, bounds.eb.hi])
-                var width = Math.abs(southEast[0]) - Math.abs(northWest[0])
-                var height = Math.abs(southEast[1]) - Math.abs(northWest[1])
+            var xDiff = Math.abs(bounds.eb.hi - bounds.eb.lo)
+            var yDiff = Math.abs(bounds.Ha.hi - bounds.Ha.lo)
 
-                console.log(northWest)
-                console.log(southEast)
+            var xScale = height / xDiff
+            var yScale = width / yDiff
 
-                var towerSvg = d3.select(overlay.getPanes().overlayMouseTarget)
-                    .append("svg")
-                    .style("position", "absolute")
-                    .style("top", northWest[1])
-                    .style("left", northWest[0])
-                    .attr("height", 863)
-                    .attr("width", 800);
+            var xLatDiff = Math.abs(d.lat - bounds.eb.hi) * xScale
+            var yLongDiff = Math.abs(d.long - bounds.Ha.lo) * yScale
 
-                towerSvg.selectAll('rect')
-                    .data(towerData)
-                    .enter()
-                    .append("rect")
-                    .attr("width", 10)
-                    .attr("height", 10)
-                    .attr('x', function(d) {console.log(d.long); return projection([d.long, d.lat])[0]})
-                    .attr('y', function(d) {return projection([d.long, d.lat])[1]})
+            var coords = {
+                x: xLatDiff,
+                y: yLongDiff
             }
+            return coords
         }
-        overlay.setMap(map)
+
     }
 
-    
+
 
     onZoomChanged(bounds) {
         console.log(bounds)
