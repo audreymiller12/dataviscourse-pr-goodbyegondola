@@ -93,7 +93,7 @@ class GondolaMap {
         var map = d3.select('#map')
         var svg = map.append('svg')
             .attr('width', width)
-            .attr('height', height)
+            .attr('height', height - 100)
             .attr('top', map.style('top'))
             .attr('left', map.style('left'))
             .attr('class', 'mapsvg')
