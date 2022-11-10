@@ -28,8 +28,4 @@ loadData().then((loadedData) => {
     // TODO add the info_svg connection here
     let infoCard = new InfoCard(globalApplicationState);
 
-
-
-    globalApplicationState.map = map
-
   });
