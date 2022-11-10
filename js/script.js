@@ -15,16 +15,6 @@ const globalApplicationState = {
    selectedData: []
   };
 
-
-  //******* APPLICATION MOUNTING *******
-
-  // Read in Gondola data
-  loadGondolaData().then((loadedGondolaData) => {
-
-    globalApplicationState.gondolaData = loadedGondolaData 
-
-  })
-
 // Read in boulder data and create new map and info card objects
 loadData().then((loadedData) => {
     globalApplicationState.boulderData = loadedData.boulderData
