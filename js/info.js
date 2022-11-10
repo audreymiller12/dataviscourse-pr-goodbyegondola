@@ -1,13 +1,15 @@
 class InfoCard{
     constructor(globalAppState) {
 
-        this.boulderData = globalAppState.mapData.children;
+        this.boulderData = globalAppState.mapData;
         console.log(this.boulderData);
 
         // Margins for small charts
         this.margin = {left: 20, bottom: 20 , top:10};
         this.chart_height = 300 ; // Also check CSS
         this.chart_width = 350 ;
+
+        this.pullBoulders(this.boulderData);
 
         // Call each of the views
         this.totalAffected();
@@ -16,6 +18,33 @@ class InfoCard{
         this.bouldersArea();
 
     }
+
+    //Function to pull out all boulders in the relevant area from the nested object with areas+bouldres
+    pullBoulders(boulderData) {
+
+        this.boulders = [] ;
+        this.recursiveBoulderPull(boulderData);
+        console.log(this.boulders);
+
+
+    }
+
+    recursiveBoulderPull(data){
+
+        if (data.hasOwnProperty('children')) {
+            data.children.forEach(level => {
+                this.recursiveBoulderPull(level);
+            })
+        }
+        else {
+            this.boulders.push(data);
+        }
+        
+
+    }
+
+
+
 
     // Create the visual of total boulders affected
     totalAffected() {
