@@ -13,11 +13,8 @@ class GondolaMap {
         }
         this.globalAppState = globalAppState
         this.towerData = globalAppState.towerData
+        this.boulderData = globalAppState.boulderData
 
-
-
-        // setup initial data
-        var initData
 
         const mapSelection = d3.select("#map")
         // draw initial map with bounds
@@ -27,13 +24,17 @@ class GondolaMap {
         google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
             var bounds = map.getBounds()
             this.drawTowers(bounds, 13)
+            this.drawBoulders(bounds, 13)
+
         })
 
-
-        // draw initial data onto map
-        this.drawInitData(initData, map)
     }
 
+    /**
+     * 
+     * @param selection div selection to draw map onto 
+     * @returns current map selection
+     */
     drawInitMap(selection) {
 
         var styling = [
@@ -58,26 +59,29 @@ class GondolaMap {
             styles: styling
         })
 
+        // set on zoom changed listener to update data
         map.addListener('zoom_changed', () => {
-            this.onZoomChanged(map.getBounds(), map.getZoom())
+            this.drawTowers(map.getBounds(), map.getZoom())
         })
         return map
     }
 
-    drawInitData(mapData, map) {
-        var overlay = new google.maps.OverlayView();
+    /**
+     * 
+     * @param map map that is being drawn on 
+     */
+    drawBoulders(bounds, zoom) {
+        console.log(this.boulderData)
+        // var currData = this.boulderData.filter(function (d) {
+        //     return d.g > bounds.Ha.lo && d.long < bounds.Ha.hi
+        // })
 
-        // overlay.onAdd = function() {
-        //     var layer = d3.select(this.getPanes().overlayLayer).append("div")
-        //         .attr("class", ".tower .station");
+        var width = parseInt(d3.select("#map").style("width"))
+        var height = parseInt(d3.select("#map").style("height"))
 
-        //         overlay.draw = function() {
-        //             var projection = this.getProjection(),
-        //                 padding = 10;
+        var map = d3.select('#map')
 
-        //           }
-        // }
-        // overlay.setMap(map)
+
     }
 
     drawTowers(bounds, zoom) {
@@ -141,10 +145,4 @@ class GondolaMap {
 
     }
 
-
-
-    onZoomChanged(bounds, zoom) {
-        this.drawTowers(bounds, zoom)
-
-    }
 }
