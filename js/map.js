@@ -90,10 +90,9 @@ class GondolaMap {
 
         var svg = map.append('svg')
             .attr('width', width)
-            .attr('height', height - 100)
-            .attr('top', map.style('top'))
-            .attr('left', map.style('left'))
+            .attr('height', 100)
             .attr('class', 'mapsvg')
+            .attr('transform', 'translate('+ -350 + ', 0)')
 
         var transition = svg.transition().duration(10000)
 
