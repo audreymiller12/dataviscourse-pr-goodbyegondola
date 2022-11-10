@@ -2,15 +2,6 @@ class GondolaMap {
 
 
     constructor(globalAppState) {
-
-        const mapWidth = 800
-        const mapHeight = 800
-        const MARGIN = {
-            top: 30,
-            right: 30,
-            left: 30,
-            bottom: 30,
-        }
         this.globalAppState = globalAppState
         this.towerData = globalAppState.towerData
         this.boulderData = globalAppState.boulderData
