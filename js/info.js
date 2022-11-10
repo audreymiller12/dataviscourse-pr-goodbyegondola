@@ -1,7 +1,7 @@
 class InfoCard{
     constructor(globalAppState) {
 
-        this.boulderData = globalAppState.mapData.children;
+        this.boulderData = globalAppState.boulderData.children;
         console.log(this.boulderData);
 
         // Margins for small charts
