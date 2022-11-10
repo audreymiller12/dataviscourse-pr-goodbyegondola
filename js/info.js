@@ -1,6 +1,9 @@
 class InfoCard{
     constructor(globalAppState) {
 
+        this.boulderData = globalAppState.mapData.children;
+        console.log(this.boulderData);
+
         // Margins for small charts
         this.margin = {left: 20, bottom: 20 , top:10};
         this.chart_height = 300 ; // Also check CSS
