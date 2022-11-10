@@ -1,17 +1,15 @@
 // ******* DATA LOADING *******
 async function loadData () {
-    const data = await d3.json('data/data.json');
-    return { data };
+    const boulderData = await d3.json('data/data.json');
+    const towerData = await d3.csv('data/tower_data.csv');
+    return { boulderData, towerData };
 }
 
-async function loadGondolaData () {
-  const gondolaData = await d3.csv('data/tower_data.csv');
-  return { gondolaData };
-}
+
 
 const globalApplicationState = {
-   mapData: null,
-   gondolaData: null,
+   boulderData: null,
+   towerData: null,
    map: null,
    info_svg: null,
    selectedData: []
@@ -29,8 +27,9 @@ const globalApplicationState = {
 
 // Read in boulder data and create new map and info card objects
 loadData().then((loadedData) => {
-
-    globalApplicationState.mapData = loadedData.data
+    globalApplicationState.boulderData = loadedData.boulderData
+    globalApplicationState.towerData = loadedData.towerData
+    
 
     let map = new GondolaMap(globalApplicationState);
     globalApplicationState.map = map;
@@ -40,6 +39,7 @@ loadData().then((loadedData) => {
     let infoCard = new InfoCard(globalApplicationState);
 
 
-    
+
+    globalApplicationState.map = map
 
   });

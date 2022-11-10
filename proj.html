@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Project: Goodbye Gondola</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
     <link rel="stylesheet" href="styles.css"/>
     <script src="js/script.js"></script>
     <script
@@ -26,8 +27,8 @@
     <div id="content" style="display: flex; column-gap: 50px;">
         <div id="map">
 
+            <svg id="mapsvg"></svg>
         </div>
-
         <div id="card">
         <h2>Current area: </h1>
             <div id="card-1" class="subcard-left">
