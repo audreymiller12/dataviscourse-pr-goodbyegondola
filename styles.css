@@ -50,23 +50,38 @@ header > div {
 
 }
 
-#card {
-    width: 50%;
-    height: 800px;
 
-}
 
-#card > .subcard-left {
-    width: 350px;
+#infocard > .overall-nums {
+    width: 30%;
     height: 400px;
     float: left;
 }
 
-#card > .subcard-right {
-    width: 350px;
-    height: 400px;
-    float: right;
+#card-areabar {
+    width: 70%;
+    height: 800px;
+   
 }
+
+
+
+.areabarchart rect {
+    fill: rgb(170, 132, 220)
+}
+
+.tooltip {
+    height: 20px;
+    width: 70px;
+    background-color: white;
+    border: solid 1px grey;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    opacity: 0;
+  }
 
 .mapOverlay{
     position: absolute;
