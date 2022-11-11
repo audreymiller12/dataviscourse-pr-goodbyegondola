@@ -12,6 +12,7 @@ const globalApplicationState = {
    towerData: null,
    map: null,
    info_svg: null,
+   tableViz: null,
    selectedData: []
   };
 
@@ -23,6 +24,9 @@ loadData().then((loadedData) => {
 
     let map = new GondolaMap(globalApplicationState);
     globalApplicationState.map = map;
+
+    const tableViz = new Table(globalApplicationState);
+    globalApplicationState.tableViz = tableViz;
     
    
     // TODO add the info_svg connection here

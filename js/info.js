@@ -1,6 +1,7 @@
 class InfoCard{
     constructor(globalAppState) {
 
+        this.globalAppState = globalAppState;
         this.boulderData = globalAppState.boulderData;
 
         // Margins for small charts
@@ -21,13 +22,14 @@ class InfoCard{
         this.boulders = [] ;
         this.recursiveBoulderPull(areaData);
 
-        console.log(this.boulders)
 
         // Call each of the views on the boulder dataset
         this.totalAffected();
-        this.popularBoulders();
         //this.affectedGrade();
         this.bouldersArea();
+
+        // Call table with boulder data
+        this.globalAppState.tableViz.drawTable(this.boulders);
 
 
     }
@@ -49,7 +51,6 @@ class InfoCard{
 
 
 
-
     // Create the visual of total boulders affected
     totalAffected() {
         const numBoulders = Object.keys(this.boulders).length ;
@@ -60,14 +61,8 @@ class InfoCard{
             .attr("width", this.chart_width);
 
         svg.append("text")
-            .text("Total Boulders: ")
+            .text("Total Boulders: " + numBoulders)
             .attr("x", 0)
-            .attr("y", 50)
-            .attr("font-size", "30");
-
-        svg.append("text")
-            .text(numBoulders)
-            .attr("x", 220)
             .attr("y", 50)
             .attr("font-size", "30");
 
@@ -82,10 +77,6 @@ class InfoCard{
 
     }
 
-    // Create the visual showing popular boulders in the area
-    popularBoulders() {
-
-    }
 
     // Visual of boulders affected by grade
     affectedGrade() {
@@ -121,8 +112,8 @@ class InfoCard{
 
     bouldersArea() {
 
-        const svgHeight = 400;
-        const svgWidth = 450;
+        const svgHeight = 350;
+        const svgWidth = 400;
 
         // Roll up the data to get a count of the number of boulders by grade
         const byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
@@ -178,8 +169,8 @@ class InfoCard{
 
                 tooltip
                     .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "s"))
-                    .style("left", (event.clientX+30)+"px")
-                    .style("top", (event.clientY-30)+"px")
+                    .style("left", (event.clientX+10)+"px")
+                    .style("top", (event.clientY+80)+"px")
             })
             .on("mouseleave", function(event,d){
                 d3.select(this)
@@ -196,10 +187,6 @@ class InfoCard{
             .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d[1]))
             .attr("stroke", "black")
             .style("stroke-width", "1px") 
-
-        
-
-
 
 
     }

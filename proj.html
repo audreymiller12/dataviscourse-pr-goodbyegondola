@@ -13,6 +13,7 @@
     defer></script>
     <script src="js/map.js"></script>
     <script src="js/info.js"></script>
+    <script src="js/table.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap" rel="stylesheet">
 </head>
 
@@ -32,25 +33,40 @@
 
         <div id="infocard">
         <h2>Current area: </h1>
-            <div id="card-1" class="overall-nums"></div>
 
-            <div id="card-areabar" class="areabarchart">
-                <svg id="area-barchart">
-                    <g id="y-axis"></g>
-                    <g id="x-axis"></g>
-                </svg>
+            <div id="toprow">
+                <div id="card-1" class="overall-nums"></div>
+
+                <div id="card-areabar" class="areabarchart">
+                    <h2>Boulders in Area</h2>
+                    <svg id="area-barchart">
+                        <g id="y-axis"></g>
+                        <g id="x-axis"></g>
+                    </svg>
+                </div>
             </div>
 
-            <div id="boulder-table">
-                <h2>Popular Boulders</h1>
-            </div>
-
-            <div id="card-3">
-                <svg id="grade-barchart">
-                    <g id="y-axis"></g>
-                    <g id="x-axis"></g>
-                </svg>
-            </div>
+            <div id="tablediv">
+                <table id="boulderTable"></div>
+                    <thead>
+                        <tr id="columnHeaders">
+                            <th class="sortable">Boulder Problem Name <i class="fas no-display"></i></th>
+                            <th class="sortable">Grade <i class="fas no-display"></i></th>
+                            <th class="sortable">Rating <i class="fas no-display"></i></th>
+                            <th class="sortable">Page Views <i class="fas no-display"></i></th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><svg id="ratingAxis"></svg></td>
+                            <td><svg id="viewsAxis"></svg></td>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+            
+                        </tbody>
+                    </table>    
+                </div>
 
             <div id="tooltipdiv"></div>
         </div>
