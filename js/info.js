@@ -1,8 +1,7 @@
 class InfoCard{
     constructor(globalAppState) {
 
-        this.boulderData = globalAppState.mapData;
-        console.log(this.boulderData);
+        this.boulderData = globalAppState.boulderData;
 
         // Margins for small charts
         this.margin = {left: 20, bottom: 20 , top:10};
@@ -11,24 +10,27 @@ class InfoCard{
 
         this.pullBoulders(this.boulderData);
 
-        // Call each of the views
+        
+
+    }
+
+    // Create infocard
+    pullBoulders(areaData) {
+
+        // Create a list of boulders from the nested area/boulder object
+        this.boulders = [] ;
+        this.recursiveBoulderPull(areaData);
+
+        // Call each of the views on the boulder dataset
         this.totalAffected();
         this.popularBoulders();
         this.affectedGrade();
         this.bouldersArea();
 
-    }
-
-    //Function to pull out all boulders in the relevant area from the nested object with areas+bouldres
-    pullBoulders(boulderData) {
-
-        this.boulders = [] ;
-        this.recursiveBoulderPull(boulderData);
-        console.log(this.boulders);
-
 
     }
 
+    // Function that creates an object containing all boulder problems from the nested area/boulder object
     recursiveBoulderPull(data){
 
         if (data.hasOwnProperty('children')) {
@@ -48,6 +50,28 @@ class InfoCard{
 
     // Create the visual of total boulders affected
     totalAffected() {
+        const numBoulders = Object.keys(this.boulders).length ;
+
+        const svg = d3.select('#card-1')
+            .append("svg")
+            .attr("height", this.chart_height)
+            .attr("width", this.chart_width);
+
+        svg.append("text")
+            .text("Total Boulders: ")
+            .attr("x", 0)
+            .attr("y", 50)
+            .attr("font-size", "30");
+            
+
+        svg.append("text")
+            .text(numBoulders)
+            .attr("x", 220)
+            .attr("y", 50)
+            .attr("font-size", "30");
+
+
+
 
     }
 
@@ -78,7 +102,7 @@ class InfoCard{
         const xScale = d3.scaleBand()
             .domain(['V0', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12']) //data.map(d => d.name)
             .range([this.margin.left, this.chart_width])
-            .padding(0.2)
+            .padding(0.2) ;
 
         const xAxis = svg.select('#x-axis')
         .classed("axis", true)
@@ -109,12 +133,20 @@ class InfoCard{
         const xScale = d3.scaleBand()
             .domain(['V0', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12']) //data.map(d => d.name)
             .range([this.margin.left, this.chart_width])
-            .padding(0.2)
+            .padding(0.2) ;
 
         const xAxis = svg.select('#x-axis')
             .classed("axis", true)
             .attr('transform', `translate(0, ${this.chart_height - this.margin.bottom})`)
             .call(d3.axisBottom(xScale));
+
+        
+        console.log(this.boulders);
+
+        //const byGrade = d3.rollup(this.boulderData, v => d3.count(v, d => d.moveY), d => d.grade) ;
+        const byGrade = d3.group(this.boulders, d => d.grade)
+        console.log(byGrade)
+
 
     }
 
