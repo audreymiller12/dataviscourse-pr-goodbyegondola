@@ -4,7 +4,7 @@ class InfoCard{
         this.boulderData = globalAppState.boulderData;
 
         // Margins for small charts
-        this.margin = {left: 20, bottom: 20 , top:10};
+        this.margin = {left: 30, bottom: 20 , top:10};
         this.chart_height = 300 ; // Also check CSS
         this.chart_width = 350 ;
 
@@ -21,10 +21,12 @@ class InfoCard{
         this.boulders = [] ;
         this.recursiveBoulderPull(areaData);
 
+        console.log(this.boulders)
+
         // Call each of the views on the boulder dataset
         this.totalAffected();
         this.popularBoulders();
-        this.affectedGrade();
+        //this.affectedGrade();
         this.bouldersArea();
 
 
@@ -62,12 +64,17 @@ class InfoCard{
             .attr("x", 0)
             .attr("y", 50)
             .attr("font-size", "30");
-            
 
         svg.append("text")
             .text(numBoulders)
             .attr("x", 220)
             .attr("y", 50)
+            .attr("font-size", "30");
+
+        svg.append("text")
+            .text("Affected Boulders: ")
+            .attr("x", 0)
+            .attr("y", 100)
             .attr("font-size", "30");
 
 
@@ -114,14 +121,23 @@ class InfoCard{
 
     bouldersArea() {
 
+        const svgHeight = 400;
+        const svgWidth = 450;
+
+        // Roll up the data to get a count of the number of boulders by grade
+        const byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
+
+        // Max value for axis
+        let maxval = d3.max(byGrade.map(d => d[1]))
+
         const svg = d3.select('#area-barchart')
-            .attr("height", this.chart_height)
-            .attr("width", this.chart_width);
+            .attr("height", svgHeight)
+            .attr("width", svgWidth);
 
         // Y Scale
         const yScale = d3.scaleLinear()
-            .domain([0, 20]) //CHANGE WITH REAL DATA
-            .range([this.chart_height - this.margin.bottom, this.margin.top])
+            .domain([0, maxval]) 
+            .range([svgHeight - this.margin.bottom, this.margin.top])
             .nice() ;
 
         const yAxis = svg.select('#y-axis')
@@ -131,21 +147,59 @@ class InfoCard{
 
         // X Scale
         const xScale = d3.scaleBand()
-            .domain(['V0', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12']) //data.map(d => d.name)
-            .range([this.margin.left, this.chart_width])
+            .domain(['v0', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11', 'v12', 'v13', 'v14', 'v15', 'v16']) //data.map(d => d.name)
+            .range([this.margin.left, svgWidth])
             .padding(0.2) ;
 
         const xAxis = svg.select('#x-axis')
             .classed("axis", true)
-            .attr('transform', `translate(0, ${this.chart_height - this.margin.bottom})`)
+            .attr('transform', `translate(0, ${svgHeight - this.margin.bottom})`)
             .call(d3.axisBottom(xScale));
 
-        
-        console.log(this.boulders);
+        // Attach tooltip
+        let tooltip = d3.select('#tooltipdiv')
+            .style("opacity", 0)
+            .attr("class", "tooltip")
 
-        //const byGrade = d3.rollup(this.boulderData, v => d3.count(v, d => d.moveY), d => d.grade) ;
-        const byGrade = d3.group(this.boulders, d => d.grade)
-        console.log(byGrade)
+        // Bars
+        let bars = svg.selectAll("rect")
+            .data(byGrade)
+            .join("rect")
+            .on("mouseover", function(event, d) 
+            {
+                // Black outline 
+                d3.select(this)
+                    .attr("stroke", "black")
+                    .style("stroke-width", "3px") 
+
+                // Make tooltip visible
+                tooltip
+                    .style("opacity", 0.8);
+
+                tooltip
+                    .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "s"))
+                    .style("left", (event.clientX+30)+"px")
+                    .style("top", (event.clientY-30)+"px")
+            })
+            .on("mouseleave", function(event,d){
+                d3.select(this)
+                    .style("stroke-width", "1px")
+
+                tooltip
+                    .style("opacity", 0)
+            })
+            .transition()
+            .duration(300)
+            .attr("x", (d) => xScale(d[0]))
+            .attr("y", (d)=> yScale(d[1]))
+            .attr("width", xScale.bandwidth())
+            .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d[1]))
+            .attr("stroke", "black")
+            .style("stroke-width", "1px") 
+
+        
+
+
 
 
     }

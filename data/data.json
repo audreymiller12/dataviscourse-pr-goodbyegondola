@@ -65,7 +65,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "5.9v1 yds",
+          "grade": "v1",
           "avgRating": 3,
           "numRatings": 144,
           "totalViews": 4864,
@@ -244,7 +244,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v1-",
+          "grade": "v1",
           "avgRating": 1.4,
           "numRatings": 10,
           "totalViews": 315,
@@ -285,7 +285,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 2,
           "numRatings": 3,
           "totalViews": 491,
@@ -397,7 +397,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v6+",
+          "grade": "v7",
           "avgRating": 2.7,
           "numRatings": 7,
           "totalViews": 1263,
@@ -411,7 +411,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v9-10",
+          "grade": "v10",
           "avgRating": 4,
           "numRatings": 2,
           "totalViews": 212,
@@ -439,7 +439,7 @@
             "boulder"
           ],
           "height": 14,
-          "grade": "v7+",
+          "grade": "v8",
           "avgRating": 3.3,
           "numRatings": 3,
           "totalViews": 842,
@@ -463,7 +463,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v10-",
+          "grade": "v10",
           "avgRating": 3.3,
           "numRatings": 3,
           "totalViews": 620,
@@ -530,7 +530,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 141,
@@ -569,7 +569,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 1,
           "numRatings": 1,
           "totalViews": 131,
@@ -595,7 +595,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v4+",
+          "grade": "v5",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 156,
@@ -608,7 +608,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 3.5,
           "numRatings": 2,
           "totalViews": 207,
@@ -962,7 +962,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v9-",
+              "grade": "v9",
               "avgRating": 3.7,
               "numRatings": 10,
               "totalViews": 888,
@@ -976,7 +976,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 3,
               "numRatings": 1,
               "totalViews": 658,
@@ -990,7 +990,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 3,
               "numRatings": 2,
               "totalViews": 212,
@@ -1055,7 +1055,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v1+",
+              "grade": "v2",
               "avgRating": 1.8,
               "numRatings": 6,
               "totalViews": 237,
@@ -1107,7 +1107,7 @@
                 "boulder"
               ],
               "height": 18,
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 3.2,
               "numRatings": 5,
               "totalViews": 459,
@@ -1187,7 +1187,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v9-10",
+          "grade": "v10",
           "avgRating": 3,
           "numRatings": 6,
           "totalViews": 624,
@@ -1338,7 +1338,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v-easy",
+          "grade": "v0",
           "avgRating": 2.3,
           "numRatings": 7,
           "totalViews": 1307,
@@ -1365,7 +1365,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v1-",
+          "grade": "v1",
           "avgRating": 2.5,
           "numRatings": 8,
           "totalViews": 311,
@@ -1379,7 +1379,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 2.8,
           "numRatings": 51,
           "totalViews": 5155,
@@ -1421,7 +1421,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 1,
           "numRatings": 2,
           "totalViews": 994,
@@ -1462,7 +1462,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 2.6,
           "numRatings": 99,
           "totalViews": 3377,
@@ -1476,7 +1476,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 2.5,
           "numRatings": 2,
           "totalViews": 554,
@@ -1546,7 +1546,7 @@
             "boulder"
           ],
           "height": 14,
-          "grade": "v10-11",
+          "grade": "v11",
           "avgRating": 1.5,
           "numRatings": 2,
           "totalViews": 680,
@@ -1575,7 +1575,7 @@
             "boulder"
           ],
           "height": 30,
-          "grade": "5.11bv3 yds",
+          "grade": "v3",
           "avgRating": 3.3,
           "numRatings": 6,
           "totalViews": 8724,
@@ -1726,7 +1726,7 @@
             "boulder"
           ],
           "height": 6,
-          "grade": "v3-",
+          "grade": "v3",
           "avgRating": 1.9,
           "numRatings": 37,
           "totalViews": 1555,
@@ -1740,7 +1740,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 4,
           "numRatings": 2,
           "totalViews": 356,
@@ -1754,7 +1754,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v8-9",
+          "grade": "v9",
           "avgRating": 3.5,
           "numRatings": 2,
           "totalViews": 271,
@@ -1792,7 +1792,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v8-",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 768,
@@ -1881,7 +1881,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v5+",
+          "grade": "v6",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 156,
@@ -1906,7 +1906,7 @@
             "boulder"
           ],
           "height": 20,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 315,
@@ -2022,7 +2022,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 2.3,
               "numRatings": 3,
               "totalViews": 141,
@@ -2105,7 +2105,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v7+",
+              "grade": "v8",
               "avgRating": 3.4,
               "numRatings": 26,
               "totalViews": 2106,
@@ -2161,7 +2161,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v1+",
+              "grade": "v2",
               "avgRating": 3.1,
               "numRatings": 31,
               "totalViews": 1152,
@@ -2202,7 +2202,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.5,
               "numRatings": 2,
               "totalViews": 478,
@@ -2216,7 +2216,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2,
               "numRatings": 2,
               "totalViews": 183,
@@ -2230,7 +2230,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 3.3,
               "numRatings": 4,
               "totalViews": 604,
@@ -2407,7 +2407,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v3+",
+              "grade": "v4",
               "avgRating": 2.1,
               "numRatings": 8,
               "totalViews": 346,
@@ -2489,7 +2489,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v4+",
+              "grade": "v5",
               "avgRating": 2.3,
               "numRatings": 3,
               "totalViews": 193,
@@ -2570,7 +2570,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v2+",
+              "grade": "v3",
               "avgRating": 1.6,
               "numRatings": 5,
               "totalViews": 214,
@@ -2612,7 +2612,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v3+",
+              "grade": "v4",
               "avgRating": 2,
               "numRatings": 2,
               "totalViews": 205,
@@ -2662,7 +2662,7 @@
                 "boulder"
               ],
               "height": 18,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 4,
               "numRatings": 2,
               "totalViews": 395,
@@ -2694,7 +2694,7 @@
                     "boulder"
                   ],
                   "height": 12,
-                  "grade": "v6-",
+                  "grade": "v6",
                   "avgRating": 3.7,
                   "numRatings": 24,
                   "totalViews": 1511,
@@ -2814,7 +2814,7 @@
                     "boulder"
                   ],
                   "height": 12,
-                  "grade": "v2-",
+                  "grade": "v2",
                   "avgRating": 2,
                   "numRatings": 3,
                   "totalViews": 200,
@@ -2863,7 +2863,7 @@
                   "types": [
                     "boulder"
                   ],
-                  "grade": "v2+",
+                  "grade": "v3",
                   "avgRating": 3.7,
                   "numRatings": 7,
                   "totalViews": 384,
@@ -2967,7 +2967,7 @@
                   "types": [
                     "boulder"
                   ],
-                  "grade": "v6-",
+                  "grade": "v6",
                   "avgRating": 3.7,
                   "numRatings": 74,
                   "totalViews": 3921,
@@ -3115,7 +3115,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 2.7,
               "numRatings": 68,
               "totalViews": 1393,
@@ -3139,7 +3139,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v1-",
+              "grade": "v1",
               "avgRating": 2.4,
               "numRatings": 127,
               "totalViews": 3834,
@@ -3152,7 +3152,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v1-2",
+              "grade": "v2",
               "avgRating": 2.2,
               "numRatings": 40,
               "totalViews": 995,
@@ -3166,7 +3166,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v4-5",
+              "grade": "v5",
               "avgRating": 3.3,
               "numRatings": 24,
               "totalViews": 3152,
@@ -3203,7 +3203,7 @@
                 "boulder"
               ],
               "height": 60,
-              "grade": "v8-9",
+              "grade": "v9",
               "avgRating": 4,
               "numRatings": 1,
               "totalViews": 630,
@@ -3272,7 +3272,7 @@
                 "boulder"
               ],
               "height": 25,
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 2.8,
               "numRatings": 8,
               "totalViews": 798,
@@ -3341,7 +3341,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 2.6,
               "numRatings": 20,
               "totalViews": 502,
@@ -3464,7 +3464,7 @@
                 "boulder"
               ],
               "height": 14,
-              "grade": "v5+",
+              "grade": "v6",
               "avgRating": 1,
               "numRatings": 1,
               "totalViews": 136,
@@ -3478,7 +3478,7 @@
                 "boulder"
               ],
               "height": 16,
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 149,
@@ -3491,7 +3491,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 3,
               "numRatings": 2,
               "totalViews": 188,
@@ -3547,7 +3547,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 142,
@@ -3614,7 +3614,7 @@
                 "boulder"
               ],
               "height": 13,
-              "grade": "v1-2",
+              "grade": "v2",
               "avgRating": 2.8,
               "numRatings": 4,
               "totalViews": 645,
@@ -3639,7 +3639,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v11-",
+              "grade": "v11",
               "avgRating": 2,
               "numRatings": 4,
               "totalViews": 437,
@@ -3933,7 +3933,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v1+",
+          "grade": "v2",
           "avgRating": 2.8,
           "numRatings": 5,
           "totalViews": 1028,
@@ -4070,7 +4070,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 133,
@@ -4134,7 +4134,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v3+",
+          "grade": "v4",
           "avgRating": 2.9,
           "numRatings": 8,
           "totalViews": 429,
@@ -4189,7 +4189,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v3+",
+          "grade": "v4",
           "avgRating": 1.6,
           "numRatings": 5,
           "totalViews": 435,
@@ -4203,7 +4203,7 @@
             "boulder"
           ],
           "height": 7,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 1,
           "numRatings": 1,
           "totalViews": 378,
@@ -4231,7 +4231,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 369,
@@ -4468,7 +4468,7 @@
                 "boulder"
               ],
               "height": 14,
-              "grade": "v2-",
+              "grade": "v2",
               "avgRating": 2.6,
               "numRatings": 5,
               "totalViews": 399,
@@ -4579,7 +4579,7 @@
                     "boulder"
                   ],
                   "height": 6,
-                  "grade": "v6-7",
+                  "grade": "v7",
                   "avgRating": 2,
                   "numRatings": 2,
                   "totalViews": 438,
@@ -4657,7 +4657,7 @@
                     "boulder"
                   ],
                   "height": 10,
-                  "grade": "v3+",
+                  "grade": "v4",
                   "avgRating": 3.2,
                   "numRatings": 19,
                   "totalViews": 1205,
@@ -4712,7 +4712,7 @@
                 "boulder"
               ],
               "height": 14,
-              "grade": "v8-9",
+              "grade": "v9",
               "avgRating": 3.2,
               "numRatings": 9,
               "totalViews": 582,
@@ -4740,7 +4740,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v7+",
+              "grade": "v8",
               "avgRating": 3,
               "numRatings": 1,
               "totalViews": 411,
@@ -4754,7 +4754,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v5+",
+              "grade": "v6",
               "avgRating": 2.3,
               "numRatings": 3,
               "totalViews": 459,
@@ -4821,7 +4821,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 113,
@@ -4893,7 +4893,7 @@
                   "types": [
                     "boulder"
                   ],
-                  "grade": "v6+",
+                  "grade": "v7",
                   "avgRating": 3.5,
                   "numRatings": 19,
                   "totalViews": 2010,
@@ -4971,7 +4971,7 @@
                     "boulder"
                   ],
                   "height": 8,
-                  "grade": "v6-7",
+                  "grade": "v7",
                   "avgRating": 2,
                   "numRatings": 1,
                   "totalViews": 280,
@@ -4996,7 +4996,7 @@
                     "boulder"
                   ],
                   "height": 10,
-                  "grade": "v6-7",
+                  "grade": "v7",
                   "avgRating": 2,
                   "numRatings": 1,
                   "totalViews": 263,
@@ -5240,7 +5240,7 @@
             "boulder"
           ],
           "height": 20,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 3.3,
           "numRatings": 4,
           "totalViews": 268,
@@ -5268,7 +5268,7 @@
             "boulder"
           ],
           "height": 21,
-          "grade": "v5-",
+          "grade": "v5",
           "avgRating": 3,
           "numRatings": 2,
           "totalViews": 1997,
@@ -5324,7 +5324,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v8-9",
+          "grade": "v9",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 153,
@@ -5338,7 +5338,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v1-2",
+          "grade": "v2",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 137,
@@ -5472,7 +5472,7 @@
             "boulder"
           ],
           "height": 24,
-          "grade": "v8-",
+          "grade": "v8",
           "avgRating": 3.1,
           "numRatings": 7,
           "totalViews": 1339,
@@ -5500,7 +5500,7 @@
             "boulder"
           ],
           "height": 25,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 4,
           "numRatings": 1,
           "totalViews": 205,
@@ -5590,7 +5590,7 @@
                 "boulder"
               ],
               "height": 18,
-              "grade": "v3-4",
+              "grade": "v4",
               "avgRating": 3,
               "numRatings": 1,
               "totalViews": 287,
@@ -5880,7 +5880,7 @@
                     "boulder"
                   ],
                   "height": 10,
-                  "grade": "v3-4",
+                  "grade": "v4",
                   "avgRating": 2,
                   "numRatings": 2,
                   "totalViews": 314,
@@ -6184,7 +6184,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 606,
@@ -6211,7 +6211,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 4,
           "numRatings": 1,
           "totalViews": 377,
@@ -6278,7 +6278,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 4,
           "numRatings": 1,
           "totalViews": 332,
@@ -6392,7 +6392,7 @@
                 "boulder"
               ],
               "height": 6,
-              "grade": "v2-",
+              "grade": "v2",
               "avgRating": 2.2,
               "numRatings": 5,
               "totalViews": 332,
@@ -6406,7 +6406,7 @@
                 "boulder"
               ],
               "height": 6,
-              "grade": "v1-2",
+              "grade": "v2",
               "avgRating": 1.7,
               "numRatings": 3,
               "totalViews": 303,
@@ -6419,7 +6419,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v2+",
+              "grade": "v3",
               "avgRating": 2.2,
               "numRatings": 15,
               "totalViews": 763,
@@ -6443,7 +6443,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v1+",
+              "grade": "v2",
               "avgRating": 1,
               "numRatings": 1,
               "totalViews": 26,
@@ -6588,7 +6588,7 @@
                 "boulder"
               ],
               "height": 16,
-              "grade": "v4+",
+              "grade": "v5",
               "avgRating": 3.6,
               "numRatings": 5,
               "totalViews": 1001,
@@ -6615,7 +6615,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v4-5",
+              "grade": "v5",
               "avgRating": 2.8,
               "numRatings": 19,
               "totalViews": 888,
@@ -6736,7 +6736,7 @@
                 "boulder"
               ],
               "height": 8,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 313,
@@ -6790,7 +6790,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.5,
               "numRatings": 2,
               "totalViews": 773,
@@ -6804,7 +6804,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v8+",
+              "grade": "v9",
               "avgRating": 3,
               "numRatings": 2,
               "totalViews": 202,
@@ -7002,7 +7002,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v0-1",
+              "grade": "v1",
               "avgRating": 2.3,
               "numRatings": 88,
               "totalViews": 3517,
@@ -7058,7 +7058,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v3-4",
+              "grade": "v4",
               "avgRating": 2,
               "numRatings": 3,
               "totalViews": 406,
@@ -7113,7 +7113,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v1-2",
+              "grade": "v2",
               "avgRating": 2,
               "numRatings": 67,
               "totalViews": 3322,
@@ -7179,7 +7179,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v0-1",
+              "grade": "v1",
               "avgRating": 2.5,
               "numRatings": 4,
               "totalViews": 488,
@@ -7194,7 +7194,7 @@
                 "boulder"
               ],
               "height": 40,
-              "grade": "5.13v9 yds",
+              "grade": "v9",
               "avgRating": 2,
               "numRatings": 2,
               "totalViews": 524,
@@ -7245,7 +7245,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v3+",
+              "grade": "v4",
               "avgRating": 2.9,
               "numRatings": 17,
               "totalViews": 425,
@@ -7379,7 +7379,7 @@
                 "boulder"
               ],
               "height": 14,
-              "grade": "v5+",
+              "grade": "v6",
               "avgRating": 2,
               "numRatings": 2,
               "totalViews": 169,
@@ -7543,7 +7543,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 3,
               "numRatings": 4,
               "totalViews": 1262,
@@ -7585,7 +7585,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 2.8,
               "numRatings": 10,
               "totalViews": 1887,
@@ -7789,7 +7789,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v7+",
+              "grade": "v8",
               "avgRating": 3.3,
               "numRatings": 11,
               "totalViews": 1176,
@@ -7817,7 +7817,7 @@
                 "boulder"
               ],
               "height": 8,
-              "grade": "v9-",
+              "grade": "v9",
               "avgRating": 3.1,
               "numRatings": 23,
               "totalViews": 2063,
@@ -7892,7 +7892,7 @@
                     "boulder"
                   ],
                   "height": 10,
-                  "grade": "v1-2",
+                  "grade": "v2",
                   "avgRating": 2.8,
                   "numRatings": 5,
                   "totalViews": 731,
@@ -7906,7 +7906,7 @@
                     "boulder"
                   ],
                   "height": 12,
-                  "grade": "v2-3",
+                  "grade": "v3",
                   "avgRating": 2.3,
                   "numRatings": 32,
                   "totalViews": 1837,
@@ -7962,7 +7962,7 @@
                     "boulder"
                   ],
                   "height": 15,
-                  "grade": "v2-",
+                  "grade": "v2",
                   "avgRating": 1.9,
                   "numRatings": 14,
                   "totalViews": 1128,
@@ -7976,7 +7976,7 @@
                     "boulder"
                   ],
                   "height": 9,
-                  "grade": "v5-6",
+                  "grade": "v6",
                   "avgRating": 3,
                   "numRatings": 2,
                   "totalViews": 184,
@@ -7990,7 +7990,7 @@
                     "boulder"
                   ],
                   "height": 10,
-                  "grade": "v2-3",
+                  "grade": "v3",
                   "avgRating": 2.5,
                   "numRatings": 10,
                   "totalViews": 729,
@@ -8055,7 +8055,7 @@
                   "types": [
                     "boulder"
                   ],
-                  "grade": "5.6v0+ yds",
+                  "grade": "v1",
                   "avgRating": 3.2,
                   "numRatings": 81,
                   "totalViews": 4990,
@@ -8096,7 +8096,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v8-9",
+              "grade": "v9",
               "avgRating": 1,
               "numRatings": 1,
               "totalViews": 428,
@@ -8174,7 +8174,7 @@
                 "boulder"
               ],
               "height": 18,
-              "grade": "v11-12",
+              "grade": "v12",
               "avgRating": 4,
               "numRatings": 5,
               "totalViews": 3327,
@@ -8229,7 +8229,7 @@
                 "boulder"
               ],
               "height": 20,
-              "grade": "v11-12",
+              "grade": "v12",
               "avgRating": 3,
               "numRatings": 2,
               "totalViews": 499,
@@ -8284,7 +8284,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v4+",
+              "grade": "v5",
               "avgRating": 3.2,
               "numRatings": 102,
               "totalViews": 4056,
@@ -8438,7 +8438,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v10-",
+              "grade": "v10",
               "avgRating": 3,
               "numRatings": 3,
               "totalViews": 484,
@@ -8452,7 +8452,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.6,
               "numRatings": 8,
               "totalViews": 731,
@@ -8550,7 +8550,7 @@
                 "boulder"
               ],
               "height": 4,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.9,
               "numRatings": 15,
               "totalViews": 1431,
@@ -8590,7 +8590,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v7-",
+              "grade": "v7",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 320,
@@ -8711,7 +8711,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v0-1",
+              "grade": "v1",
               "avgRating": 2,
               "numRatings": 14,
               "totalViews": 445,
@@ -8779,7 +8779,7 @@
                 "boulder"
               ],
               "height": 15,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.3,
               "numRatings": 12,
               "totalViews": 967,
@@ -9134,7 +9134,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v13-14",
+          "grade": "v14",
           "avgRating": 0,
           "numRatings": 0,
           "totalViews": 72,
@@ -9190,7 +9190,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v3-4",
+          "grade": "v4",
           "avgRating": 2.9,
           "numRatings": 25,
           "totalViews": 1114,
@@ -9232,7 +9232,7 @@
             "boulder"
           ],
           "height": 18,
-          "grade": "v6+",
+          "grade": "v7",
           "avgRating": 4,
           "numRatings": 2,
           "totalViews": 577,
@@ -9288,7 +9288,7 @@
             "boulder"
           ],
           "height": 20,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 2.5,
           "numRatings": 2,
           "totalViews": 394,
@@ -9316,7 +9316,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v8-9",
+          "grade": "v9",
           "avgRating": 2.3,
           "numRatings": 3,
           "totalViews": 283,
@@ -9372,7 +9372,7 @@
             "boulder"
           ],
           "height": 5,
-          "grade": "v4+",
+          "grade": "v5",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 103,
@@ -9386,25 +9386,12 @@
             "boulder"
           ],
           "height": 16,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 409,
           "monthlyViews": 14,
           "firstAscent": "Tim?"
-        },
-        {
-          "url": "https://www.mountainproject.com/route/105741761/town-drunk-aid-route",
-          "name": "Town Drunk Aid Route",
-          "types": [
-            "aid"
-          ],
-          "height": 20,
-          "avgRating": 2.6,
-          "numRatings": 17,
-          "totalViews": 2520,
-          "monthlyViews": 12,
-          "firstAscent": "Tyler Phillips"
         }
       ]
     },
@@ -9424,7 +9411,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 2.5,
           "numRatings": 6,
           "totalViews": 520,
@@ -9465,7 +9452,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v3-4",
+          "grade": "v4",
           "avgRating": 3.5,
           "numRatings": 2,
           "totalViews": 141,
@@ -9518,7 +9505,7 @@
             "boulder"
           ],
           "height": 18,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 395,
@@ -9588,7 +9575,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v2-3",
+          "grade": "v3",
           "avgRating": 3,
           "numRatings": 2,
           "totalViews": 153,
@@ -9655,7 +9642,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 2.5,
           "numRatings": 2,
           "totalViews": 500,
@@ -9668,7 +9655,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v8-",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 2,
           "totalViews": 89,
@@ -9682,7 +9669,7 @@
             "boulder"
           ],
           "height": 16,
-          "grade": "v3-4",
+          "grade": "v4",
           "avgRating": 3,
           "numRatings": 2,
           "totalViews": 74,
@@ -9893,7 +9880,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v0-1",
+          "grade": "v1",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 93,
@@ -9949,7 +9936,7 @@
             "boulder"
           ],
           "height": 35,
-          "grade": "v10-",
+          "grade": "v10",
           "avgRating": 4,
           "numRatings": 1,
           "totalViews": 39,
@@ -9963,7 +9950,7 @@
             "boulder"
           ],
           "height": 18,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 3.3,
           "numRatings": 4,
           "totalViews": 413,
@@ -10060,7 +10047,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v3+",
+          "grade": "v4",
           "avgRating": 2.3,
           "numRatings": 7,
           "totalViews": 348,
@@ -10074,7 +10061,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v8-9",
+          "grade": "v9",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 225,
@@ -10199,7 +10186,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 2,
           "totalViews": 94,
@@ -10227,7 +10214,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v3-4",
+          "grade": "v4",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 322,
@@ -10269,7 +10256,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 368,
@@ -10283,7 +10270,7 @@
             "boulder"
           ],
           "height": 20,
-          "grade": "v7+",
+          "grade": "v8",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 179,
@@ -10297,7 +10284,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v2-3",
+          "grade": "v3",
           "avgRating": 2.7,
           "numRatings": 7,
           "totalViews": 408,
@@ -10311,7 +10298,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v5+",
+          "grade": "v6",
           "avgRating": 4,
           "numRatings": 4,
           "totalViews": 720,
@@ -10325,7 +10312,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 480,
@@ -10353,7 +10340,7 @@
             "boulder"
           ],
           "height": 5,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 1,
           "numRatings": 1,
           "totalViews": 373,
@@ -10420,7 +10407,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v10-",
+          "grade": "v10",
           "avgRating": 3.3,
           "numRatings": 3,
           "totalViews": 359,
@@ -10490,7 +10477,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 2.8,
           "numRatings": 4,
           "totalViews": 617,
@@ -10504,7 +10491,7 @@
             "boulder"
           ],
           "height": 18,
-          "grade": "v3-4",
+          "grade": "v4",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 397,
@@ -10546,7 +10533,7 @@
             "boulder"
           ],
           "height": 11,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 64,
@@ -10560,7 +10547,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v7-8",
+          "grade": "v8",
           "avgRating": 2,
           "numRatings": 2,
           "totalViews": 80,
@@ -10602,7 +10589,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v2-3",
+          "grade": "v3",
           "avgRating": 1,
           "numRatings": 3,
           "totalViews": 297,
@@ -10616,7 +10603,7 @@
             "boulder"
           ],
           "height": 14,
-          "grade": "v2-3",
+          "grade": "v3",
           "avgRating": 1,
           "numRatings": 3,
           "totalViews": 292,
@@ -10630,7 +10617,7 @@
             "boulder"
           ],
           "height": 1,
-          "grade": "v1+",
+          "grade": "v2",
           "avgRating": 1,
           "numRatings": 1,
           "totalViews": 354,
@@ -10644,7 +10631,7 @@
             "boulder"
           ],
           "height": 14,
-          "grade": "v6-7",
+          "grade": "v7",
           "avgRating": 2.3,
           "numRatings": 3,
           "totalViews": 581,
@@ -10742,7 +10729,7 @@
             "boulder"
           ],
           "height": 6,
-          "grade": "v4-5",
+          "grade": "v5",
           "avgRating": 2,
           "numRatings": 1,
           "totalViews": 350,
@@ -10798,7 +10785,7 @@
             "boulder"
           ],
           "height": 12,
-          "grade": "v4+",
+          "grade": "v5",
           "avgRating": 2.3,
           "numRatings": 3,
           "totalViews": 482,
@@ -10826,7 +10813,7 @@
             "boulder"
           ],
           "height": 8,
-          "grade": "v7-",
+          "grade": "v7",
           "avgRating": 2.9,
           "numRatings": 14,
           "totalViews": 768,
@@ -10868,7 +10855,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v2-3",
+          "grade": "v3",
           "avgRating": 3.5,
           "numRatings": 2,
           "totalViews": 238,
@@ -10896,7 +10883,7 @@
             "boulder"
           ],
           "height": 10,
-          "grade": "v0-1",
+          "grade": "v1",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 345,
@@ -10952,7 +10939,7 @@
             "boulder"
           ],
           "height": 15,
-          "grade": "v5-6",
+          "grade": "v6",
           "avgRating": 3,
           "numRatings": 1,
           "totalViews": 161,
@@ -10993,7 +10980,7 @@
           "types": [
             "boulder"
           ],
-          "grade": "v5+",
+          "grade": "v6",
           "avgRating": 3.4,
           "numRatings": 19,
           "totalViews": 1075,
@@ -11027,7 +11014,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v11-",
+              "grade": "v11",
               "avgRating": 3,
               "numRatings": 1,
               "totalViews": 567,
@@ -11041,7 +11028,7 @@
                 "boulder"
               ],
               "height": 16,
-              "grade": "v12-",
+              "grade": "v12",
               "avgRating": 3,
               "numRatings": 1,
               "totalViews": 714,
@@ -11054,7 +11041,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v11-12",
+              "grade": "v12",
               "avgRating": 3.5,
               "numRatings": 2,
               "totalViews": 421,
@@ -11067,7 +11054,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v10+",
+              "grade": "v11",
               "avgRating": 3,
               "numRatings": 4,
               "totalViews": 367,
@@ -11109,7 +11096,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v6-",
+              "grade": "v6",
               "avgRating": 2.8,
               "numRatings": 17,
               "totalViews": 1132,
@@ -11175,7 +11162,7 @@
                 "boulder"
               ],
               "height": 12,
-              "grade": "v8-9",
+              "grade": "v9",
               "avgRating": 3.5,
               "numRatings": 4,
               "totalViews": 1131,
@@ -11216,7 +11203,7 @@
                 "boulder"
               ],
               "height": 8,
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 1,
               "numRatings": 2,
               "totalViews": 254,
@@ -11229,7 +11216,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v7-8",
+              "grade": "v8",
               "avgRating": 2.5,
               "numRatings": 2,
               "totalViews": 726,
@@ -11242,7 +11229,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v8-9",
+              "grade": "v9",
               "avgRating": 2,
               "numRatings": 1,
               "totalViews": 297,
@@ -11255,7 +11242,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v6-7",
+              "grade": "v7",
               "avgRating": 2.5,
               "numRatings": 2,
               "totalViews": 747,
@@ -11268,7 +11255,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v8-",
+              "grade": "v8",
               "avgRating": 2.4,
               "numRatings": 8,
               "totalViews": 1265,
@@ -11337,7 +11324,7 @@
                 "boulder"
               ],
               "height": 10,
-              "grade": "v2-3",
+              "grade": "v3",
               "avgRating": 1.5,
               "numRatings": 2,
               "totalViews": 168,
@@ -11598,7 +11585,7 @@
                       "types": [
                         "boulder"
                       ],
-                      "grade": "v8-",
+                      "grade": "v8",
                       "avgRating": 2.5,
                       "numRatings": 2,
                       "totalViews": 280,
@@ -11681,7 +11668,7 @@
                         "boulder"
                       ],
                       "height": 20,
-                      "grade": "v2+",
+                      "grade": "v3",
                       "avgRating": 3,
                       "numRatings": 1,
                       "totalViews": 55,
@@ -11747,7 +11734,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v5-",
+                      "grade": "v5",
                       "avgRating": 2,
                       "numRatings": 3,
                       "totalViews": 172,
@@ -11761,7 +11748,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v7-",
+                      "grade": "v7",
                       "avgRating": 2,
                       "numRatings": 1,
                       "totalViews": 164,
@@ -11985,7 +11972,7 @@
                         "boulder"
                       ],
                       "height": 18,
-                      "grade": "v7-8",
+                      "grade": "v8",
                       "avgRating": 2.5,
                       "numRatings": 2,
                       "totalViews": 317,
@@ -12069,7 +12056,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v0-",
+                      "grade": "v0",
                       "avgRating": 1.4,
                       "numRatings": 8,
                       "totalViews": 611,
@@ -12083,7 +12070,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v1+",
+                      "grade": "v2",
                       "avgRating": 3,
                       "numRatings": 1,
                       "totalViews": 42,
@@ -12122,7 +12109,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v6-",
+                      "grade": "v6",
                       "avgRating": 2.8,
                       "numRatings": 25,
                       "totalViews": 1737,
@@ -12174,7 +12161,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v0-",
+                      "grade": "v0",
                       "avgRating": 1,
                       "numRatings": 2,
                       "totalViews": 497,
@@ -12229,7 +12216,7 @@
                     "boulder"
                   ],
                   "height": 20,
-                  "grade": "v10+",
+                  "grade": "v11",
                   "avgRating": 2,
                   "numRatings": 1,
                   "totalViews": 165,
@@ -12317,7 +12304,7 @@
                   "types": [
                     "boulder"
                   ],
-                  "grade": "v0-1",
+                  "grade": "v1",
                   "avgRating": 3,
                   "numRatings": 3,
                   "totalViews": 329,
@@ -12473,7 +12460,7 @@
                         "boulder"
                       ],
                       "height": 25,
-                      "grade": "v10-",
+                      "grade": "v10",
                       "avgRating": 2.5,
                       "numRatings": 2,
                       "totalViews": 406,
@@ -12591,7 +12578,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v10-11",
+                      "grade": "v11",
                       "avgRating": 3.5,
                       "numRatings": 2,
                       "totalViews": 603,
@@ -12713,7 +12700,7 @@
                         "boulder"
                       ],
                       "height": 8,
-                      "grade": "v6-7",
+                      "grade": "v7",
                       "avgRating": 1.3,
                       "numRatings": 3,
                       "totalViews": 228,
@@ -12766,7 +12753,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v9-10",
+                      "grade": "v10",
                       "avgRating": 3.5,
                       "numRatings": 2,
                       "totalViews": 627,
@@ -12780,7 +12767,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v8-",
+                      "grade": "v8",
                       "avgRating": 3.6,
                       "numRatings": 36,
                       "totalViews": 2521,
@@ -12794,7 +12781,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v8-9",
+                      "grade": "v9",
                       "avgRating": 3,
                       "numRatings": 1,
                       "totalViews": 777,
@@ -12858,7 +12845,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v3+",
+                      "grade": "v4",
                       "avgRating": 2,
                       "numRatings": 1,
                       "totalViews": 46,
@@ -12928,7 +12915,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v4-5",
+                      "grade": "v5",
                       "avgRating": 2.9,
                       "numRatings": 8,
                       "totalViews": 384,
@@ -12952,7 +12939,7 @@
                       "types": [
                         "boulder"
                       ],
-                      "grade": "v6+",
+                      "grade": "v7",
                       "avgRating": 2.7,
                       "numRatings": 10,
                       "totalViews": 1002,
@@ -13116,7 +13103,7 @@
                         "boulder"
                       ],
                       "height": 12,
-                      "grade": "v3-4",
+                      "grade": "v4",
                       "avgRating": 2,
                       "numRatings": 1,
                       "totalViews": 63,
@@ -13210,7 +13197,7 @@
                       "types": [
                         "boulder"
                       ],
-                      "grade": "v6-",
+                      "grade": "v6",
                       "avgRating": 2.4,
                       "numRatings": 37,
                       "totalViews": 1877,
@@ -13334,7 +13321,7 @@
                         "boulder"
                       ],
                       "height": 20,
-                      "grade": "v10-",
+                      "grade": "v10",
                       "avgRating": 3.5,
                       "numRatings": 2,
                       "totalViews": 795,
@@ -13594,7 +13581,7 @@
                         "boulder"
                       ],
                       "height": 12,
-                      "grade": "v1-2",
+                      "grade": "v2",
                       "avgRating": 3.4,
                       "numRatings": 11,
                       "totalViews": 766,
@@ -13608,7 +13595,7 @@
                         "tr",
                         "boulder"
                       ],
-                      "grade": "5.13b/cv9 yds",
+                      "grade": "v9",
                       "avgRating": 3,
                       "numRatings": 1,
                       "totalViews": 632,
@@ -13634,7 +13621,7 @@
                       "types": [
                         "boulder"
                       ],
-                      "grade": "v10-",
+                      "grade": "v10",
                       "avgRating": 3,
                       "numRatings": 1,
                       "totalViews": 557,
@@ -13662,7 +13649,7 @@
                         "boulder"
                       ],
                       "height": 16,
-                      "grade": "v7-",
+                      "grade": "v7",
                       "avgRating": 3.7,
                       "numRatings": 42,
                       "totalViews": 4826,
@@ -13755,7 +13742,7 @@
                         "boulder"
                       ],
                       "height": 12,
-                      "grade": "v5-6",
+                      "grade": "v6",
                       "avgRating": 3.4,
                       "numRatings": 5,
                       "totalViews": 641,
@@ -13852,7 +13839,7 @@
                         "boulder"
                       ],
                       "height": 8,
-                      "grade": "v2-3",
+                      "grade": "v3",
                       "avgRating": 2,
                       "numRatings": 3,
                       "totalViews": 378,
@@ -13879,7 +13866,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v1-2",
+                      "grade": "v2",
                       "avgRating": 2,
                       "numRatings": 4,
                       "totalViews": 316,
@@ -13946,7 +13933,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v1-2",
+                      "grade": "v2",
                       "avgRating": 2,
                       "numRatings": 4,
                       "totalViews": 151,
@@ -13974,7 +13961,7 @@
                         "boulder"
                       ],
                       "height": 8,
-                      "grade": "v3-",
+                      "grade": "v3",
                       "avgRating": 2.2,
                       "numRatings": 18,
                       "totalViews": 431,
@@ -13988,7 +13975,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v0-",
+                      "grade": "v0",
                       "avgRating": 2.7,
                       "numRatings": 48,
                       "totalViews": 1549,
@@ -14030,7 +14017,7 @@
                         "boulder"
                       ],
                       "height": 10,
-                      "grade": "v1-",
+                      "grade": "v1",
                       "avgRating": 2,
                       "numRatings": 5,
                       "totalViews": 176,
@@ -14044,7 +14031,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v2-",
+                      "grade": "v2",
                       "avgRating": 2.3,
                       "numRatings": 10,
                       "totalViews": 394,
@@ -14072,7 +14059,7 @@
                         "boulder"
                       ],
                       "height": 8,
-                      "grade": "v2-3",
+                      "grade": "v3",
                       "avgRating": 2.1,
                       "numRatings": 11,
                       "totalViews": 363,
@@ -14086,7 +14073,7 @@
                         "boulder"
                       ],
                       "height": 15,
-                      "grade": "v0+",
+                      "grade": "v1",
                       "avgRating": 2.4,
                       "numRatings": 47,
                       "totalViews": 1519,
@@ -14127,7 +14114,7 @@
                     "boulder"
                   ],
                   "height": 15,
-                  "grade": "v6+",
+                  "grade": "v7",
                   "avgRating": 2,
                   "numRatings": 1,
                   "totalViews": 236,
@@ -14228,7 +14215,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v1+",
+              "grade": "v2",
               "avgRating": 3.4,
               "numRatings": 17,
               "totalViews": 586,
@@ -14241,7 +14228,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v3-4",
+              "grade": "v4",
               "avgRating": 2.3,
               "numRatings": 6,
               "totalViews": 468,
@@ -14304,7 +14291,7 @@
               "types": [
                 "boulder"
               ],
-              "grade": "v10-",
+              "grade": "v10",
               "avgRating": 3.3,
               "numRatings": 3,
               "totalViews": 839,
