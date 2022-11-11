@@ -62,12 +62,17 @@ class InfoCard{
             .attr("x", 0)
             .attr("y", 50)
             .attr("font-size", "30");
-            
 
         svg.append("text")
             .text(numBoulders)
             .attr("x", 220)
             .attr("y", 50)
+            .attr("font-size", "30");
+
+        svg.append("text")
+            .text("Affected Boulders: ")
+            .attr("x", 0)
+            .attr("y", 100)
             .attr("font-size", "30");
 
 
@@ -114,6 +119,13 @@ class InfoCard{
 
     bouldersArea() {
 
+        // Roll up the data to get a count of the number of boulders by grade
+        const byGrade = d3.rollup(this.boulders, v => v.length, d => d.grade)
+        console.log(byGrade)
+
+        let max = d3.max(byGrade, d => d.value)
+        console.log(max)
+
         const svg = d3.select('#area-barchart')
             .attr("height", this.chart_height)
             .attr("width", this.chart_width);
@@ -141,11 +153,11 @@ class InfoCard{
             .call(d3.axisBottom(xScale));
 
         
-        console.log(this.boulders);
 
-        //const byGrade = d3.rollup(this.boulderData, v => d3.count(v, d => d.moveY), d => d.grade) ;
-        const byGrade = d3.group(this.boulders, d => d.grade)
-        console.log(byGrade)
+        // const byGrade = d3.group(this.boulders, d => d.grade)
+        // console.log(byGrade)
+
+        
 
 
     }
