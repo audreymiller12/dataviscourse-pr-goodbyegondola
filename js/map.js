@@ -14,7 +14,7 @@ class GondolaMap {
         // get initial bounds to use in drawing towers to know where to draw
         google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
             var bounds = map.getBounds()
-            this.drawTowers(bounds, 13)
+            this.drawTowers(bounds, 13, map)
             this.drawBoulders(bounds, 13)
 
         })
@@ -75,7 +75,7 @@ class GondolaMap {
 
     }
 
-    drawTowers(bounds, zoom) {
+    drawTowers(bounds, zoom, map) {
 
         var currData = this.towerData.filter(function (d) {
             return d.long > bounds.Ha.lo && d.long < bounds.Ha.hi
@@ -84,54 +84,55 @@ class GondolaMap {
         var width = parseInt(d3.select("#map").style("width"))
         var height = parseInt(d3.select("#map").style("height"))
 
-        var map = d3.select('#map')
+        const overlay = new google.maps.OverlayView();
 
-        map.selectAll('svg').remove()
+        overlay.onAdd = function () {
+            console.log(this.getPanes())
+            const layer = d3.select(this.getPanes().overlayLayer).attr('width',width).attr('height', height).append('div')
+                .attr('id', 'overlay')
+                .style('height',  height + 'px')
+                .style('width', width + 'px')
+                .attr('position', 'absolute')
+                .style('transform', 'translate(-'+ (width/2) + 'px,-'+ (height/2) + 'px)')
 
-        var svg = map.append('svg')
-            .attr('width', width)
-            .attr('height', 100)
-            .attr('class', 'mapsvg')
-            .attr('transform', 'translate('+ -350 + ', 0)')
+            overlay.draw = function () {
 
-        var transition = svg.transition().duration(10000)
+                var svg = layer.selectAll('svg')
+                    .data(currData)
+                    .join('svg')
+                    .attr('transform', d => 'translate('+ (convertToXY(d).y) + ',' + (convertToXY(d).x)+ ')')
+                    .attr('width', (zoom * 0.7))
+                    .attr('height', (zoom * 0.7))
 
-        svg.selectAll('rect')
-            .data(currData)
-            .join(
-                enter => enter.append('rect'),
-                update => update,
-                exit => exit
-                    .call(d => d.transition(transition).remove())
-                    .attr("y", 41))
-            .attr('x', d => convertToXY(d).y)
-            .attr('y', d => convertToXY(d).x)
-            .call(d => d.transition(transition))
-            .attr('width', (zoom * 0.7))
-            .attr('height', (zoom * 0.7))
-            .attr('class', 'tower')
+                svg.append('rect')
+                    .attr('width', (zoom * 0.7))
+                    .attr('height', (zoom * 0.7))
+                    .attr('class', 'tower')
 
 
-        function convertToXY(d) {
+                function convertToXY(d) {
 
-            var width = parseFloat(d3.select("#map").style("width"))
-            var height = parseFloat(d3.select("#map").style("height"))
+                    var width = parseFloat(d3.select("#map").style("width"))
+                    var height = parseFloat(d3.select("#map").style("height"))
 
-            var xDiff = Math.abs(bounds.eb.hi - bounds.eb.lo)
-            var yDiff = Math.abs(bounds.Ha.hi - bounds.Ha.lo)
+                    var xDiff = Math.abs(bounds.eb.hi - bounds.eb.lo)
+                    var yDiff = Math.abs(bounds.Ha.hi - bounds.Ha.lo)
 
-            var xScale = height / xDiff
-            var yScale = width / yDiff
+                    var xScale = height / xDiff
+                    var yScale = width / yDiff
 
-            var xLatDiff = Math.abs(d.lat - bounds.eb.hi) * xScale
-            var yLongDiff = Math.abs(d.long - bounds.Ha.lo) * yScale
+                    var xLatDiff = Math.abs(d.lat - bounds.eb.hi) * xScale
+                    var yLongDiff = Math.abs(d.long - bounds.Ha.lo) * yScale
 
-            var coords = {
-                x: xLatDiff,
-                y: yLongDiff
+                    var coords = {
+                        x: xLatDiff,
+                        y: yLongDiff
+                    }
+                    return coords
+                }
             }
-            return coords
         }
+        overlay.setMap(map)
 
     }
 
