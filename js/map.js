@@ -15,8 +15,6 @@ class GondolaMap {
         google.maps.event.addListenerOnce(map, 'tilesloaded', () => {
             var bounds = map.getBounds()
             this.drawTowers(bounds, 13, map)
-            this.drawBoulders(bounds, 13)
-
         })
 
     }
@@ -52,81 +50,58 @@ class GondolaMap {
 
         // set on zoom changed listener to update data
         map.addListener('zoom_changed', () => {
-            this.drawTowers(map.getBounds(), map.getZoom())
+            this.drawTowers(map.getBounds(), map.getZoom(), map)
         })
         return map
     }
 
-    /**
-     * 
-     * @param map map that is being drawn on 
-     */
-    drawBoulders(bounds, zoom) {
-        console.log(this.boulderData)
-        // var currData = this.boulderData.filter(function (d) {
-        //     return d.g > bounds.Ha.lo && d.long < bounds.Ha.hi
+
+    drawTowers(bounds, zoom, map) {
+
+        var currTowerData = this.towerData.filter(function (d) {
+            return d.long > bounds.Ha.lo && d.long < bounds.Ha.hi
+        })
+
+        // var currTowerData = this.boulderData.filter(function (d) {
+        //     if(d.long && d.lat){
+        //         return d.long > bounds.Ha.lo && d.long < bounds.Ha.hi
+        //     }else if(d.children.long && d.children.lat){
+        //         return d.children.long > bounds.Ha.lo && d.children.long < bounds.Ha.hi
+        //     }
         // })
 
         var width = parseInt(d3.select("#map").style("width"))
         var height = parseInt(d3.select("#map").style("height"))
 
-        var map = d3.select('#map')
-
-
-    }
-
-    drawTowers(bounds, zoom, map) {
-
-        var currData = this.towerData.filter(function (d) {
-            return d.long > bounds.Ha.lo && d.long < bounds.Ha.hi
-        })
-
-        var width = parseInt(d3.select("#map").style("width"))
-        var height = parseInt(d3.select("#map").style("height"))
-
-        const overlay = new google.maps.OverlayView();
+        const overlay = new google.maps.OverlayView()
 
         overlay.onAdd = function () {
-            console.log(this.getPanes())
-            const layer = d3.select(this.getPanes().overlayLayer).attr('width',width).attr('height', height).append('div')
+            const layer = d3.select(this.getPanes().overlayLayer).append('div').style('position', 'absolute')
                 .attr('id', 'overlay')
-                .style('height',  height + 'px')
-                .style('width', width + 'px')
-                .attr('position', 'absolute')
-                .style('transform', 'translate(-'+ (width/2) + 'px,-'+ (height/2) + 'px)')
 
             overlay.draw = function () {
-
+                var projection = overlay.getProjection()
                 var svg = layer.selectAll('svg')
-                    .data(currData)
+                    .data(currTowerData)
                     .join('svg')
-                    .attr('transform', d => 'translate('+ (convertToXY(d).y) + ',' + (convertToXY(d).x)+ ')')
-                    .attr('width', (zoom * 0.7))
-                    .attr('height', (zoom * 0.7))
+                    .attr('width', 10)
+                    .attr('height', 10)
+                    .attr('transform', d => 'translate('+ (convertToXY(d).x) + ',' + (convertToXY(d).y)+ ')')
+
 
                 svg.append('rect')
-                    .attr('width', (zoom * 0.7))
-                    .attr('height', (zoom * 0.7))
+                    .attr('width', 10)
+                    .attr('height', 10)
                     .attr('class', 'tower')
 
 
+                   
                 function convertToXY(d) {
-
-                    var width = parseFloat(d3.select("#map").style("width"))
-                    var height = parseFloat(d3.select("#map").style("height"))
-
-                    var xDiff = Math.abs(bounds.eb.hi - bounds.eb.lo)
-                    var yDiff = Math.abs(bounds.Ha.hi - bounds.Ha.lo)
-
-                    var xScale = height / xDiff
-                    var yScale = width / yDiff
-
-                    var xLatDiff = Math.abs(d.lat - bounds.eb.hi) * xScale
-                    var yLongDiff = Math.abs(d.long - bounds.Ha.lo) * yScale
+                    d = projection.fromLatLngToDivPixel(new google.maps.LatLng(d.lat,d.long))  
 
                     var coords = {
-                        x: xLatDiff,
-                        y: yLongDiff
+                        x: d.x,
+                        y: d.y
                     }
                     return coords
                 }
