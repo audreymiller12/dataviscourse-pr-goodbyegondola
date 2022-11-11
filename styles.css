@@ -45,10 +45,8 @@ header > div {
 }
 
 
-.tower .station{
-    height: 10px;
-    fill: '#9c1010';
-    width: 10px;
+.tower {
+    fill: darkred;
 
 }
 
@@ -68,4 +66,12 @@ header > div {
     width: 350px;
     height: 400px;
     float: right;
+}
+
+.mapOverlay{
+    position: absolute;
+}
+
+.mapsvg{
+    position: absolute;
 }
