@@ -50,6 +50,11 @@ header > div {
 
 }
 
+.boulder {
+    fill: rgb(63, 63, 63);
+
+}
+
 #card {
     width: 50%;
     height: 800px;
