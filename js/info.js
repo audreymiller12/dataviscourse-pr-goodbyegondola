@@ -170,7 +170,7 @@ class InfoCard{
                 tooltip
                     .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "s"))
                     .style("left", (event.clientX+10)+"px")
-                    .style("top", (event.clientY+80)+"px")
+                    .style("top", (event.clientY)+"px")
             })
             .on("mouseleave", function(event,d){
                 d3.select(this)
