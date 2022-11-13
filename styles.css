@@ -57,6 +57,12 @@ header > div {
 
 }
 
+.area{
+    fill: rgba(95, 158, 160, 0.255);
+    stroke:rgba(95, 158, 160, 0.447);
+    stroke-width: 3px;
+}
+
 #infocard {
     display: flex;
     flex-direction: column;
@@ -164,4 +170,15 @@ tr {
 
 .sortable.sorting:hover {
     background: #232323;
+}
+
+
+.legend {
+    position: absolute;
+    margin: 10px;
+    outline-width: 5px;
+    outline-style: ridge;
+    outline-color: rgb(86, 86, 86);
+    background-color: white;
+    z-index: 10;
 }
