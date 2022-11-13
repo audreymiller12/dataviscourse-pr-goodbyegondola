@@ -107,6 +107,7 @@ class GondolaMap {
         var affectedBoulders = childrenAreas.filter(function (d) {
             return namelist.includes(d.name)
         })
+        console.log(affectedBoulders)
 
         return affectedBoulders
     }
