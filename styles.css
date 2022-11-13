@@ -50,6 +50,13 @@ header > div {
 
 }
 
+.boulder {
+    fill: rgb(62, 61, 61);
+    stroke: black;
+    stroke-width: 3px;
+
+}
+
 #infocard {
     display: flex;
     flex-direction: column;
