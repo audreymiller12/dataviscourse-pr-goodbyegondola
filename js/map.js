@@ -5,6 +5,17 @@ class GondolaMap {
         this.globalAppState = globalAppState
         this.towerData = globalAppState.towerData
         this.boulderData = globalAppState.boulderData
+        this.boulderNames = globalAppState.boulderNames
+
+        var namelist = []
+        this.boulderNames.forEach(d => {
+            namelist.push(d.name)
+        })
+        console.log(this.boulderData.children)
+
+        this.affectedBoulders = this.boulderData.filter(function(d) {
+            return namelist.includes(d.name)
+        })
 
         this.drawInitMap(d3.select("#map"))
 

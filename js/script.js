@@ -2,7 +2,8 @@
 async function loadData () {
     const boulderData = await d3.json('data/data.json');
     const towerData = await d3.csv('data/tower_data.csv');
-    return { boulderData, towerData };
+    const boulderNames = await d3.csv('data/boulder_names.csv');
+    return { boulderData, towerData, boulderNames };
 }
 
 
@@ -10,6 +11,7 @@ async function loadData () {
 const globalApplicationState = {
    boulderData: null,
    towerData: null,
+   boulderNames: null,
    map: null,
    info_svg: null,
    tableViz: null,
@@ -20,6 +22,7 @@ const globalApplicationState = {
 loadData().then((loadedData) => {
     globalApplicationState.boulderData = loadedData.boulderData
     globalApplicationState.towerData = loadedData.towerData
+    globalApplicationState.boulderNames = loadedData.boulderNames
     
 
     let map = new GondolaMap(globalApplicationState);
