@@ -1305,13 +1305,13 @@
           "firstAscent": "unknown"
         },
         {
-          "url": "https://www.mountainproject.com/area/110568280/the-campus-boulder",
-          "lat": 40.572,
-          "long": -111.73,
-          "name": "The Campus Boulder",
+          "url": "none",
+          "lat": 40.5723554174102,
+          "long":-111.768750290344,
+          "name": "Fat Albert Boulder",
           "elevation": 6417,
-          "totalViews": 8771,
-          "monthlyViews": 97,
+          "totalViews": 38482,
+          "monthlyViews": 410,
           "children": [
             {
               "url": "https://www.mountainproject.com/route/115124530/fat-albert-face",
