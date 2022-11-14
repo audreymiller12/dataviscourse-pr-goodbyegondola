@@ -168,7 +168,7 @@ class InfoCard{
                     .style("opacity", 0.8);
 
                 tooltip
-                    .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "s"))
+                    .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "'s"))
                     .style("left", (event.pageX+15)+"px")
                     .style("top", (event.pageY-40)+"px")
             })

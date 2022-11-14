@@ -240,6 +240,10 @@ class GondolaMap {
                         tooltip
                             .style("opacity", 0)
                     })
+                    .on('click', function(event,d){
+                        map.setCenter(new google.maps.LatLng(d.lat, d.long))
+                        map.setZoom(16)
+                    })
 
 
 
@@ -315,6 +319,11 @@ class GondolaMap {
                         tooltip
                             .style("opacity", 0)
                     })
+                    .on('click', function(event,d){
+                        map.setCenter(new google.maps.LatLng(d.lat, d.long))
+                        map.setZoom(16)
+                    })
+                    
 
                 // convert the lat and long coordinates to x and y coordinates
                 function calcXY(d) {
@@ -327,6 +336,8 @@ class GondolaMap {
         mapOverlay.setMap(map)
 
     }
+
+   
 
     drawArea(climbingAreas, map) {
 
@@ -384,6 +395,10 @@ class GondolaMap {
 
                         tooltip
                             .style("opacity", 0)
+                    })
+                    .on('click', function(event,d){
+                        map.setCenter(new google.maps.LatLng(d.lat, d.long))
+                        map.setZoom(16)
                     })
 
 
