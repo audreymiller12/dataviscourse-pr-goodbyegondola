@@ -175,10 +175,28 @@ tr {
 
 .legend {
     position: absolute;
+    height: 130px;
+    width: 10vw;
     margin: 10px;
     outline-width: 5px;
     outline-style: ridge;
     outline-color: rgb(86, 86, 86);
     background-color: white;
     z-index: 10;
+    opacity: 0.8;
+}
+
+.layerButtonEnabled{
+    fill: rgb(77, 77, 77);
+    stroke: black;
+    stroke-width: 2px;
+    opacity: 1;
+
+}
+
+.layerButtonDisabled{
+    fill: rgb(255, 255, 255);
+    stroke: rgb(158, 158, 158);
+    stroke-width: 2px;
+
 }

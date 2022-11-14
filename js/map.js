@@ -6,6 +6,9 @@ class GondolaMap {
         this.towerData = globalAppState.towerData
         this.boulderData = globalAppState.boulderData
         this.boulderNames = globalAppState.boulderNames
+        this.bouldersEnabled = true
+        this.towersEnabled = true
+        this.areasEnabled = true
 
         this.affectedBoulders = this.filterAffectedBoulders()
 
@@ -13,20 +16,78 @@ class GondolaMap {
 
         this.drawInitMap(d3.select("#map"))
         this.drawLegend(d3.select('#map'))
+        this.drawLayerEnabler(d3.select('#map'))
 
+    }
+
+    drawLayerEnabler(map) {
+        var height = parseFloat(map.style('height'))
+
+        var layerEnabler = map.append('div')
+            .style('width', '12vw')
+            .style('height', '55px')
+            .attr('class', 'legend')
+            .style('top', (height - 100) + 'px')
+            .style('left', '5px')
+
+        layerEnabler.append('a')
+            .style('width', '15px')
+            .style('height', '15px')
+            .style('transform', 'translate(15px,28px)')
+            .attr('id', 'towerEnable')
+            .append('i')
+            .attr('class', 'fa-solid fa-eye')
+
+
+        var enablerSvg = layerEnabler.append('svg')
+            .attr('width', '12vw')
+            .attr('class', 'mapsvg')
+            .attr('height', '55')
+            .attr('id', 'legend')
+
+        enablerSvg.append('text')
+            .text('Layers: ')
+            .attr('class', 'h1')
+            .attr('x', 10)
+            .attr('y', 20)
+
+        var towerG = enablerSvg.append('g')
+            .attr('width', '50')
+            .attr('height', '20')
+            .attr('transform', 'translate(20,30)')
+
+        towerG.append('text')
+            .text('towers')
+            .attr('transform', 'translate(5,13)')
+
+
+        document.addEventListener('click', (event, map) => this.removeLayers(event, map))
+
+
+    }
+
+    removeLayers(event, map) {
+        switch (event.path[1].id) {
+            case 'towerEnable':
+                this.towersEnabled = !this.towersEnabled
+                this.drawTowers(this.towerData, map, this.towersEnabled)
+            default:
+                return
+        }
     }
 
     drawLegend(map) {
 
+        var width = parseFloat(map.style('width'))
+
         var legendDiv = map.append('div')
-            .style('width', '175px')
-            .style('height', '130px')
             .attr('class', 'legend')
+            .style('left', (width - 120) + 'px')
 
         var legend = legendDiv.append('svg')
-            .attr('width', 175)
+            .attr('width', '10vw')
             .attr('class', 'mapsvg')
-            .attr('height', 130)
+            .attr('height', '130px')
             .attr('id', 'legend')
 
         legend
@@ -46,7 +107,7 @@ class GondolaMap {
             .attr('class', 'tower')
             .attr('width', 10)
             .attr('height', 10)
-            .attr('transform', 'translate(15,-10)')
+            .attr('transform', 'translate(13,-10)')
 
         gondolaG
             .append('text')
@@ -64,7 +125,7 @@ class GondolaMap {
             .attr('class', 'area')
             .attr('width', 10)
             .attr('height', 10)
-            .attr('transform', 'translate(15,-10)')
+            .attr('transform', 'translate(13,-10)')
 
         areaG
             .append('text')
@@ -171,15 +232,15 @@ class GondolaMap {
 
         // set on zoom changed listener to update data
         map.addListener('zoom_changed', () => {
-            // this.drawTowers(map.getBounds(), map.getZoom(), map) 
+            //this.drawArea(this.climbingAreas, map) 
         })
         this.drawArea(this.climbingAreas, map)
-        this.drawTowers(this.towerData, map)
+        this.drawTowers(this.towerData, map, true)
         this.drawBoulders(this.affectedBoulders, map)
     }
 
 
-    drawTowers(towerData, map) {
+    drawTowers(towerData, map, enabled) {
 
         // get an overlay layer to draw d3 elements onto
         const mapOverlay = new google.maps.OverlayView()
@@ -190,13 +251,12 @@ class GondolaMap {
             const mapDiv = d3.select(this.getPanes().overlayMouseTarget).append('div').attr('id', 'towerDiv')
 
             mapOverlay.draw = () => {
-
                 // get current projection so lat and long can be converted to x and y coords
                 var projection = this.getProjection()
 
                 //  create an svg for each tower to plot the rect onto
                 var towerSvgs = mapDiv.selectAll('svg')
-                    .data(towerData)
+                    .data(enabled ? towerData: [])
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
@@ -211,6 +271,7 @@ class GondolaMap {
                     .style("opacity", 0)
                     .attr("class", "tooltip")
                     .style('z-index', 120)
+                    .style('display', 'none')
 
 
                 // append rectangles to the svg's
@@ -221,12 +282,14 @@ class GondolaMap {
                     .on("mouseover", function (event, d) {
                         // Black outline 
                         d3.select(this)
-                            .attr("stroke", "black")
+                            .style("stroke", "black")
                             .style("stroke-width", "3px")
 
                         // Make tooltip visible
                         tooltip
-                            .style("opacity", 0.8);
+                            .style("opacity", 0.8)
+                            .style('display', 'block')
+
 
                         tooltip
                             .html('Tower: ' + d.towerID)
@@ -239,8 +302,10 @@ class GondolaMap {
 
                         tooltip
                             .style("opacity", 0)
+                            .style('display', 'none')
+
                     })
-                    .on('click', function(event,d){
+                    .on('click', function (event, d) {
                         map.setCenter(new google.maps.LatLng(d.lat, d.long))
                         map.setZoom(16)
                     })
@@ -254,6 +319,7 @@ class GondolaMap {
                     d = projection.fromLatLngToDivPixel(new google.maps.LatLng(d.lat, d.long))
                     return { x: d.x, y: d.y }
                 }
+
 
             }
         }
@@ -291,6 +357,7 @@ class GondolaMap {
                     .style("opacity", 0)
                     .attr("class", "tooltip")
                     .style('z-index', 120)
+                    .style('display', 'none')
                 // append rectangles to the svg's
                 boulderSvgs.append('circle')
                     .attr('r', 7)
@@ -300,12 +367,13 @@ class GondolaMap {
                     .on("mouseover", function (event, d) {
                         // Black outline 
                         d3.select(this)
-                            .attr("stroke", "black")
+                            .style("stroke", "black")
                             .style("stroke-width", "3px")
 
                         // Make tooltip visible
                         tooltip
-                            .style("opacity", 0.8);
+                            .style("opacity", 0.8)
+                            .style('display', 'block')
 
                         tooltip
                             .html('Boulder: ' + d.name)
@@ -318,12 +386,13 @@ class GondolaMap {
 
                         tooltip
                             .style("opacity", 0)
+                            .style('display', 'none')
                     })
-                    .on('click', function(event,d){
+                    .on('click', function (event, d) {
                         map.setCenter(new google.maps.LatLng(d.lat, d.long))
                         map.setZoom(16)
                     })
-                    
+
 
                 // convert the lat and long coordinates to x and y coordinates
                 function calcXY(d) {
@@ -337,10 +406,11 @@ class GondolaMap {
 
     }
 
-   
+
 
     drawArea(climbingAreas, map) {
 
+        console.log(map.getZoom())
         // get an overlay layer to draw d3 elements onto
         const mapOverlay = new google.maps.OverlayView()
 
@@ -359,8 +429,8 @@ class GondolaMap {
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
-                    .attr('width', 30)
-                    .attr('height', 20)
+                    .attr('width', (3 * map.getZoom()))
+                    .attr('height', (2 * map.getZoom()))
                     .attr("class", "mapsvg")
 
                 areaSvgs.selectAll('rect').remove()
@@ -369,20 +439,22 @@ class GondolaMap {
                     .style("opacity", 0)
                     .attr("class", "tooltip")
                     .style('z-index', 120)
+                    .style('display', 'none')
                 // append rectangles to the svg's
                 areaSvgs.append('rect')
-                    .attr('width', 30)
-                    .attr('height', 20)
+                    .attr('width', (3 * map.getZoom()))
+                    .attr('height', (2 * map.getZoom()))
                     .attr('class', 'area')
                     .on("mouseover", function (event, d) {
                         // Black outline 
                         d3.select(this)
-                            .attr("stroke", "black")
+                            .style("stroke", "black")
                             .style("stroke-width", "3px")
 
                         // Make tooltip visible
                         tooltip
-                            .style("opacity", 0.8);
+                            .style("opacity", 0.8)
+                            .style('display', 'block')
 
                         tooltip
                             .html('Area: ' + d.name)
@@ -391,12 +463,14 @@ class GondolaMap {
                     })
                     .on("mouseleave", function (event, d) {
                         d3.select(this)
-                            .style("stroke-width", "1px")
+                            .style('stroke', 'rgba(95, 158, 160, 0.447')
+                            .style('stroke-width', '3px')
 
                         tooltip
                             .style("opacity", 0)
+                            .style('display', 'none')
                     })
-                    .on('click', function(event,d){
+                    .on('click', function (event, d) {
                         map.setCenter(new google.maps.LatLng(d.lat, d.long))
                         map.setZoom(16)
                     })
