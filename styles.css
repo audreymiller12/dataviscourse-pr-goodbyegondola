@@ -52,8 +52,8 @@ header > div {
 
 .boulder {
     fill: rgb(62, 61, 61);
-    stroke: black;
-    stroke-width: 3px;
+    stroke: rgb(44, 44, 44);
+    stroke-width: 1px;
 
 }
 

@@ -16,19 +16,18 @@ class GondolaMap {
 
     }
 
-    drawLegend(map){
+    drawLegend(map) {
 
         var legendDiv = map.append('div')
             .style('width', '175px')
-            .style('height', '200px')
+            .style('height', '130px')
             .attr('class', 'legend')
 
         var legend = legendDiv.append('svg')
             .attr('width', 175)
             .attr('class', 'mapsvg')
-            .attr('height', 200)
+            .attr('height', 130)
             .attr('id', 'legend')
-            
 
         legend
             .append('text')
@@ -36,40 +35,70 @@ class GondolaMap {
             .attr('class', 'h1')
             .attr('x', 10)
             .attr('y', 20)
-        
+
         var gondolaG = legend.append('g')
             .attr('width', 165)
             .attr('height', 20)
-            .attr('top', 30)
-            .attr('left', 5)
-        
+            .attr('transform', 'translate(5,45)')
+
         gondolaG
             .append('rect')
             .attr('class', 'tower')
-            .attr('top', 15)
-            .attr('left', 40)
             .attr('width', 10)
             .attr('height', 10)
-        
-            
-        
+            .attr('transform', 'translate(15,-10)')
+
         gondolaG
             .append('text')
             .text('- Gondola Tower')
             .attr('class', 'h1')
-            .attr('x', 40)
-            .attr('y', 40)
-        
-            
+            .attr('x', 30)
+
+        var areaG = legend.append('g')
+            .attr('width', 165)
+            .attr('height', 20)
+            .attr('transform', 'translate(5,80)')
+
+        areaG
+            .append('rect')
+            .attr('class', 'area')
+            .attr('width', 10)
+            .attr('height', 10)
+            .attr('transform', 'translate(15,-10)')
+
+        areaG
+            .append('text')
+            .text('- Climbing Area')
+            .attr('class', 'h1')
+            .attr('x', 30)
+
+        var boulderG = legend.append('g')
+            .attr('width', 165)
+            .attr('height', 20)
+            .attr('transform', 'translate(5,115)')
+
+        boulderG
+            .append('circle')
+            .attr('class', 'boulder')
+            .attr('r', 6)
+            .attr('transform', 'translate(18,-5)')
+
+        boulderG
+            .append('text')
+            .text('- Boulder')
+            .attr('class', 'h1')
+            .attr('x', 30)
+
+
     }
 
-    filterClimbingAreas(){
+    filterClimbingAreas() {
         // get all of the children of the main areas
         var children = this.boulderData.children
         var childrenAreas = []
         children.forEach(child => {
             if (child.children) {
-               childrenAreas.push(child)
+                childrenAreas.push(child)
             }
 
         })
@@ -107,7 +136,6 @@ class GondolaMap {
         var affectedBoulders = childrenAreas.filter(function (d) {
             return namelist.includes(d.name)
         })
-        console.log(affectedBoulders)
 
         return affectedBoulders
     }
@@ -146,7 +174,7 @@ class GondolaMap {
             // this.drawTowers(map.getBounds(), map.getZoom(), map) 
         })
         this.drawArea(this.climbingAreas, map)
-        this.drawTowers(this.towerData,map)
+        this.drawTowers(this.towerData, map)
         this.drawBoulders(this.affectedBoulders, map)
     }
 
@@ -172,16 +200,50 @@ class GondolaMap {
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
+                    .attr('width', 20)
+                    .attr('height', 20)
                     .attr("class", "mapsvg")
+
+                towerSvgs.selectAll('rect').remove()
+
+                // Attach tooltip
+                let tooltip = d3.select('#towertooltip')
+                    .style("opacity", 0)
+                    .attr("class", "tooltip")
+                    .style('z-index', 120)
+
 
                 // append rectangles to the svg's
                 towerSvgs.append('rect')
-                    .attr('width', 10)
-                    .attr('height', 10)
+                    .attr('width', 12)
+                    .attr('height', 12)
                     .attr('class', 'tower')
                     .on("mouseover", function (event, d) {
-                        console.log('mouse over tower')
+                        // Black outline 
+                        d3.select(this)
+                            .attr("stroke", "black")
+                            .style("stroke-width", "3px")
+
+                        // Make tooltip visible
+                        tooltip
+                            .style("opacity", 0.8);
+
+                        tooltip
+                            .html('Tower: ' + d.towerID)
+                            .style("left", (event.pageX + 20) + "px")
+                            .style("top", (event.pageY - 20) + "px")
                     })
+                    .on("mouseleave", function (event, d) {
+                        d3.select(this)
+                            .style("stroke-width", "1px")
+
+                        tooltip
+                            .style("opacity", 0)
+                    })
+
+
+
+                var lineSvgs = mapDiv.selectAll('svg')
 
                 // convert the lat and long coordinates to x and y coordinates
                 function calcXY(d) {
@@ -219,6 +281,12 @@ class GondolaMap {
                     .attr('height', 15)
                     .attr("class", "mapsvg")
 
+                boulderSvgs.selectAll('circle').remove()
+
+                let tooltip = d3.select('#bouldertoolip')
+                    .style("opacity", 0)
+                    .attr("class", "tooltip")
+                    .style('z-index', 120)
                 // append rectangles to the svg's
                 boulderSvgs.append('circle')
                     .attr('r', 7)
@@ -226,9 +294,27 @@ class GondolaMap {
                     .attr('cy', 7.5)
                     .attr('class', 'boulder')
                     .on("mouseover", function (event, d) {
-                        console.log('mouse over boulder')
-                    })
+                        // Black outline 
+                        d3.select(this)
+                            .attr("stroke", "black")
+                            .style("stroke-width", "3px")
 
+                        // Make tooltip visible
+                        tooltip
+                            .style("opacity", 0.8);
+
+                        tooltip
+                            .html('Boulder: ' + d.name)
+                            .style("left", (event.pageX + 20) + "px")
+                            .style("top", (event.pageY - 20) + "px")
+                    })
+                    .on("mouseleave", function (event, d) {
+                        d3.select(this)
+                            .style("stroke-width", "1px")
+
+                        tooltip
+                            .style("opacity", 0)
+                    })
 
                 // convert the lat and long coordinates to x and y coordinates
                 function calcXY(d) {
@@ -250,7 +336,7 @@ class GondolaMap {
         mapOverlay.onAdd = function () {
             // overlayLayer doesn't receive DOM events
             // overlayMouseTarget receives DOM events
-            const mapDiv = d3.select(this.getPanes().overlayMouseTarget).append('div')
+            const mapDiv = d3.select(this.getPanes().overlayMouseTarget).append('div').attr('id', 'areas')
 
             mapOverlay.draw = () => {
 
@@ -266,14 +352,40 @@ class GondolaMap {
                     .attr('height', 20)
                     .attr("class", "mapsvg")
 
+                areaSvgs.selectAll('rect').remove()
+
+                let tooltip = d3.select('#areatooltip')
+                    .style("opacity", 0)
+                    .attr("class", "tooltip")
+                    .style('z-index', 120)
                 // append rectangles to the svg's
                 areaSvgs.append('rect')
                     .attr('width', 30)
                     .attr('height', 20)
                     .attr('class', 'area')
                     .on("mouseover", function (event, d) {
-                        console.log('mouse over area')
+                        // Black outline 
+                        d3.select(this)
+                            .attr("stroke", "black")
+                            .style("stroke-width", "3px")
+
+                        // Make tooltip visible
+                        tooltip
+                            .style("opacity", 0.8);
+
+                        tooltip
+                            .html('Area: ' + d.name)
+                            .style("left", (event.pageX + 20) + "px")
+                            .style("top", (event.pageY - 20) + "px")
                     })
+                    .on("mouseleave", function (event, d) {
+                        d3.select(this)
+                            .style("stroke-width", "1px")
+
+                        tooltip
+                            .style("opacity", 0)
+                    })
+
 
 
                 // convert the lat and long coordinates to x and y coordinates

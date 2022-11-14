@@ -62,7 +62,6 @@ class Table {
 
         // Max value for views
         let maxviews = d3.max(data.map(d => d.totalViews))
-        console.log(maxviews)
 
         this.viewsScaleX = d3.scaleLinear()
             .domain([0,maxviews])
@@ -86,7 +85,6 @@ class Table {
         // Draw legend
         this.drawLegend(data);
 
-        console.log(data)
         // Set what is called in here as this.currentData so that it can be accessed in the sorting function
         this.currentData = data;
 
