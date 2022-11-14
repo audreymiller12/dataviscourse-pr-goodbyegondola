@@ -283,7 +283,7 @@ class GondolaMap {
 
                 boulderSvgs.selectAll('circle').remove()
 
-                let tooltip = d3.select('#bouldertoolip')
+                let tooltip = d3.select('#bouldertooltip')
                     .style("opacity", 0)
                     .attr("class", "tooltip")
                     .style('z-index', 120)

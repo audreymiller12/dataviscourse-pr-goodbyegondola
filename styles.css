@@ -91,8 +91,8 @@ header > div {
 }
 
 .tooltip {
-    height: 20px;
-    width: 70px;
+    height: auto;
+    width: auto;
     background-color: white;
     border: solid 1px grey;
     border-radius: 5px;
