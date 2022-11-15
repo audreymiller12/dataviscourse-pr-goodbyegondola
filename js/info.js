@@ -28,7 +28,15 @@ class InfoCard{
         //this.affectedGrade();
         this.bouldersArea();
 
-        // Call table with boulder data
+        // Sort data by rating (default sort) and call table with boulder data
+        this.boulders.sort((a,b) => {
+            if (a.avgRating === b.avgRating) {
+                return (a.totalViews) > (b.totalViews) ? -1 : 1
+            } else {
+                return (a.avgRating) > (b.avgRating) ? -1 : 1
+            }
+        })
+
         this.globalAppState.tableViz.drawTable(this.boulders);
 
 

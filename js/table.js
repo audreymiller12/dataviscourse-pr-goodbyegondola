@@ -6,24 +6,31 @@ class Table {
 
         this.globalApplicationState = globalApplicationState;
 
+        // Initiatlize this.currentData
+        this.currentData = null;
+
         this.headerData = [
             {
-                key: 'phrase',
+                key: 'name',
+                secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
             },
             {
-                key: 'grade',
+                key: 'gradeNumber',
+                secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
             },
             {
-                key: 'rating',
+                key: 'avgRating',
+                secondKey: 'totalViews',
                 sorted: false,
                 ascending: false,
             },
             {
-                key: 'views',
+                key: 'totalViews',
+                secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
             },
@@ -33,10 +40,12 @@ class Table {
         this.viewWidth = 200;
         this.rowHeight = 20
 
+        // Attach column sort handlers with current data
+        this.attachSortHandlers();
 
-        
             
     }
+
 
     /* Legend for frequency column */
     drawLegend(data){
@@ -87,6 +96,8 @@ class Table {
 
         // Set what is called in here as this.currentData so that it can be accessed in the sorting function
         this.currentData = data;
+        this.currentData.map(d => d.gradeNumber = parseInt(d.grade.substring(1))) ;
+        console.log(this.currentData)
 
         let rowSelection = d3.select('#tableBody')
             .selectAll('tr')
@@ -159,16 +170,28 @@ class Table {
     addRatingRects(svg) {
 
         let drawRect = svg.selectAll('rect')
-
-        drawRect
             .data(d => [d])
             .join('rect')
+            .transition()
+            .duration(300)
             .attr('x', 10)
-            .attr('y', 0)
+            .attr('y', this.rowHeight/2)
             .attr('width', (d) => this.ratingScaleX(d.value))
-            .attr('height', this.rowHeight)
+            .attr('height', 1) 
             //.attr('fill', (d) => this.catColor(d.value.category))
             .attr('opacity', "1")
+            
+
+        let drawCircles = svg.selectAll('circle')
+            .data(d => [d])
+            .join('circle')
+            .transition()
+            .duration(300)
+            .attr('cx', (d) => this.ratingScaleX(d.value) + 10)
+            .attr('cy', this.rowHeight/2)
+            .attr('r', 6)
+
+   
     }
 
     // Add rectangles for the views column
@@ -179,12 +202,59 @@ class Table {
         drawRect
             .data(d => [d])
             .join('rect')
+            .transition()
+            .duration(300)
             .attr('x', 10)
             .attr('y', 0)
             .attr('width', (d) => this.viewsScaleX(d.value))
             .attr('height', this.rowHeight)
             //.attr('fill', (d) => this.catColor(d.value.category))
             .attr('opacity', "1")
+    }
+
+
+    // Function to sort columns
+    attachSortHandlers() {
+
+        
+
+        let headerSelection = d3.select('#columnHeaders')
+            .selectAll('th')
+            .data(this.headerData)
+            .join('th') ;
+
+        headerSelection.on('click', (event, d) => {
+            
+            // Change the sorted value to be true for the selected column, false for all else
+            this.headerData.filter(s => s !== d).forEach(col => col.sorted = false);
+            this.headerData.filter(s => s === d).forEach(col => col.sorted = true);
+
+            // Sort ascending or descending and re draw table. Each column as a secondary column to sort on, called secondKey
+            if (d.ascending === false) {
+                this.currentData.sort((a,b) => {
+                    if (a[d.key] === b[d.key]) {
+                        return (a[d.secondKey]) < (b[d.secondKey]) ? -1 : 1 ;
+                    } else {
+                        return (a[d.key]) < (b[d.key]) ? -1 : 1 ;
+                    }
+                });
+                this.headerData.filter(s => s === d).forEach(col => col.ascending = true);
+                this.drawTable(this.currentData);
+            }
+            else if (d.ascending === true) {
+                this.currentData.sort((a,b) => {
+                    if (a[d.key] === b[d.key]) {
+                        return (a[d.secondKey]) > (b[d.secondKey]) ? -1 : 1
+                    } else {
+                        return (a[d.key]) > (b[d.key]) ? -1 : 1
+                    }
+                });
+                this.headerData.filter(s => s === d).forEach(col => col.ascending = false);
+                this.drawTable(this.currentData);
+            }
+
+        })
+
     }
 
 

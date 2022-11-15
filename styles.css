@@ -151,6 +151,10 @@ tr {
     height: 20px;
 }
 
+tr:hover {
+    background: rgb(210, 209, 209)
+}
+
 
 .sorting {
     background: black;
