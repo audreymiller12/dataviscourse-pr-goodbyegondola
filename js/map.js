@@ -198,6 +198,8 @@ class GondolaMap {
             return namelist.includes(d.name)
         })
 
+        console.log(affectedBoulders)
+
         return affectedBoulders
     }
 
@@ -410,7 +412,8 @@ class GondolaMap {
 
     drawArea(climbingAreas, map) {
 
-        console.log(map.getZoom())
+        const appState = this.globalAppState
+
         // get an overlay layer to draw d3 elements onto
         const mapOverlay = new google.maps.OverlayView()
 
@@ -440,6 +443,7 @@ class GondolaMap {
                     .attr("class", "tooltip")
                     .style('z-index', 120)
                     .style('display', 'none')
+
                 // append rectangles to the svg's
                 areaSvgs.append('rect')
                     .attr('width', (3 * map.getZoom()))
@@ -473,6 +477,8 @@ class GondolaMap {
                     .on('click', function (event, d) {
                         map.setCenter(new google.maps.LatLng(d.lat, d.long))
                         map.setZoom(16)
+                        appState.infoInstance.pullBoulders(d)
+
                     })
 
 
@@ -488,5 +494,14 @@ class GondolaMap {
         mapOverlay.setMap(map)
 
     }
+
+
+    selectArea(map, area){
+        map.setCenter(new google.maps.LatLng(area.lat, area.long))
+        map.setZoom(16)
+    }
+
+
+
 
 }

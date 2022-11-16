@@ -68,13 +68,15 @@ class InfoCard{
             .attr("height", this.chart_height)
             .attr("width", this.chart_width);
 
-        svg.append("text")
+        svg.selectAll('text')
+            .join("text")
             .text("Total Boulders: " + numBoulders)
             .attr("x", 0)
             .attr("y", 50)
             .attr("font-size", "30");
 
-        svg.append("text")
+        svg.selectAll('text')
+            .join("text")
             .text("Affected Boulders: ")
             .attr("x", 0)
             .attr("y", 100)
@@ -159,6 +161,8 @@ class InfoCard{
         let tooltip = d3.select('#tooltipdiv')
             .style("opacity", 0)
             .attr("class", "tooltip")
+            .style('display', 'none')
+
 
         // Bars
         let bars = svg.selectAll("rect")
@@ -171,9 +175,12 @@ class InfoCard{
                     .attr("stroke", "black")
                     .style("stroke-width", "3px") 
 
+
                 // Make tooltip visible
                 tooltip
-                    .style("opacity", 0.8);
+                    .style("opacity", 0.8)
+                    .style('display', 'block')
+
 
                 tooltip
                     .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "'s"))
@@ -186,6 +193,8 @@ class InfoCard{
 
                 tooltip
                     .style("opacity", 0)
+                    .style('display', 'none')
+
             })
             .transition()
             .duration(300)

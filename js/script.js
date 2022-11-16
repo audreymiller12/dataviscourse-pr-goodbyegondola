@@ -13,7 +13,7 @@ const globalApplicationState = {
    towerData: null,
    boulderNames: null,
    map: null,
-   info_svg: null,
+   infoInstance: null,
    tableViz: null,
    selectedData: []
   };
@@ -34,5 +34,6 @@ loadData().then((loadedData) => {
    
     // TODO add the info_svg connection here
     let infoCard = new InfoCard(globalApplicationState);
+    globalApplicationState.infoInstance = infoCard
 
   });

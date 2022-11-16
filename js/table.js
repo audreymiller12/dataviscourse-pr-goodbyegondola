@@ -91,13 +91,13 @@ class Table {
 
     drawTable(data){
 
+        console.log(data)
         // Draw legend
         this.drawLegend(data);
 
         // Set what is called in here as this.currentData so that it can be accessed in the sorting function
         this.currentData = data;
         this.currentData.map(d => d.gradeNumber = parseInt(d.grade.substring(1))) ;
-        console.log(this.currentData)
 
         let rowSelection = d3.select('#tableBody')
             .selectAll('tr')
