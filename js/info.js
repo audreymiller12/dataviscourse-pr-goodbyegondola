@@ -215,7 +215,6 @@ class InfoCard{
     selectArea() {
 
         let arealist = this.boulderData.children.map(d => d.name)
-        console.log(arealist)
 
 
         d3.select('#selectButton')
@@ -225,7 +224,7 @@ class InfoCard{
     	    .append('option')
             .text((d) => d) 
             .attr("value", (d) => d)
-            .property("selected", function(d){ return d === defaultOptionName }) ;
+            //.property("selected", function(d){ return d === defaultOptionName }) ;
     }
 
 
