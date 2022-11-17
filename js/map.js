@@ -103,10 +103,17 @@ class GondolaMap {
             .attr('transform', 'translate(5,45)')
 
         gondolaG
+            .append('circle')
+            .attr('r', 10)
+            .attr('transform', 'translate(19,-4)')
+            .attr('opacity', 0.5)
+            .attr('class', 'tower')
+
+        gondolaG
             .append('rect')
             .attr('class', 'tower')
-            .attr('width', 10)
-            .attr('height', 10)
+            .attr('width', 12)
+            .attr('height', 12)
             .attr('transform', 'translate(13,-10)')
 
         gondolaG
@@ -190,20 +197,18 @@ class GondolaMap {
         })
 
         var affectedBoulders = []
-        // filter if the name of the boulder matches an affected one
+        // check if the boulder is in the bounds of a tower
         childrenAreas.forEach(function (d) {
             towerLatLongList.forEach(t => {
-                if(Number(d.lat).toPrecision(6) > (Number(parseFloat(t.lat)).toPrecision(6) - 0.0005) && Number(d.lat).toPrecision(6) < (Number(parseFloat(t.lat)).toPrecision(6) + 0.0005)){
-                    if(Number(d.long).toPrecision(6) > (Number(parseFloat(t.long)).toPrecision(6) - 0.0005) && Number(d.long).toPrecision(6) < (Number(parseFloat(t.long)).toPrecision(6) + 0.0005)){
-                        if(affectedBoulders.indexOf(d) === -1){
+                if (Number(d.lat).toPrecision(6) > (Number(parseFloat(t.lat)).toPrecision(6) - 0.0005) && Number(d.lat).toPrecision(6) < (Number(parseFloat(t.lat)).toPrecision(6) + 0.0005)) {
+                    if (Number(d.long).toPrecision(6) > (Number(parseFloat(t.long)).toPrecision(6) - 0.0005) && Number(d.long).toPrecision(6) < (Number(parseFloat(t.long)).toPrecision(6) + 0.0005)) {
+                        if (affectedBoulders.indexOf(d) === -1) {
                             affectedBoulders.push(d)
                         }
                     }
                 }
             })
         })
-
-        console.log(affectedBoulders)
         return affectedBoulders
     }
 
@@ -272,6 +277,8 @@ class GondolaMap {
                     .attr("class", "mapsvg")
 
                 towerSvgs.selectAll('rect').remove()
+                towerSvgs.selectAll('circle').remove()
+
 
                 // Attach tooltip
                 let tooltip = d3.select('#towertooltip')
@@ -281,10 +288,19 @@ class GondolaMap {
                     .style('display', 'none')
 
 
+
+                towerSvgs.append('circle')
+                    .attr('r', 10)
+                    .attr('cx', 10)
+                    .attr('cy', 10)
+                    .attr('opacity', 0.5)
+                    .attr('class', 'tower')
                 // append rectangles to the svg's
                 towerSvgs.append('rect')
                     .attr('width', 12)
                     .attr('height', 12)
+                    .attr('x', 4)
+                    .attr('y', 4)
                     .attr('class', 'tower')
                     .on("mouseover", function (event, d) {
                         // Black outline 
@@ -316,6 +332,7 @@ class GondolaMap {
                         map.setCenter(new google.maps.LatLng(d.lat, d.long))
                         map.setZoom(16)
                     })
+
 
 
 
