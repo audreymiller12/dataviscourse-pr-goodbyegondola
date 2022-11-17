@@ -6,8 +6,8 @@ class InfoCard{
 
         // Margins for small charts
         this.margin = {left: 30, bottom: 20 , top:10};
-        this.chart_height = 300 ; // Also check CSS
-        this.chart_width = 350 ;
+        this.chart_height = 250 ; // Also check CSS
+        this.chart_width = 500 ;
 
         this.pullBoulders(this.boulderData);
 
@@ -63,67 +63,65 @@ class InfoCard{
     totalAffected() {
         const numBoulders = Object.keys(this.boulders).length ;
 
-        const svg = d3.select('#card-1')
-            .append("svg")
+        const svg = d3.select('#card1-svg')
             .attr("height", this.chart_height)
-            .attr("width", this.chart_width);
+            .attr("width", this.chart_width-50);
 
-        svg.selectAll('text')
-            .join("text")
-            .text("Total Boulders: " + numBoulders)
-            .attr("x", 0)
-            .attr("y", 50)
-            .attr("font-size", "30");
+        // let writeText = d3.select('#card1-svg')
+        //     .attr("class", "overallNums")
 
-        svg.selectAll('text')
-            .join("text")
-            .text("Affected Boulders: ")
-            .attr("x", 0)
+        // writeText
+        //     .html("Total Boulders")
+        //     .style("left", "500px")
+        //     .style("top", "500px")
+
+        // svg.selectAll("text").remove();
+
+        svg
+            .append("text")
+            .text("Total Boulders: ")
+            .attr("x", 150)
             .attr("y", 100)
-            .attr("font-size", "30");
+            .attr("font-size", "30")
+            .attr('text-anchor', "middle");
+
+        svg
+            .append("text")
+            .text(numBoulders)
+            .attr("x", 150)
+            .attr("y", 150)
+            .attr("font-size", "30")
+            .attr('text-anchor', "middle");
+
+        svg
+            .append("text")
+            .text("Affected Boulders: ")
+            .attr("x", 150)
+            .attr("y", 200)
+            .attr("font-size", "30")
+            .attr('text-anchor', "middle");
+
+        svg
+            .append("text")
+            .text("###")
+            .attr("x", 150)
+            .attr("y", 250)
+            .attr("font-size", "30")
+            .attr('text-anchor', "middle");
 
 
 
 
     }
 
-
-    // Visual of boulders affected by grade
-    affectedGrade() {
-
-        const svg = d3.select('#grade-barchart')
-            .attr("height", this.chart_height)
-            .attr("width", this.chart_width);
-
-        // Y Scale
-        const yScale = d3.scaleLinear()
-            .domain([0, 20]) //CHANGE WITH REAL DATA
-            .range([this.chart_height - this.margin.bottom, this.margin.top])
-            .nice() ;
-
-        const yAxis = svg.select('#y-axis')
-            .classed("axis", true)
-            .attr('transform', `translate(${this.margin.left}, 0)`)
-            .call(d3.axisLeft(yScale));
-
-        // X Scale
-        const xScale = d3.scaleBand()
-            .domain(['V0', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12']) //data.map(d => d.name)
-            .range([this.margin.left, this.chart_width])
-            .padding(0.2) ;
-
-        const xAxis = svg.select('#x-axis')
-        .classed("axis", true)
-        .attr('transform', `translate(0, ${this.chart_height - this.margin.bottom})`)
-        .call(d3.axisBottom(xScale));
-
-
-    }
+    ////////////
+    // Bar Chart Visual of boulders by grade
+    ////////////
 
     bouldersArea() {
 
-        const svgHeight = 350;
-        const svgWidth = 400;
+        const svgHeight = this.chart_height;
+        const svgWidth = this.chart_width;
 
         // Roll up the data to get a count of the number of boulders by grade
         const byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
