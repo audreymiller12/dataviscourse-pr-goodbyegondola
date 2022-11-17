@@ -247,6 +247,10 @@ class InfoCard{
             } else {
                 let areaData = boulderData.children.filter(d => d.name === selectedArea)[0];
                 appState.infoInstance.drawInfoCard(areaData);
+
+                // Call map
+                // console.log(areaData);
+                // appState.map.selectArea(map, areaData);
             }
 
             
