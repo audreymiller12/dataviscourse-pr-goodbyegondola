@@ -19,8 +19,13 @@ header > div {
 #header-wrap{
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: 10px;
-    background-color: rgb(170, 132, 220);
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+    background-color: rgb(201, 174, 238);
+    border: 5px;
+    border-style: solid;
+    border-color: rgb(86, 86, 86);
 }
 
 #about{
@@ -41,6 +46,7 @@ header > div {
     height: 800px;
     margin: 0;
     padding: 0;
+    margin: 15px;
 
 }
 
@@ -203,4 +209,30 @@ tr:hover {
     stroke: rgb(158, 158, 158);
     stroke-width: 2px;
 
+}
+
+#about{
+    border-right: 3px;
+    border-left: 3px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-style: solid;
+    border-color: rgb(86, 86, 86);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+
+}
+
+#vizheader{
+    text-align:center; 
+    margin-bottom: 15px;
+    border: 5px;
+    margin-top: 15px;
+    border-style:dashed;
+    border-color: rgb(86, 86, 86);
+    padding: 20px;
+    background-color: rgb(201, 174, 238);
 }
