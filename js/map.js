@@ -171,9 +171,9 @@ class GondolaMap {
      * @returns This method returns the affected boulders from the boulder data
      */
     filterAffectedBoulders() {
-        var namelist = []
-        this.boulderNames.forEach(d => {
-            namelist.push(d.name)
+        var towerLatLongList = []
+        this.towerData.forEach(d => {
+            towerLatLongList.push({ lat: d.lat, long: d.long })
         })
 
         // get all of the children of the main areas
@@ -182,26 +182,31 @@ class GondolaMap {
         children.forEach(child => {
             if (child.children) {
                 child.children.forEach(d => {
-                    childrenAreas.push(d)
                     if (d.children) {
-                        d.children.forEach(f => {
-                            childrenAreas.push(f)
-                        })
+                        childrenAreas.push(d)
                     }
                 })
             }
-
         })
 
+        var affectedBoulders = []
         // filter if the name of the boulder matches an affected one
-        var affectedBoulders = childrenAreas.filter(function (d) {
-            return namelist.includes(d.name)
+        childrenAreas.forEach(function (d) {
+            towerLatLongList.forEach(t => {
+                if(Number(d.lat).toPrecision(6) > (Number(parseFloat(t.lat)).toPrecision(6) - 0.0005) && Number(d.lat).toPrecision(6) < (Number(parseFloat(t.lat)).toPrecision(6) + 0.0005)){
+                    if(Number(d.long).toPrecision(6) > (Number(parseFloat(t.long)).toPrecision(6) - 0.0005) && Number(d.long).toPrecision(6) < (Number(parseFloat(t.long)).toPrecision(6) + 0.0005)){
+                        if(affectedBoulders.indexOf(d) === -1){
+                            affectedBoulders.push(d)
+                        }
+                    }
+                }
+            })
         })
 
         console.log(affectedBoulders)
-
         return affectedBoulders
     }
+
 
     /**
      * 
@@ -258,7 +263,7 @@ class GondolaMap {
 
                 //  create an svg for each tower to plot the rect onto
                 var towerSvgs = mapDiv.selectAll('svg')
-                    .data(enabled ? towerData: [])
+                    .data(enabled ? towerData : [])
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
@@ -496,7 +501,7 @@ class GondolaMap {
     }
 
 
-    selectArea(map, area){
+    selectArea(map, area) {
         map.setCenter(new google.maps.LatLng(area.lat, area.long))
         map.setZoom(16)
     }
