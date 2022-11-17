@@ -144,6 +144,8 @@ th {
     padding-top: 0px;
     min-width: 125px;
     background: rgb(246, 239, 255);
+    position: sticky;
+    top: 0px;
 }
 
 

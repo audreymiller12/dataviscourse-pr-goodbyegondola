@@ -79,10 +79,9 @@ class Table {
         const drawViewsAxis = d3.select('#viewsAxis')
             .attr("height", axisHeight)
             .attr("width", this.viewWidth)
-            .classed("axis", true)
             .call(d3.axisBottom(this.viewsScaleX)
-                .ticks(5)
-                .tickFormat(d => `${d}`)
+                .ticks(8)
+                .tickFormat((d) => d<10001 ? d3.format(".0s")(d) : d3.format(".2s")(d))
             ) ;
 
         drawViewsAxis.selectAll("path").remove();
