@@ -90,7 +90,6 @@ class Table {
 
     drawTable(data){
 
-        console.log(data)
         // Draw legend
         this.drawLegend(data);
 
