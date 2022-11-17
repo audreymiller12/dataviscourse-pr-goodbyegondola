@@ -9,9 +9,11 @@ class InfoCard{
         this.chart_height = 250 ; // Also check CSS
         this.chart_width = 500 ;
 
+        // Create the info card
         this.pullBoulders(this.boulderData);
 
-        
+        // Attach listener to drop down select area menu
+        this.selectArea();
 
     }
 
@@ -204,6 +206,26 @@ class InfoCard{
             .style("stroke-width", "1px") 
 
 
+    }
+
+
+    /*******
+     * Select Area button - re-run map and info chart when a new area is selected
+     */
+    selectArea() {
+
+        let arealist = this.boulderData.children.map(d => d.name)
+        console.log(arealist)
+
+
+        d3.select('#selectButton')
+            .selectAll('myOptions')
+     	    .data(arealist)
+            .enter()
+    	    .append('option')
+            .text((d) => d) 
+            .attr("value", (d) => d)
+            .property("selected", function(d){ return d === defaultOptionName }) ;
     }
 
 
