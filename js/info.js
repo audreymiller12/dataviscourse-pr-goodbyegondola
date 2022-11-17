@@ -10,15 +10,17 @@ class InfoCard{
         this.chart_width = 500 ;
 
         // Create the info card
-        this.pullBoulders(this.boulderData);
+        this.drawInfoCard(this.boulderData);
 
-        // Attach listener to drop down select area menu
-        this.selectArea();
+        // Create drop down menu of areas and attach event listener
+        this.createDropDown();
+        this.selectAreas();
+
 
     }
 
     // Create infocard
-    pullBoulders(areaData) {
+    drawInfoCard(areaData) {
 
         // Create a list of boulders from the nested area/boulder object
         this.boulders = [] ;
@@ -27,7 +29,6 @@ class InfoCard{
 
         // Call each of the views on the boulder dataset
         this.totalAffected();
-        //this.affectedGrade();
         this.bouldersArea();
 
         // Sort data by rating (default sort) and call table with boulder data
@@ -39,6 +40,7 @@ class InfoCard{
             }
         })
 
+        // Draw table
         this.globalAppState.tableViz.drawTable(this.boulders);
 
 
@@ -69,15 +71,7 @@ class InfoCard{
             .attr("height", this.chart_height)
             .attr("width", this.chart_width-50);
 
-        // let writeText = d3.select('#card1-svg')
-        //     .attr("class", "overallNums")
-
-        // writeText
-        //     .html("Total Boulders")
-        //     .style("left", "500px")
-        //     .style("top", "500px")
-
-        // svg.selectAll("text").remove();
+        svg.selectAll("text").remove();
 
         svg
             .append("text")
@@ -210,12 +204,12 @@ class InfoCard{
 
 
     /*******
-     * Select Area button - re-run map and info chart when a new area is selected
+     * Create drop down menu to attach selection options of the areas
      */
-    selectArea() {
+    createDropDown() {
 
         let arealist = this.boulderData.children.map(d => d.name)
-
+        arealist.unshift("All Areas")
 
         d3.select('#selectButton')
             .selectAll('myOptions')
@@ -225,6 +219,48 @@ class InfoCard{
             .text((d) => d) 
             .attr("value", (d) => d)
             //.property("selected", function(d){ return d === defaultOptionName }) ;
+    }
+
+
+    /*******
+     * Select Area button - re-run map and info chart when a new area is selected
+     */
+    selectAreas() {
+
+        // New name for this. data so we can access it in the function below
+        let boulderData = this.boulderData;
+        let appState = this.globalAppState;
+        const drawInfoCard = this.drawInfoCard;
+
+        d3.select('#selectButton').on("change", function(event) {
+            
+            // Selected value
+            var selectedArea = d3.select(this).property("value") ;
+            console.log(selectedArea);
+
+            // Change selection menu to black
+            d3.select(this).attr("class", "selecter-active") ;
+
+            // Subset data to selected area and re-draw info card
+            if (selectedArea === "All Areas") {
+                appState.infoInstance.drawInfoCard(boulderData);
+            } else {
+                let areaData = boulderData.children.filter(d => d.name === selectedArea)[0];
+                appState.infoInstance.drawInfoCard(areaData);
+            }
+
+            
+
+            // Center map on this area
+            //console.log(areaData.lat, areaData.long);
+            //map.setCenter(new google.maps.LatLng(d.lat, d.long))
+            //map.setZoom(16)
+
+            
+
+        })
+
+
     }
 
 
