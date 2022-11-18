@@ -250,7 +250,7 @@ class InfoCard{
 
                 // Call map
                 // console.log(areaData);
-                // appState.map.selectArea(map, areaData);
+                appState.map.selectArea(areaData);
             }
 
             

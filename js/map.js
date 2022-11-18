@@ -246,6 +246,8 @@ class GondolaMap {
         map.addListener('zoom_changed', () => {
             //this.drawArea(this.climbingAreas, map) 
         })
+
+        this.map = map
         this.drawArea(this.climbingAreas, map)
         this.drawTowers(this.towerData, map, true)
         this.drawBoulders(this.affectedBoulders, map)
@@ -518,9 +520,9 @@ class GondolaMap {
     }
 
 
-    selectArea(map, area) {
-        map.setCenter(new google.maps.LatLng(area.lat, area.long))
-        map.setZoom(16)
+    selectArea(area) {
+        this.map.setCenter(new google.maps.LatLng(area.lat, area.long))
+        this.map.setZoom(16)
     }
 
 
