@@ -15,6 +15,7 @@ class InfoCard{
         // Create drop down menu of areas and attach event listener
         this.createDropDown();
         this.selectAreas();
+        this.toggle();
 
 
     }
@@ -230,40 +231,67 @@ class InfoCard{
         // New name for this. data so we can access it in the function below
         let boulderData = this.boulderData;
         let appState = this.globalAppState;
+        let toggle = d3.select('#toggle')
         const drawInfoCard = this.drawInfoCard;
 
         d3.select('#selectButton').on("change", function(event) {
             
             // Selected value
             var selectedArea = d3.select(this).property("value") ;
-            console.log(selectedArea);
 
             // Change selection menu to black
             d3.select(this).attr("class", "selecter-active") ;
 
+            // Change toggle to grey
+            toggle.property("checked", "true")
+
             // Subset data to selected area and re-draw info card
             if (selectedArea === "All Areas") {
                 appState.infoInstance.drawInfoCard(boulderData);
+
+                // Call map on original view
+                // TODO
+
             } else {
                 let areaData = boulderData.children.filter(d => d.name === selectedArea)[0];
                 appState.infoInstance.drawInfoCard(areaData);
 
                 // Call map
-                // console.log(areaData);
                 appState.map.selectArea(areaData);
             }
-
-            
-
-            // Center map on this area
-            //console.log(areaData.lat, areaData.long);
-            //map.setCenter(new google.maps.LatLng(d.lat, d.long))
-            //map.setZoom(16)
-
-            
+  
 
         })
 
+
+    }
+
+    toggle() {
+
+        
+        let toggle = d3.select('#toggle')
+        let selectButton = d3.select('#selectButton')
+        
+        toggle.on("change", function(event){
+            console.log(toggle.property("checked"))
+
+            // When toggle is off and turned back on
+            if (toggle.property("checked") === false) {
+
+                // Grey out selection menu
+                selectButton.attr("class", "selecter-inactive");
+        
+                // TODO: change back to map view
+            }
+            // when toggle is on and turned off, turn on selection menu
+            else if (toggle.property("checked") === true) {
+                selectButton.attr("class", "selecter-active");
+                //TODO: get value from selection menu and re-run info. Right now it works fine because the map view isn't active
+
+            }
+        })
+
+        //console.log(toggle.property("checked"))
 
     }
 

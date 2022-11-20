@@ -162,13 +162,14 @@ tr {
 }
 
 tr:hover {
-    background: rgb(210, 209, 209)
+    background: rgb(210, 209, 209);
 }
 
 
 .sorting {
-    background: black;
+    background: rgb(170, 132, 220);
     color: white;
+    cursor: pointer;
 }
 
 .sortable {
@@ -183,7 +184,7 @@ tr:hover {
 }
 
 .sortable.sorting:hover {
-    background: #232323;
+    background: rgb(170, 132, 220);
 }
 
 
