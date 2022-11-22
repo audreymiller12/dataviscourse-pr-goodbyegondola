@@ -15,14 +15,14 @@ class Table {
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
-                description: "Name of the route. Boulders can have multiple route (boulder problems) on them"
+                description: "Name of the bouldering route. Boulders can have multiple routes (boulder problems) on them."
             },
             {
                 key: 'gradeNumber',
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
-                description: "Difficult rating. Ranges from V0 to V17"
+                description: "Difficult rating. Ranges from V0 to V17."
             },
             {
                 key: 'avgRating',
@@ -36,7 +36,7 @@ class Table {
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
-                description: "Total number of views on the Mountain Project page, an online database of climbing routes"
+                description: "Total number of views on boulder problem's Mountain Project page, an online database of climbing routes."
             },
         ]
 
@@ -89,10 +89,13 @@ class Table {
         this.currentData = data;
         this.currentData.map(d => d.gradeNumber = parseInt(d.grade.substring(1))) ;
 
+        console.log(this.currentData)
+
         let rowSelection = d3.select('#tableBody')
             .selectAll('tr')
             .data(this.currentData)
-            .join('tr');
+            .join('tr')
+            .attr("class", d => d.affected ? "affected" : "notaffected");
 
         let tableSelection = rowSelection.selectAll('td')
             .data(this.rowToCellDataTransform)
@@ -149,6 +152,7 @@ class Table {
             column: "views",
             type: 'viz',
             value: d.totalViews,
+            affected: d.affected
         };
 
         let dataList = [name, grade, rating, views];
@@ -188,10 +192,10 @@ class Table {
             .transition()
             .duration(300)
             .attr('x', 10)
-            .attr('y', 0)
+            .attr('y', 3)
             .attr('width', (d) => this.viewsScaleX(d.value))
             .attr('height', this.rowHeight)
-            //.attr('fill', (d) => this.catColor(d.value.category))
+            //.attr('fill', (d) => d.affected ? "white" : "black")
             .attr('opacity', "1")
     }
 
@@ -266,8 +270,8 @@ class Table {
                     .style("opacity", 1)
                     .style('display', 'block')
                     .html(d.description)
-                    .style("left", (event.pageX-30)+"px")
-                    .style("top", (event.pageY-60)+"px")
+                    .style("left", (event.pageX-100)+"px")
+                    .style("top", (event.pageY-70)+"px")
 
             })
             .on("mouseleave", function(event,d){

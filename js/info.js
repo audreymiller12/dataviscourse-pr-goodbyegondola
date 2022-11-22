@@ -110,7 +110,8 @@ class InfoCard{
             .attr("x", 150)
             .attr("y", 200)
             .attr("font-size", "30")
-            .attr('text-anchor', "middle");
+            .attr('text-anchor', "middle") 
+            .attr('fill', 'darkred');
 
         svg
             .append("text")
@@ -118,7 +119,8 @@ class InfoCard{
             .attr("x", 150)
             .attr("y", 250)
             .attr("font-size", "30")
-            .attr('text-anchor', "middle");
+            .attr('text-anchor', "middle")
+            .attr('fill', 'darkred') ;
 
 
 
@@ -135,22 +137,13 @@ class InfoCard{
         const svgWidth = this.chart_width;
 
         // Roll up the data to get a count of the number of boulders by grade
-        const byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
+        let byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
         byGrade.map(b => b.grade = b[0])
         byGrade.map(b => b.boulders = b[1])
         
 
-        const affectedByGrade = Array.from(d3.rollup(this.boulders.filter(b => b.affected===true), v => v.length, d => d.grade))
-        affectedByGrade.map(b => b.affected = b[1])
-        // console.log(affectedByGrade)
-
-        // byGrade.map(b => b.affectedData = affectedByGrade.filter(d => d[0]===b.grade)[0])
-
-        // console.log(byGrade)
-
-        // let test = affectedByGrade.filter(d => d[0]==="v8")[0][1]
-        // console.log(test)
-
+        const affectedByGrade = d3.rollup(this.boulders.filter(b => b.affected===true), v => v.length, d => d.grade)
+        byGrade.map(b => b.affected = affectedByGrade.get(b.grade) || 0);
 
 
         // Max value for axis
@@ -190,45 +183,94 @@ class InfoCard{
 
 
         // Bars
-        let bars = svg.selectAll("rect")
+        let bars = svg.select('#all-boulders').selectAll("rect")
+
+        // Bars for total boulders
+        bars
             .data(byGrade)
             .join("rect")
             .on("mouseover", function(event, d) 
-            {
-                // Black outline 
-                d3.select(this)
-                    .attr("stroke", "black")
-                    .style("stroke-width", "3px") 
+        {
+            // Black outline 
+            d3.select(this)
+                .attr("stroke", "black")
+                .style("stroke-width", "3px") 
 
 
-                // Make tooltip visible
-                tooltip
-                    .style("opacity", 0.8)
-                    .style('display', 'block')
+            // Make tooltip visible
+            tooltip
+                .style("opacity", 0.8)
+                .style('display', 'block')
 
 
-                tooltip
-                    .html(d[1] + " " + d[0] + (d[1]===1 ? "" : "'s"))
-                    .style("left", (event.pageX+15)+"px")
-                    .style("top", (event.pageY-40)+"px")
-            })
-            .on("mouseleave", function(event,d){
-                d3.select(this)
-                    .style("stroke-width", "1px")
+            tooltip
+                .html(d.boulders + " total " + d.grade + (d.boulders===1 ? "" : "'s")
+                    + "<br>" + d.affected + " affected " + d.grade + (d.boulders===1 ? "" : "'s"))
+                .style("left", (event.pageX+15)+"px")
+                .style("top", (event.pageY-40)+"px")
+        })
+        .on("mouseleave", function(event,d){
+            d3.select(this)
+                .style("stroke-width", "1px")
 
-                tooltip
-                    .style("opacity", 0)
-                    .style('display', 'none')
+            tooltip
+                .style("opacity", 0)
+                .style('display', 'none')
 
-            })
+        })
             .transition()
             .duration(300)
-            .attr("x", (d) => xScale(d[0]))
-            .attr("y", (d)=> yScale(d[1]))
+            .attr("x", (d) => xScale(d.grade))
+            .attr("y", (d)=> yScale(d.boulders))
             .attr("width", xScale.bandwidth())
-            .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d[1]))
-            .attr("stroke", "black")
-            .style("stroke-width", "1px") 
+            .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d.boulders))
+            .attr("class", "bars-boulders")
+
+        
+        // Bars for affected boulders
+        let barsaffected = svg.select('#affected-boulders').selectAll("rect")
+
+        barsaffected
+            .data(byGrade)
+            .join("rect")
+            .on("mouseover", function(event, d) 
+        {
+            // Black outline 
+            d3.select(this)
+                .attr("stroke", "black")
+                .style("stroke-width", "3px") 
+
+
+            // Make tooltip visible
+            tooltip
+                .style("opacity", 0.8)
+                .style('display', 'block')
+
+
+            tooltip
+                .html(d.boulders + " total " + d.grade + (d.boulders===1 ? "" : "'s")
+                    + "<br>" + d.affected + " affected " + d.grade + (d.boulders===1 ? "" : "'s"))
+                .style("left", (event.pageX+15)+"px")
+                .style("top", (event.pageY-40)+"px")
+        })
+        .on("mouseleave", function(event,d){
+            d3.select(this)
+                .style("stroke-width", "1px")
+
+            tooltip
+                .style("opacity", 0)
+                .style('display', 'none')
+
+        })
+            .transition()
+            .duration(300)
+            .attr("x", (d) => xScale(d.grade))
+            .attr("y", (d)=> yScale(d.affected))
+            .attr("width", xScale.bandwidth())
+            .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d.affected))
+            .attr("class", "bars-affected ")
+
+        
 
 
     }
