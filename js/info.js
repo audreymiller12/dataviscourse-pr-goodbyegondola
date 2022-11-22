@@ -4,6 +4,16 @@ class InfoCard{
         this.globalAppState = globalAppState;
         this.boulderData = globalAppState.boulderData;
 
+        // Affected bouldering areas
+        this.affectedBoulderAreas = this.filterAffectedBoulders();
+
+        // Flattened list of affected boulder problems
+        this.affectedBoulders = [];
+        this.affectedBoulderAreas.forEach(level => {
+            this.flattenAffectedBoulders(level);
+        })
+        
+        
         // Margins for small charts
         this.margin = {left: 30, bottom: 20 , top:10};
         this.chart_height = 250 ; // Also check CSS
@@ -25,7 +35,12 @@ class InfoCard{
 
         // Create a list of boulders from the nested area/boulder object
         this.boulders = [] ;
-        this.recursiveBoulderPull(areaData);
+        this.flattenBoulders(areaData);
+
+        // Add property on whether each boulder problem is in the affected list
+        this.boulders.map(boulder => {
+            boulder.affected = this.affectedBoulders.includes(boulder) ? true : false
+        }) 
 
 
         // Call each of the views on the boulder dataset
@@ -44,21 +59,19 @@ class InfoCard{
         // Draw table
         this.globalAppState.tableViz.drawTable(this.boulders);
 
-
     }
 
     // Function that creates an object containing all boulder problems from the nested area/boulder object
-    recursiveBoulderPull(data){
+    flattenBoulders(data){
 
         if (data.hasOwnProperty('children')) {
             data.children.forEach(level => {
-                this.recursiveBoulderPull(level);
+                this.flattenBoulders(level);
             })
         }
         else {
             this.boulders.push(data);
         }
-        
 
     }
 
@@ -67,6 +80,7 @@ class InfoCard{
     // Create the visual of total boulders affected
     totalAffected() {
         const numBoulders = Object.keys(this.boulders).length ;
+        const numAffected = Object.keys(this.boulders.filter(b => b.affected===true)).length ;
 
         const svg = d3.select('#card1-svg')
             .attr("height", this.chart_height)
@@ -100,7 +114,7 @@ class InfoCard{
 
         svg
             .append("text")
-            .text("###")
+            .text(numAffected)
             .attr("x", 150)
             .attr("y", 250)
             .attr("font-size", "30")
@@ -122,6 +136,22 @@ class InfoCard{
 
         // Roll up the data to get a count of the number of boulders by grade
         const byGrade = Array.from(d3.rollup(this.boulders, v => v.length, d => d.grade))
+        byGrade.map(b => b.grade = b[0])
+        byGrade.map(b => b.boulders = b[1])
+        
+
+        const affectedByGrade = Array.from(d3.rollup(this.boulders.filter(b => b.affected===true), v => v.length, d => d.grade))
+        affectedByGrade.map(b => b.affected = b[1])
+        // console.log(affectedByGrade)
+
+        // byGrade.map(b => b.affectedData = affectedByGrade.filter(d => d[0]===b.grade)[0])
+
+        // console.log(byGrade)
+
+        // let test = affectedByGrade.filter(d => d[0]==="v8")[0][1]
+        // console.log(test)
+
+
 
         // Max value for axis
         let maxval = d3.max(byGrade.map(d => d[1]))
@@ -265,7 +295,9 @@ class InfoCard{
 
 
     }
-
+    /*****
+     * Toggle switch
+     */
     toggle() {
 
         
@@ -273,7 +305,6 @@ class InfoCard{
         let selectButton = d3.select('#selectButton')
         
         toggle.on("change", function(event){
-            console.log(toggle.property("checked"))
 
             // When toggle is off and turned back on
             if (toggle.property("checked") === false) {
@@ -291,7 +322,61 @@ class InfoCard{
             }
         })
 
-        //console.log(toggle.property("checked"))
+    }
+
+
+    /**
+     * 
+     * @returns This method returns the affected boulders from the boulder data
+     */
+     filterAffectedBoulders() {
+        var towerLatLongList = []
+        this.globalAppState.towerData.forEach(d => {
+            towerLatLongList.push({ lat: d.lat, long: d.long })
+        })
+
+        // get all of the children of the main areas
+        var children = this.boulderData.children
+        var childrenAreas = []
+        children.forEach(child => {
+            if (child.children) {
+                child.children.forEach(d => {
+                    if (d.children) {
+                        childrenAreas.push(d)
+                    }
+                })
+            }
+        })
+
+        var affectedBoulders = []
+        // check if the boulder is in the bounds of a tower
+        childrenAreas.forEach(function (d) {
+            towerLatLongList.forEach(t => {
+                if (Number(d.lat).toPrecision(6) > (Number(parseFloat(t.lat)).toPrecision(6) - 0.0005) && Number(d.lat).toPrecision(6) < (Number(parseFloat(t.lat)).toPrecision(6) + 0.0005)) {
+                    if (Number(d.long).toPrecision(6) > (Number(parseFloat(t.long)).toPrecision(6) - 0.0005) && Number(d.long).toPrecision(6) < (Number(parseFloat(t.long)).toPrecision(6) + 0.0005)) {
+                        if (affectedBoulders.indexOf(d) === -1) {
+                            affectedBoulders.push(d)
+                        }
+                    }
+                }
+            })
+        })        
+        return affectedBoulders
+    }
+
+    /****
+     * Function that creates an object containing all boulder problems from the nested area/boulder object
+     */
+    flattenAffectedBoulders(data){
+
+        if (data.hasOwnProperty('children')) {
+            data.children.forEach(level => {
+                this.flattenAffectedBoulders(level);
+            })
+        }
+        else {
+            this.affectedBoulders.push(data);
+        }
 
     }
 
