@@ -15,28 +15,32 @@ class Table {
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
+                description: "Name of the bouldering route. Boulders can have multiple routes (boulder problems) on them."
             },
             {
                 key: 'gradeNumber',
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
+                description: "Difficult rating. Ranges from V0 to V17."
             },
             {
                 key: 'avgRating',
                 secondKey: 'totalViews',
                 sorted: false,
                 ascending: false,
+                description: "Average rating on Mountain Project, an online database of climbing routes. Ranges from 0-4 stars"
             },
             {
                 key: 'totalViews',
                 secondKey: 'avgRating',
                 sorted: false,
                 ascending: false,
+                description: "Total number of views on boulder problem's Mountain Project page, an online database of climbing routes."
             },
         ]
 
-        this.ratingWidth = 150;
+        this.ratingWidth = 100;
         this.viewWidth = 200;
         this.rowHeight = 20
 
@@ -51,21 +55,6 @@ class Table {
     drawLegend(data){
 
         const axisHeight = 20
-
-        /* Rating scale and axis */
-        this.ratingScaleX = d3.scaleLinear()
-            .domain([0,5])
-            .range([10,this.ratingWidth-10]) ;        
-
-        const drawRatingAxis = d3.select('#ratingAxis')
-            .attr("height", axisHeight)
-            .attr("width", this.ratingWidth)
-            .call(d3.axisBottom(this.ratingScaleX)
-                .tickValues([0,1,2,3,4,5])
-                .tickFormat(d3.format(".0f"))
-            ) ;
-
-        drawRatingAxis.selectAll("path").remove();
 
         /* Page views scale and axis */
 
@@ -90,6 +79,9 @@ class Table {
 
     drawTable(data){
 
+        // Attach columns sorting features
+        this.updateHeaders();
+
         // Draw legend
         this.drawLegend(data);
 
@@ -97,10 +89,13 @@ class Table {
         this.currentData = data;
         this.currentData.map(d => d.gradeNumber = parseInt(d.grade.substring(1))) ;
 
+        console.log(this.currentData)
+
         let rowSelection = d3.select('#tableBody')
             .selectAll('tr')
             .data(this.currentData)
-            .join('tr');
+            .join('tr')
+            .attr("class", d => d.affected ? "affected" : "notaffected");
 
         let tableSelection = rowSelection.selectAll('td')
             .data(this.rowToCellDataTransform)
@@ -140,23 +135,24 @@ class Table {
         let name = {
             column: "name",
             type: 'text',
-            value: d.name
+            value: d.name,
         };
 
         let grade = {
             column: "grade",
             type: 'text',
-            value: d.grade
+            value: d.grade,
         };
         let rating = {
             column: "rating",
             type: 'viz',
-            value: d.avgRating
+            value: d.avgRating,
         };
         let views = {
             column: "views",
             type: 'viz',
-            value: d.totalViews
+            value: d.totalViews,
+            affected: d.affected
         };
 
         let dataList = [name, grade, rating, views];
@@ -164,30 +160,23 @@ class Table {
     }
 
 
-    // Add rectangles for the rating column
+    // Add stars for the rating column
     addRatingRects(svg) {
 
-        let drawRect = svg.selectAll('rect')
-            .data(d => [d])
-            .join('rect')
-            .transition()
-            .duration(300)
-            .attr('x', 10)
-            .attr('y', this.rowHeight/2)
-            .attr('width', (d) => this.ratingScaleX(d.value))
-            .attr('height', 1) 
-            //.attr('fill', (d) => this.catColor(d.value.category))
-            .attr('opacity', "1")
-            
+        svg.selectAll('path').remove();
 
-        let drawCircles = svg.selectAll('circle')
-            .data(d => [d])
-            .join('circle')
-            .transition()
-            .duration(300)
-            .attr('cx', (d) => this.ratingScaleX(d.value) + 10)
-            .attr('cy', this.rowHeight/2)
-            .attr('r', 6)
+        // Round rating to nearest integer and display that many stars
+        const numStars = [1,2,3,4]
+
+        numStars.forEach(num => {
+
+            svg
+                .data(d => [d])
+                .append("path")
+                .attr("d", d3.symbol().type(d3.symbolStar).size(150))
+                .attr("fill", (d) => Math.round(d.value) >= num ? "black" : "white")
+                .attr("transform", `translate(${num*22}, 12)`);
+        })
 
    
     }
@@ -203,10 +192,10 @@ class Table {
             .transition()
             .duration(300)
             .attr('x', 10)
-            .attr('y', 0)
+            .attr('y', 3)
             .attr('width', (d) => this.viewsScaleX(d.value))
             .attr('height', this.rowHeight)
-            //.attr('fill', (d) => this.catColor(d.value.category))
+            //.attr('fill', (d) => d.affected ? "white" : "black")
             .attr('opacity', "1")
     }
 
@@ -214,7 +203,6 @@ class Table {
     // Function to sort columns
     attachSortHandlers() {
 
-        
 
         let headerSelection = d3.select('#columnHeaders')
             .selectAll('th')
@@ -253,6 +241,67 @@ class Table {
 
         })
 
+        // attach header tooltip
+        this.headerTooltip();
+
+    }
+
+    headerTooltip() {
+        /**
+         *  add tooltip description to table headers
+         */
+
+        // Attach tooltip
+        let tooltip = d3.select('#tooltipdiv')
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style('display', 'none')
+
+         let headerSelection = d3.select('#columnHeaders')
+            .selectAll('th')
+            .data(this.headerData)
+            .join('th') ;
+
+        headerSelection
+            .on("mousemove", function(event, d) {
+
+                // Make tooltip visible
+                tooltip
+                    .style("opacity", 1)
+                    .style('display', 'block')
+                    .html(d.description)
+                    .style("left", (event.pageX-100)+"px")
+                    .style("top", (event.pageY-70)+"px")
+
+            })
+            .on("mouseleave", function(event,d){
+    
+                tooltip
+                    .style("opacity", 0)
+                    .style('display', 'none')
+
+            })
+
+    }
+
+    updateHeaders() {
+
+        /**
+         * update the column headers based on the sort state
+         */
+
+        let headerSelection = d3.select('#columnHeaders')
+            .selectAll('th')
+            .data(this.headerData)
+            .join('th') 
+            .attr('class', d => d.sorted ? 'sorting' : 'sortable');
+
+        let iSelection = d3.select('#columnHeaders').selectAll('i')
+            .data(this.headerData) 
+            .join()
+            .attr('class', d => d.sorted ? (d.ascending ? 'fas fa-sort-up': 'fas fa-sort-down') : 'fas no-display') ;
+
+     
     }
 
 

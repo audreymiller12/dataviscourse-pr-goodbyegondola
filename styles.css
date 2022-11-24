@@ -94,8 +94,16 @@ header > div {
     text-align: center;
 }
 
-.areabarchart rect {
-    fill: rgb(170, 132, 220)
+.bars-boulders {
+    fill: black;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.bars-affected {
+    fill: darkred;
+    stroke: black;
+    stroke-width: 1px;
 }
 
 .tooltip {
@@ -162,13 +170,22 @@ tr {
 }
 
 tr:hover {
-    background: rgb(210, 209, 209)
+    background: rgb(210, 209, 209);
 }
 
+.affected {
+    background: darkred;
+    color: white 
+}
+
+.notaffected {
+    background: white;
+}
 
 .sorting {
-    background: black;
+    background: rgb(152, 105, 213);
     color: white;
+    cursor: pointer;
 }
 
 .sortable {
@@ -176,14 +193,15 @@ tr:hover {
     border-radius: 3px;
     cursor: pointer;
     padding: 6px;
+    background: rgb(217, 195, 244);
 }
 
 .sortable:hover {
-    background: rgb(170, 132, 220);
+    background: rgb(152, 105, 213);
 }
 
 .sortable.sorting:hover {
-    background: #232323;
+    background: rgb(152, 105, 213);
 }
 
 
