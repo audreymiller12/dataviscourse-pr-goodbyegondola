@@ -195,7 +195,7 @@ class Table {
             .attr('y', 3)
             .attr('width', (d) => this.viewsScaleX(d.value))
             .attr('height', this.rowHeight)
-            //.attr('fill', (d) => d.affected ? "white" : "black")
+            .attr('fill', (d) => d.affected ? 'rgb(101, 101, 101)': 'rgb(152, 105, 213)')
             .attr('opacity', "1")
     }
 
