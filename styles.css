@@ -95,13 +95,13 @@ header > div {
 }
 
 .bars-boulders {
-    fill: black;
+    fill: rgb(101, 101, 101);
     stroke: black;
     stroke-width: 1px;
 }
 
 .bars-affected {
-    fill: darkred;
+    fill: rgb(142, 51, 51);
     stroke: black;
     stroke-width: 1px;
 }
@@ -174,8 +174,9 @@ tr:hover {
 }
 
 .affected {
-    background: darkred;
-    color: white 
+    background: rgb(142, 51, 51);
+    color: white;
+    opacity: 80%;
 }
 
 .notaffected {
@@ -236,16 +237,37 @@ tr:hover {
 #about{
     border-right: 3px;
     border-left: 3px;
-    border-top: 0px;
-    border-bottom: 0px;
+    border-top: 3px;
+    border-bottom: 3px;
     border-style: solid;
     border-color: rgb(86, 86, 86);
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 20px;
     margin-right: 20px;
+    padding: 30px;
+    font-size: 20px;
+    width: 93vw;
+    height: fit-content;
 
 
+}
+
+#background{
+    border-right: 3px;
+    border-left: 3px;
+    border-top: 3px;
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: rgb(86, 86, 86);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 30px;
+    font-size: 20px;
+    width: 93vw;
+    height: fit-content;
 }
 
 #vizheader{

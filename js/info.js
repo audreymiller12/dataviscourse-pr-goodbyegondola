@@ -269,7 +269,6 @@ class InfoCard{
             .attr("width", xScale.bandwidth())
             .attr("height", (d) => svgHeight - this.margin.bottom  - yScale(d.affected))
             .attr("class", "bars-affected ")
-
         
 
 

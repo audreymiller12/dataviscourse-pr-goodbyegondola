@@ -16,73 +16,9 @@ class GondolaMap {
 
         this.drawInitMap(d3.select("#map"))
         this.drawLegend(d3.select('#map'))
-        this.drawLayerEnabler(d3.select('#map'))
 
     }
 
-    drawLayerEnabler(map) {
-        var height = parseFloat(map.style('height'))
-
-        var layerEnabler = map.append('div')
-            .style('width', '12vw')
-            .style('height', '55px')
-            .attr('class', 'legend')
-            .attr('id', 'layers')
-            .style('top', (height - 100) + 'px')
-            .style('left', '5px')
-
-        layerEnabler.append('a')
-            .style('width', '15px')
-            .style('height', '15px')
-            .style('top', '27px')
-            .style('left', '20px')
-            .style('position', 'relative')
-            .attr('id', 'towerEnable')
-            .attr('class', 'enabler')
-            .append('i')          
-            .attr('class', 'fa-solid fa-eye')
-
-            
-
-        var enablerSvg = layerEnabler.append('svg')
-            .attr('width', '12vw')
-            .attr('class', 'mapsvg')
-            .attr('height', '55')
-            .attr('id', 'legend')
-
-        enablerSvg.append('text')
-            .text('Layers: ')
-            .attr('class', 'h1')
-            .attr('x', 10)
-            .attr('y', 20)
-
-        var towerG = enablerSvg.append('g')
-            .attr('width', '50')
-            .attr('height', '20')
-            .attr('transform', 'translate(20,30)')
-
-        towerG.append('text')
-            .text('towers')
-            .attr('transform', 'translate(5,13)')
-
-
-      // document.addEventListener('click', (event) => this.removeLayers(event))
-
-
-    }
-
-    removeLayers(event) {
-        this.drawInitMap(d3.select('#map'))
-        this.drawLegend(d3.select('#map'))
-        this.drawLayerEnabler(d3.select('#map'))
-        switch (event.path[1].children[0].id) {
-            case 'towerEnable':
-                this.towersEnabled = !this.towersEnabled
-                
-            default:
-                return
-        }
-    }
 
     drawLegend(map) {
 
@@ -90,7 +26,7 @@ class GondolaMap {
 
         var legendDiv = map.append('div')
             .attr('class', 'legend')
-            .style('left', (width - 120) + 'px')
+            .style('left', (width - 400) + 'px')
 
         var legend = legendDiv.append('svg')
             .attr('width', '10vw')
@@ -250,26 +186,36 @@ class GondolaMap {
             styles: styling
         })
 
-        // set on zoom changed listener to update data
-        map.addListener('zoom_changed', () => {
-            //this.drawArea(this.climbingAreas, map) 
-        })
-
         this.map = map
         this.drawArea(this.climbingAreas, map)
-        this.drawTowers(this.towerData, map, this.towersEnabled)
+        this.drawTowers(this.towerData, map)
         this.drawBoulders(this.affectedBoulders, map)
+
+
+        this.initBounds = map.getBounds()
+
+        this.addListenertoZoom()
+    }
+
+    addListenertoZoom(){
+        var node = document.getElementsByClassName('gm-control-active');
+        var button = node.item(4)
+        console.log(button)
+
+        // set on zoom changed listener to update data
+       // node[4].addEventListener('click', (event) => {
+           // console.log(event)
+           // this.zoomEdited(event, map.getBounds())
+       // })
     }
 
 
-    drawTowers(towerData, map, enabled) {
+    drawTowers(towerData, map) {
         
         // get an overlay layer to draw d3 elements onto
         const mapOverlay = new google.maps.OverlayView()
         mapOverlay.setMap(null)
         
-
-        console.log(enabled)
         mapOverlay.onAdd = function () {
             // overlayLayer doesn't receive DOM events
             // overlayMouseTarget receives DOM events
@@ -281,7 +227,7 @@ class GondolaMap {
 
                 //  create an svg for each tower to plot the rect onto
                 var towerSvgs = mapDiv.selectAll('svg')
-                    .data(enabled ? towerData: [])
+                    .data(towerData)
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
@@ -328,7 +274,7 @@ class GondolaMap {
 
 
                         tooltip
-                            .html('Tower: ' + d.towerID)
+                            .html('Gondola Tower: ' + d.towerID + '<br>' + 'Location: (' + d.lat + ', ' + d.long + ')')
                             .style("left", (event.pageX + 20) + "px")
                             .style("top", (event.pageY - 20) + "px")
                     })
@@ -346,10 +292,6 @@ class GondolaMap {
                         map.setZoom(16)
                     })
 
-
-
-
-                var lineSvgs = mapDiv.selectAll('svg')
 
                 // convert the lat and long coordinates to x and y coordinates
                 function calcXY(d) {
@@ -413,7 +355,7 @@ class GondolaMap {
                             .style('display', 'block')
 
                         tooltip
-                            .html('Boulder: ' + d.name)
+                            .html('Boulder Name: ' + d.name + '<br>' + 'Location: (' + d.lat + ', ' + d.long + ')' + '<br>' + 'Total Boulder Views: ' + d.totalViews)
                             .style("left", (event.pageX + 20) + "px")
                             .style("top", (event.pageY - 20) + "px")
                     })
@@ -496,7 +438,7 @@ class GondolaMap {
                             .style('display', 'block')
 
                         tooltip
-                            .html('Area: ' + d.name)
+                            .html('Area Name: ' + d.name + '<br>' + 'Location: (' + d.lat + ', ' + d.long + ')' + '<br>' + 'Total Area Views: ' + d.totalViews)
                             .style("left", (event.pageX + 20) + "px")
                             .style("top", (event.pageY - 20) + "px")
                     })
@@ -536,6 +478,33 @@ class GondolaMap {
         this.map.setZoom(16)
     }
 
+
+    zoomEdited(event, bounds){
+
+        console.log(event)
+        // filter out the data that is within the view
+        // var children = this.boulderData.children
+        // var inBoundData = []
+        // var childrenAreas = []
+        // children.forEach(child => {
+        //     if (child.children) {
+        //         child.children.forEach(d => {
+        //             if (d.children) {
+        //                 childrenAreas.push(d)
+        //             }
+        //         })
+        //     }
+        // })
+        // childrenAreas.forEach(d => {
+        //     if(d.lat > bounds.Za.lo && d.lat < bounds.Za.hi){
+        //         if(d.long > bounds.Ia.lo && d.long < bounds.Ia.hi){
+        //             inBoundData.push(d)
+        //         }
+        //     }
+        // })
+        // this.globalAppState.infoInstance.drawInfoCard(inBoundData)
+
+    }
 
 
 

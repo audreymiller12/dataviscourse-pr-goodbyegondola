@@ -174,7 +174,7 @@ class Table {
                 .data(d => [d])
                 .append("path")
                 .attr("d", d3.symbol().type(d3.symbolStar).size(150))
-                .attr("fill", (d) => Math.round(d.value) >= num ? "black" : "white")
+                .attr("fill", (d) => Math.round(d.value) >= num ? "#f5b105" : "white")
                 .attr("transform", `translate(${num*22}, 12)`);
         })
 
