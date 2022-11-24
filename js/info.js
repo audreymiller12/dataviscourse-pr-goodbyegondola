@@ -249,7 +249,6 @@ class InfoCard{
                 appState.infoInstance.drawInfoCard(areaData);
 
                 // Call map
-                // console.log(areaData);
                 appState.map.selectArea(areaData);
             }
 

@@ -27,17 +27,22 @@ class GondolaMap {
             .style('width', '12vw')
             .style('height', '55px')
             .attr('class', 'legend')
+            .attr('id', 'layers')
             .style('top', (height - 100) + 'px')
             .style('left', '5px')
 
         layerEnabler.append('a')
             .style('width', '15px')
             .style('height', '15px')
-            .style('transform', 'translate(15px,28px)')
+            .style('top', '27px')
+            .style('left', '20px')
+            .style('position', 'relative')
             .attr('id', 'towerEnable')
-            .append('i')
+            .attr('class', 'enabler')
+            .append('i')          
             .attr('class', 'fa-solid fa-eye')
 
+            
 
         var enablerSvg = layerEnabler.append('svg')
             .attr('width', '12vw')
@@ -61,16 +66,19 @@ class GondolaMap {
             .attr('transform', 'translate(5,13)')
 
 
-        document.addEventListener('click', (event, map) => this.removeLayers(event, map))
+      // document.addEventListener('click', (event) => this.removeLayers(event))
 
 
     }
 
-    removeLayers(event, map) {
-        switch (event.path[1].id) {
+    removeLayers(event) {
+        this.drawInitMap(d3.select('#map'))
+        this.drawLegend(d3.select('#map'))
+        this.drawLayerEnabler(d3.select('#map'))
+        switch (event.path[1].children[0].id) {
             case 'towerEnable':
                 this.towersEnabled = !this.towersEnabled
-                this.drawTowers(this.towerData, map, this.towersEnabled)
+                
             default:
                 return
         }
@@ -249,16 +257,19 @@ class GondolaMap {
 
         this.map = map
         this.drawArea(this.climbingAreas, map)
-        this.drawTowers(this.towerData, map, true)
+        this.drawTowers(this.towerData, map, this.towersEnabled)
         this.drawBoulders(this.affectedBoulders, map)
     }
 
 
     drawTowers(towerData, map, enabled) {
-
+        
         // get an overlay layer to draw d3 elements onto
         const mapOverlay = new google.maps.OverlayView()
+        mapOverlay.setMap(null)
+        
 
+        console.log(enabled)
         mapOverlay.onAdd = function () {
             // overlayLayer doesn't receive DOM events
             // overlayMouseTarget receives DOM events
@@ -270,7 +281,7 @@ class GondolaMap {
 
                 //  create an svg for each tower to plot the rect onto
                 var towerSvgs = mapDiv.selectAll('svg')
-                    .data(enabled ? towerData : [])
+                    .data(enabled ? towerData: [])
                     .join('svg')
                     .style('left', d => calcXY(d).x + 'px')
                     .style('top', d => calcXY(d).y + 'px')
