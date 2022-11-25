@@ -90,10 +90,10 @@ class InfoCard{
 
         svg
             .append("text")
-            .text("Total Boulders: ")
+            .text("Total boulders problems: ")
             .attr("x", 150)
             .attr("y", 100)
-            .attr("font-size", "30")
+            .attr("font-size", "24")
             .attr('text-anchor', "middle");
 
         svg
@@ -106,10 +106,10 @@ class InfoCard{
 
         svg
             .append("text")
-            .text("Affected Boulders: ")
+            .text("Affected boulders problems: ")
             .attr("x", 150)
             .attr("y", 200)
-            .attr("font-size", "30")
+            .attr("font-size", "24")
             .attr('text-anchor', "middle") 
             .attr('fill', 'darkred');
 
@@ -321,14 +321,14 @@ class InfoCard{
                 appState.infoInstance.drawInfoCard(boulderData);
 
                 // Call map on original view
-                // TODO
+                appState.map.selectArea(40.574215, -111.715113, 12.75);
 
             } else {
                 let areaData = boulderData.children.filter(d => d.name === selectedArea)[0];
                 appState.infoInstance.drawInfoCard(areaData);
 
                 // Call map
-                appState.map.selectArea(areaData);
+                appState.map.selectArea(areaData.lat, areaData.long, 16);
             }
   
 

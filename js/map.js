@@ -473,9 +473,9 @@ class GondolaMap {
     }
 
 
-    selectArea(area) {
-        this.map.setCenter(new google.maps.LatLng(area.lat, area.long))
-        this.map.setZoom(16)
+    selectArea(lat,long, zoom) {
+        this.map.setCenter(new google.maps.LatLng(lat, long))
+        this.map.setZoom(zoom)
     }
 
 
