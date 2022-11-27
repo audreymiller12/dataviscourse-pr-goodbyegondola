@@ -1,6 +1,5 @@
 class GondolaMap {
   constructor(globalAppState) {
-
     // set global variables to use throughout the code
     this.globalAppState = globalAppState;
     this.towerData = globalAppState.towerData;
@@ -15,7 +14,6 @@ class GondolaMap {
     this.drawInitMap(d3.select("#map"));
     this.drawLegend(d3.select("#map"));
   }
-
 
   /***
    * Create a legend to categorize each data point
@@ -99,9 +97,12 @@ class GondolaMap {
       .attr("r", 6)
       .attr("transform", "translate(18,-5)");
 
-    boulderG.append("text").text("- Affected Boulder").attr("class", "h1").attr("x", 30);
+    boulderG
+      .append("text")
+      .text("- Affected Boulder")
+      .attr("class", "h1")
+      .attr("x", 30);
   }
-
 
   /***
    * Method to filter out climbing areas from total data
@@ -125,7 +126,6 @@ class GondolaMap {
    * coordinates, and their proximity to condola towers
    */
   filterAffectedBoulders() {
-
     // get lat and long of towers
     var towerLatLongList = [];
     this.towerData.forEach((d) => {
@@ -224,7 +224,6 @@ class GondolaMap {
     // this.zoomEdited(event, map.getBounds())
     // })
   }
-
 
   /***
    * Drawa the tower graphics on the map overlay
@@ -425,7 +424,6 @@ class GondolaMap {
    * Draws areas on the map overlay
    */
   drawArea(climbingAreas, map, areaName) {
-
     const appState = this.globalAppState;
 
     // get an overlay layer to draw d3 elements onto
@@ -440,7 +438,6 @@ class GondolaMap {
         .attr("id", "areas");
 
       mapOverlay.draw = () => {
-
         // get current projection so lat and long can be converted to x and y coords
         var projection = this.getProjection();
 
@@ -468,7 +465,7 @@ class GondolaMap {
           .append("rect")
           .attr("width", 3 * map.getZoom())
           .attr("height", 2 * map.getZoom())
-          .attr("class", d => d.name === areaName ? 'selectedArea' : 'area')
+          .attr("class", (d) => (d.name === areaName ? "selectedArea" : "area"))
           .on("mouseover", function (event, d) {
             // Black outline
             d3.select(this)
@@ -528,7 +525,7 @@ class GondolaMap {
   }
 
   /***
-   * If the zoom has been edited, then we must update the 
+   * If the zoom has been edited, then we must update the
    * table and info card to match the displayed
    * data
    */
