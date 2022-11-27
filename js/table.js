@@ -89,8 +89,6 @@ class Table {
         this.currentData = data;
         this.currentData.map(d => d.gradeNumber = parseInt(d.grade.substring(1))) ;
 
-        console.log(this.currentData)
-
         let rowSelection = d3.select('#tableBody')
             .selectAll('tr')
             .data(this.currentData)
