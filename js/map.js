@@ -188,7 +188,7 @@ class GondolaMap {
 
     // initialize map
     var map = new google.maps.Map(selection.node(), {
-      zoom: 12.75,
+      zoom: 12.6,
       center: new google.maps.LatLng(40.574215, -111.715113),
       mapTypeId: google.maps.MapTypeId.TERRAIN,
       zoomControl: true,
@@ -204,7 +204,8 @@ class GondolaMap {
     this.drawTowers(this.towerData, map);
     this.drawBoulders(this.affectedBoulders, map);
 
-    this.initBounds = map.getBounds();
+    this.initCenter = map.getCenter();
+    this.initZoom = map.getZoom();
 
     // add listener to the zoom button to detect user zoom
     this.addListenertoZoom();
@@ -522,6 +523,11 @@ class GondolaMap {
     this.map.setZoom(16);
 
     this.drawArea(this.climbingAreas, map, area.name);
+  }
+
+  resetMap(){
+    this.map.setCenter(this.initCenter)
+    this.map.setZoom(this.initZoom)
   }
 
   /***

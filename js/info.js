@@ -342,7 +342,7 @@ class InfoCard {
         appState.infoInstance.drawInfoCard(boulderData);
 
         // Call map on original view
-        // TODO
+        appState.map.resetMap();
       } else {
         let areaData = boulderData.children.filter(
           (d) => d.name === selectedArea
