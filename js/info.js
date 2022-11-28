@@ -1,91 +1,65 @@
-class InfoCard {
-  constructor(globalAppState) {
-    this.globalAppState = globalAppState;
-    this.boulderData = globalAppState.boulderData;
+class InfoCard{
+    constructor(globalAppState) {
 
-    // Affected bouldering areas
-    this.affectedBoulderAreas = this.filterAffectedBoulders();
+        this.globalAppState = globalAppState;
+        this.boulderData = globalAppState.boulderData;
 
-    // Flattened list of affected boulder problems
-    this.affectedBoulders = [];
-    this.affectedBoulderAreas.forEach((level) => {
-      this.flattenAffectedBoulders(level);
-    });
+        // Affected bouldering areas
+        this.affectedBoulderAreas = this.filterAffectedBoulders();
 
-    // Margins for small charts
-    this.margin = { left: 30, bottom: 20, top: 10 };
-    this.chart_height = 250; // Also check CSS
-    this.chart_width = 500;
-    // Create drop down menu of areas and attach event listener
-    this.createDropDown();
-    this.selectAreas();
-    this.toggle();
+        // Flattened list of affected boulder problems
+        this.affectedBoulders = [];
+        this.affectedBoulderAreas.forEach(level => {
+            this.flattenAffectedBoulders(level);
+        })
+        
+        
+        // Margins for small charts
+        this.margin = {left: 30, bottom: 20 , top:10};
+        this.chart_height = 250 ; // Also check CSS
+        this.chart_width = 500 ;
 
-    // Create the info card
-    this.drawInfoCard(this.boulderData);
-  }
+        // Create the info card
+        this.drawInfoCard(this.boulderData);
 
-  drawInfoFlattened(data) {
-    this.boulders = data;
-    // Add property on whether each boulder problem is in the affected list
-    this.boulders.map((boulder) => {
-      boulder.affected = this.affectedBoulders.includes(boulder) ? true : false;
-    });
+        // Create drop down menu of areas and attach event listener
+        this.createDropDown();
+        this.selectAreas();
+        this.toggle();
 
-    // Call each of the views on the boulder dataset
-    this.totalAffected();
-    this.bouldersArea();
 
-    // Sort data by rating (default sort) and call table with boulder data
-    this.boulders.sort((a, b) => {
-      if (a.avgRating === b.avgRating) {
-        return a.totalViews > b.totalViews ? -1 : 1;
-      } else {
-        return a.avgRating > b.avgRating ? -1 : 1;
-      }
-    });
-
-    // Draw table
-    this.globalAppState.tableViz.drawTable(this.boulders);
-  }
-
-  // Create infocard
-  drawInfoCard(areaData) {
-    const selections = document.getElementById("selectButton").options;
-    const options = Array.from(selections);
-    if(areaData.name === 'Boulders - Little Cottonwood'){
-        const optionToSelect = options.find((d) => d.text === 'All Areas');
-        optionToSelect.selected = true;
-    }else{
-        const optionToSelect = options.find((d) => d.text === areaData.name);
-        optionToSelect.selected = true;
     }
 
-    // Create a list of boulders from the nested area/boulder object
-    this.boulders = [];
-    this.flattenBoulders(areaData);
+    // Create infocard
+    drawInfoCard(areaData) {
 
-    // Add property on whether each boulder problem is in the affected list
-    this.boulders.map((boulder) => {
-      boulder.affected = this.affectedBoulders.includes(boulder) ? true : false;
-    });
+        // Create a list of boulders from the nested area/boulder object
+        this.boulders = [] ;
+        this.flattenBoulders(areaData);
 
-    // Call each of the views on the boulder dataset
-    this.totalAffected();
-    this.bouldersArea();
+        // Add property on whether each boulder problem is in the affected list
+        this.boulders.map(boulder => {
+            boulder.affected = this.affectedBoulders.includes(boulder) ? true : false
+        }) 
 
-    // Sort data by rating (default sort) and call table with boulder data
-    this.boulders.sort((a, b) => {
-      if (a.avgRating === b.avgRating) {
-        return a.totalViews > b.totalViews ? -1 : 1;
-      } else {
-        return a.avgRating > b.avgRating ? -1 : 1;
-      }
-    });
 
-    // Draw table
-    this.globalAppState.tableViz.drawTable(this.boulders);
-  }
+        // Call each of the views on the boulder dataset
+        this.totalAffected();
+        this.bouldersArea();
+
+        // Sort data by rating (default sort) and call table with boulder data
+        this.boulders.sort((a,b) => {
+            if (a.avgRating === b.avgRating) {
+                return (a.totalViews) > (b.totalViews) ? -1 : 1
+            } else {
+                return (a.avgRating) > (b.avgRating) ? -1 : 1
+            }
+        })
+
+        // Draw table
+        this.globalAppState.tableViz.drawTable(this.boulders);
+
+    }
 
   // Function that creates an object containing all boulder problems from the nested area/boulder object
   flattenBoulders(data) {
@@ -114,10 +88,10 @@ class InfoCard {
 
     svg
       .append("text")
-      .text("Total Boulders: ")
+      .text("Total boulders problems: ")
       .attr("x", 150)
       .attr("y", 100)
-      .attr("font-size", "30")
+      .attr("font-size", "24")
       .attr("text-anchor", "middle");
 
     svg
@@ -130,10 +104,10 @@ class InfoCard {
 
     svg
       .append("text")
-      .text("Affected Boulders: ")
+      .text("Affected boulders problems: ")
       .attr("x", 150)
       .attr("y", 200)
-      .attr("font-size", "30")
+      .attr("font-size", "24")
       .attr("text-anchor", "middle")
       .attr("fill", "darkred");
 
