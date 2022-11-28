@@ -193,6 +193,8 @@ class GondolaMap {
       mapTypeId: google.maps.MapTypeId.TERRAIN,
       zoomControl: true,
       scaleControl: true,
+      streetViewControl: false,
+      fullscreenControl: false,
       gestureHandling: "cooperative",
       styles: styling,
     });
@@ -211,75 +213,84 @@ class GondolaMap {
     const boulderData = this.boulderData;
     const appState = this.globalAppState;
 
+    this.attachDragEnd(boulderData, appState, map);
     // when drag is started, we must turn toggle and disable area selection
     google.maps.event.addListener(map, "drag", function () {
         appState.infoInstance.changeToggle();
     })
 
-    // add listener to the zoom button to detect user zoom
-    google.maps.event.addListener(map, "dragend", function () {
-      var children = boulderData.children;
-      var secondChildren = [];
-      var bounds = map.getBounds();
-      var inBoundData = [];
+   this.attachZoomChanged(map)
+    
+  }
 
-      children.forEach((child) => {
-        secondChildren.push(child);
-      });
-      secondChildren.forEach((d) => {
-        if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
-          if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
-            inBoundData.push(d);
-          }
-        }
-      });
-
-      // get all of the boulders in the in bounds areas, need to un-nest
-      var childrenAreas = [];
-      inBoundData.forEach((child) => {
-        if (child.children) {
-          child.children.forEach((d) => {
-            if (d.children) {
-              d.children.forEach((childsChild) => {
-                if (childsChild.children) {
-                  childsChild.children.forEach((thirdChild) => {
-                    if (thirdChild.children) {
-                      thirdChild.children.forEach((fourthChild) => {
-                        childrenAreas.push(fourthChild);
-                      });
-                    } else {
-                      childrenAreas.push(thirdChild);
-                    }
-                  });
-                } else {
-                  childrenAreas.push(childsChild);
-                }
-              });
-            } else {
-              childrenAreas.push(d);
+  attachDragEnd(boulderData, appState, map){
+     // add listener to the zoom button to detect user zoom
+     google.maps.event.addListener(map, "dragend", function () {
+        var children = boulderData.children;
+        var secondChildren = [];
+        var bounds = map.getBounds();
+        var inBoundData = [];
+  
+        children.forEach((child) => {
+          secondChildren.push(child);
+        });
+        secondChildren.forEach((d) => {
+          if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
+            if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
+              inBoundData.push(d);
             }
-          });
-        } else {
-          childrenAreas.push(child);
-        }
+          }
+        });
+  
+        // get all of the boulders in the in bounds areas, need to un-nest
+        var childrenAreas = [];
+        inBoundData.forEach((child) => {
+          if (child.children) {
+            child.children.forEach((d) => {
+              if (d.children) {
+                d.children.forEach((childsChild) => {
+                  if (childsChild.children) {
+                    childsChild.children.forEach((thirdChild) => {
+                      if (thirdChild.children) {
+                        thirdChild.children.forEach((fourthChild) => {
+                          childrenAreas.push(fourthChild);
+                        });
+                      } else {
+                        childrenAreas.push(thirdChild);
+                      }
+                    });
+                  } else {
+                    childrenAreas.push(childsChild);
+                  }
+                });
+              } else {
+                childrenAreas.push(d);
+              }
+            });
+          } else {
+            childrenAreas.push(child);
+          }
+        });
+  
+        appState.infoInstance.drawInfoFlattened(childrenAreas);
+  
+  
       });
+  
+  }
 
-      appState.infoInstance.drawInfoFlattened(childrenAreas);
-
-
-    });
-
-    google.maps.event.addListener(map, "zoom_changed", function () {
-    });
+  attachZoomChanged(map){
+    // attach zoom after map is loaded to avoid initial load zoom
+    google.maps.event.addListener(map, "tilesloaded", function(){
+        google.maps.event.addListener(map, "zoom_changed", function(){
+            console.log(map.getZoom())
+        });
+    })
+   
   }
 
   /***
-   * Add an event listener to check for zoom click on the zoom buttons on the map
-   */
-  dragSelectionChange(map) {}
-
-  /***
-   * Drawa the tower graphics on the map overlay
+   * Draw the tower graphics on the map overlay
    */
   drawTowers(towerData, map) {
     // get an overlay layer to draw d3 elements onto
@@ -641,27 +652,7 @@ class GondolaMap {
    * table and info card to match the displayed
    * data
    */
-  zoomEdited(map) {
-    // filter out the data that is within the view
-    // var children = this.boulderData.children
-    // var inBoundData = []
-    // var childrenAreas = []
-    // children.forEach(child => {
-    //     if (child.children) {
-    //         child.children.forEach(d => {
-    //             if (d.children) {
-    //                 childrenAreas.push(d)
-    //             }
-    //         })
-    //     }
-    // })
-    // childrenAreas.forEach(d => {
-    //     if(d.lat > bounds.Za.lo && d.lat < bounds.Za.hi){
-    //         if(d.long > bounds.Ia.lo && d.long < bounds.Ia.hi){
-    //             inBoundData.push(d)
-    //         }
-    //     }
-    // })
-    // this.globalAppState.infoInstance.drawInfoCard(inBoundData)
+  zoomEdited() {
+    console.log('zoom');
   }
 }
