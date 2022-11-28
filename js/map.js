@@ -211,6 +211,11 @@ class GondolaMap {
     const boulderData = this.boulderData;
     const appState = this.globalAppState;
 
+    // when drag is started, we must turn toggle and disable area selection
+    google.maps.event.addListener(map, "drag", function () {
+        appState.infoInstance.changeToggle();
+    })
+
     // add listener to the zoom button to detect user zoom
     google.maps.event.addListener(map, "dragend", function () {
       var children = boulderData.children;
@@ -260,10 +265,11 @@ class GondolaMap {
       });
 
       appState.infoInstance.drawInfoFlattened(childrenAreas);
+
+
     });
 
     google.maps.event.addListener(map, "zoom_changed", function () {
-      console.log("changed");
     });
   }
 
@@ -549,7 +555,7 @@ class GondolaMap {
           .on("click", function (event, d) {
             map.setCenter(new google.maps.LatLng(d.lat, d.long));
             map.setZoom(16);
-            appState.infoInstance.drawInfoCard(d);
+            appState.infoInstance.areaSelected(d);
           });
 
         // convert the lat and long coordinates to x and y coordinates
@@ -581,8 +587,6 @@ class GondolaMap {
   }
 
   changeBackToMapView() {
-
-    console.log('here')
     var children = this.boulderData.children;
     var secondChildren = [];
     var bounds = this.map.getBounds();

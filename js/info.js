@@ -38,7 +38,6 @@ class InfoCard {
       const optionToSelect = options.find((d) => d.text === areaData.name);
       optionToSelect.selected = true;
     }
-
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
     this.flattenBoulders(areaData);
@@ -337,7 +336,7 @@ class InfoCard {
       .enter()
       .append("option")
       .text((d) => d)
-      .attr("value", (d) => d)
+      .attr("value", (d) => d);
   }
 
   /*******
@@ -383,13 +382,13 @@ class InfoCard {
       // When toggle is off and turned back on
       if (toggle.property("checked") === false) {
         // Grey out selection menu
-        selectButton.property('disabled', true);
+        selectButton.property("disabled", true);
         appState.map.changeBackToMapView();
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
-        console.log('here')
-        selectButton.property('disabled', false);
+        console.log("here");
+        selectButton.property("disabled", false);
         var selectedArea = selectButton.property("value");
         // Subset data to selected area and re-draw info card
         if (selectedArea === "All Areas") {
@@ -402,9 +401,34 @@ class InfoCard {
             (d) => d.name === selectedArea
           )[0];
           appState.infoInstance.drawInfoCard(areaData);
+          appState.map.selectArea(areaData);
         }
       }
     });
+  }
+
+  changeToggle() {
+    let toggle = d3.select("#toggle");
+    let selectButton = d3.select("#selectButton");
+
+    // toggle is not changed yet
+    if (toggle.property("checked") === true) {
+      toggle.property("checked", false);
+      selectButton.property("disabled", true);
+    }
+  }
+
+  areaSelected(areaData){
+    let toggle = d3.select("#toggle");
+    let selectButton = d3.select("#selectButton");
+
+    // toggle is not changed yet from selecting an area
+    if (toggle.property("checked") === false) {
+      toggle.property("checked", true);
+      selectButton.property("disabled", false);
+    }
+    this.drawInfoCard(areaData);
+
   }
 
   /**
