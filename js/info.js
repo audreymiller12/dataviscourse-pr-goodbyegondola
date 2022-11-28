@@ -25,19 +25,41 @@ class InfoCard {
     this.drawInfoCard(this.boulderData);
   }
 
+  drawInfoFlattened(data) {
+    this.boulders = data;
+    // Add property on whether each boulder problem is in the affected list
+    this.boulders.map((boulder) => {
+      boulder.affected = this.affectedBoulders.includes(boulder) ? true : false;
+    });
+
+    // Call each of the views on the boulder dataset
+    this.totalAffected();
+    this.bouldersArea();
+
+    // Sort data by rating (default sort) and call table with boulder data
+    this.boulders.sort((a, b) => {
+      if (a.avgRating === b.avgRating) {
+        return a.totalViews > b.totalViews ? -1 : 1;
+      } else {
+        return a.avgRating > b.avgRating ? -1 : 1;
+      }
+    });
+
+    // Draw table
+    this.globalAppState.tableViz.drawTable(this.boulders);
+  }
+
   // Create infocard
   drawInfoCard(areaData) {
-    console.log(areaData.name)
-    const selections = document.getElementById("selectButton").options;
-    const options = Array.from(selections);
-    if(areaData.name === 'Boulders - Little Cottonwood'){
-        const optionToSelect = options.find((d) => d.text === 'All Areas');
-        optionToSelect.selected = true;
-    }else{
-        const optionToSelect = options.find((d) => d.text === areaData.name);
-        optionToSelect.selected = true;
-    }
-    
+    // const selections = document.getElementById("selectButton").options;
+    // const options = Array.from(selections);
+    // if(areaData.name === 'Boulders - Little Cottonwood'){
+    //     const optionToSelect = options.find((d) => d.text === 'All Areas');
+    //     optionToSelect.selected = true;
+    // }else{
+    //     const optionToSelect = options.find((d) => d.text === areaData.name);
+    //     optionToSelect.selected = true;
+    // }
 
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
@@ -67,7 +89,7 @@ class InfoCard {
 
   // Function that creates an object containing all boulder problems from the nested area/boulder object
   flattenBoulders(data) {
-    if (data.hasOwnProperty("children")) {
+    if (data.children) {
       data.children.forEach((level) => {
         this.flattenBoulders(level);
       });

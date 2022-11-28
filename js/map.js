@@ -187,7 +187,7 @@ class GondolaMap {
     ];
 
     // initialize map
-    var map = new google.maps.Map(selection.node(), {
+    const map = new google.maps.Map(selection.node(), {
       zoom: 12.6,
       center: new google.maps.LatLng(40.574215, -111.715113),
       mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -204,27 +204,67 @@ class GondolaMap {
     this.drawTowers(this.towerData, map);
     this.drawBoulders(this.affectedBoulders, map);
 
+    // extract initial settings for resetting to all areas
     this.initCenter = map.getCenter();
     this.initZoom = map.getZoom();
 
+    const boulderData = this.boulderData;
+    const appState = this.globalAppState;
     // add listener to the zoom button to detect user zoom
-    this.addListenertoZoom();
+    google.maps.event.addListener(map, "dragend", function () {
+      var children = boulderData.children;
+      var secondChildren = []
+      var bounds = map.getBounds();
+      var inBoundData = [];
+
+      children.forEach((child) => {secondChildren.push(child)})
+      secondChildren.forEach((d) => {
+        if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
+          if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
+            inBoundData.push(d);
+          }
+        }
+      });
+
+     
+      // get all of the children of the in bounds areas
+      var childrenAreas = [];
+      inBoundData.forEach((child) => {
+        if (child.children) {
+          child.children.forEach((d) => {
+            if (d.children) {
+              d.children.forEach((childsChild) => {
+                if (childsChild.children) {
+                  childsChild.children.forEach((thirdChild) => {
+                    if (thirdChild.children) {
+                      thirdChild.children.forEach((fourthChild) => {
+                        childrenAreas.push(fourthChild);
+                      });
+                    } else {
+                      childrenAreas.push(thirdChild);
+                    }
+                  });
+                } else {
+                  childrenAreas.push(childsChild);
+                }
+              });
+            } else {
+              childrenAreas.push(d);
+            }
+          });
+        } else {
+          childrenAreas.push(child);
+        }
+      });
+      
+       appState.infoInstance.drawInfoFlattened(childrenAreas);
+    });
   }
 
   /***
    * Add an event listener to check for zoom click on the zoom buttons on the map
    */
-  addListenertoZoom() {
-    var node = document.getElementsByClassName("gm-control-active");
-    var button = node.item(4);
-    console.log(button);
-
-    // set on zoom changed listener to update data
-    // node[4].addEventListener('click', (event) => {
-    // console.log(event)
-    // this.zoomEdited(event, map.getBounds())
-    // })
-  }
+  dragSelectionChange(map) {}
 
   /***
    * Drawa the tower graphics on the map overlay
@@ -522,12 +562,16 @@ class GondolaMap {
     this.map.setCenter(new google.maps.LatLng(area.lat, area.long));
     this.map.setZoom(16);
 
-    this.drawArea(this.climbingAreas, map, area.name);
+    //this.drawArea(this.climbingAreas, map, area.name);
   }
 
-  resetMap(){
-    this.map.setCenter(this.initCenter)
-    this.map.setZoom(this.initZoom)
+  /***
+   * Reset the map view back to the original settings so that all areas
+   * are within the view
+   */
+  resetMap() {
+    this.map.setCenter(this.initCenter);
+    this.map.setZoom(this.initZoom);
   }
 
   /***
@@ -535,8 +579,7 @@ class GondolaMap {
    * table and info card to match the displayed
    * data
    */
-  zoomEdited(event, bounds) {
-    console.log(event);
+  zoomEdited(map) {
     // filter out the data that is within the view
     // var children = this.boulderData.children
     // var inBoundData = []
