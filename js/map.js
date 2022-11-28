@@ -210,14 +210,17 @@ class GondolaMap {
 
     const boulderData = this.boulderData;
     const appState = this.globalAppState;
+
     // add listener to the zoom button to detect user zoom
     google.maps.event.addListener(map, "dragend", function () {
       var children = boulderData.children;
-      var secondChildren = []
+      var secondChildren = [];
       var bounds = map.getBounds();
       var inBoundData = [];
 
-      children.forEach((child) => {secondChildren.push(child)})
+      children.forEach((child) => {
+        secondChildren.push(child);
+      });
       secondChildren.forEach((d) => {
         if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
           if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
@@ -226,8 +229,7 @@ class GondolaMap {
         }
       });
 
-     
-      // get all of the children of the in bounds areas
+      // get all of the boulders in the in bounds areas, need to un-nest
       var childrenAreas = [];
       inBoundData.forEach((child) => {
         if (child.children) {
@@ -256,8 +258,12 @@ class GondolaMap {
           childrenAreas.push(child);
         }
       });
-      
-       appState.infoInstance.drawInfoFlattened(childrenAreas);
+
+      appState.infoInstance.drawInfoFlattened(childrenAreas);
+    });
+
+    google.maps.event.addListener(map, "zoom_changed", function () {
+      console.log("changed");
     });
   }
 
@@ -572,6 +578,58 @@ class GondolaMap {
   resetMap() {
     this.map.setCenter(this.initCenter);
     this.map.setZoom(this.initZoom);
+  }
+
+  changeBackToMapView() {
+
+    console.log('here')
+    var children = this.boulderData.children;
+    var secondChildren = [];
+    var bounds = this.map.getBounds();
+    var inBoundData = [];
+
+    children.forEach((child) => {
+      secondChildren.push(child);
+    });
+    secondChildren.forEach((d) => {
+      if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
+        if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
+          inBoundData.push(d);
+        }
+      }
+    });
+
+    // get all of the boulders in the in bounds areas, need to un-nest
+    var childrenAreas = [];
+    inBoundData.forEach((child) => {
+      if (child.children) {
+        child.children.forEach((d) => {
+          if (d.children) {
+            d.children.forEach((childsChild) => {
+              if (childsChild.children) {
+                childsChild.children.forEach((thirdChild) => {
+                  if (thirdChild.children) {
+                    thirdChild.children.forEach((fourthChild) => {
+                      childrenAreas.push(fourthChild);
+                    });
+                  } else {
+                    childrenAreas.push(thirdChild);
+                  }
+                });
+              } else {
+                childrenAreas.push(childsChild);
+              }
+            });
+          } else {
+            childrenAreas.push(d);
+          }
+        });
+      } else {
+        childrenAreas.push(child);
+      }
+    });
+
+    this.globalAppState.infoInstance.drawInfoFlattened(childrenAreas);
   }
 
   /***

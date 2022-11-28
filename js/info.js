@@ -51,15 +51,15 @@ class InfoCard {
 
   // Create infocard
   drawInfoCard(areaData) {
-    // const selections = document.getElementById("selectButton").options;
-    // const options = Array.from(selections);
-    // if(areaData.name === 'Boulders - Little Cottonwood'){
-    //     const optionToSelect = options.find((d) => d.text === 'All Areas');
-    //     optionToSelect.selected = true;
-    // }else{
-    //     const optionToSelect = options.find((d) => d.text === areaData.name);
-    //     optionToSelect.selected = true;
-    // }
+    const selections = document.getElementById("selectButton").options;
+    const options = Array.from(selections);
+    if(areaData.name === 'Boulders - Little Cottonwood'){
+        const optionToSelect = options.find((d) => d.text === 'All Areas');
+        optionToSelect.selected = true;
+    }else{
+        const optionToSelect = options.find((d) => d.text === areaData.name);
+        optionToSelect.selected = true;
+    }
 
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
@@ -383,13 +383,15 @@ class InfoCard {
     let toggle = d3.select("#toggle");
     let selectButton = d3.select("#selectButton");
 
+    let appState = this.globalAppState;
+
+
     toggle.on("change", function (event) {
       // When toggle is off and turned back on
       if (toggle.property("checked") === false) {
         // Grey out selection menu
         selectButton.attr("class", "selecter-inactive");
-
-        // TODO: change back to map view
+        appState.map.changeBackToMapView();
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
