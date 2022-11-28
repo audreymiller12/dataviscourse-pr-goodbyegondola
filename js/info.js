@@ -39,14 +39,6 @@ class InfoCard {
       optionToSelect.selected = true;
     }
 
-    let toggle = d3.select("#toggle");
-
-    // Change selection menu to black
-    d3.select("#selectButton").attr("class", "selecter-active");
-
-    // Change toggle to grey
-    toggle.property("checked", "true");
-
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
     this.flattenBoulders(areaData);
@@ -74,14 +66,6 @@ class InfoCard {
   }
 
   drawInfoFlattened(data) {
-    let toggle = d3.select("#toggle");
-
-    // Change selection menu to black
-    // d3.select("#selectButton").attr("class", "selecter-inactive");
-
-    // Change toggle to purple
-    //toggle.property("checked", "false");
-
     this.boulders = data;
     // Add property on whether each boulder problem is in the affected list
     this.boulders.map((boulder) => {
@@ -353,8 +337,7 @@ class InfoCard {
       .enter()
       .append("option")
       .text((d) => d)
-      .attr("value", (d) => d);
-    //.property("selected", function(d){ return d === defaultOptionName }) ;
+      .attr("value", (d) => d)
   }
 
   /*******
@@ -364,18 +347,10 @@ class InfoCard {
     // New name for this. data so we can access it in the function below
     let boulderData = this.boulderData;
     let appState = this.globalAppState;
-    let toggle = d3.select("#toggle");
-    const drawInfoCard = this.drawInfoCard;
 
     d3.select("#selectButton").on("change", function (event) {
       // Selected value
       var selectedArea = d3.select(this).property("value");
-
-      // Change selection menu to black
-      d3.select(this).attr("class", "selecter-active");
-
-      // Change toggle to grey
-      toggle.property("checked", "true");
 
       // Subset data to selected area and re-draw info card
       if (selectedArea === "All Areas") {
@@ -402,20 +377,20 @@ class InfoCard {
     let selectButton = d3.select("#selectButton");
     let boulderData = this.boulderData;
 
-
     let appState = this.globalAppState;
 
     toggle.on("change", function (event) {
       // When toggle is off and turned back on
       if (toggle.property("checked") === false) {
         // Grey out selection menu
-        selectButton.attr("class", "selecter-inactive");
+        selectButton.property('disabled', true);
         appState.map.changeBackToMapView();
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
+        console.log('here')
+        selectButton.property('disabled', false);
         var selectedArea = selectButton.property("value");
-        selectButton.attr("class", "selecter-active");
         // Subset data to selected area and re-draw info card
         if (selectedArea === "All Areas") {
           appState.infoInstance.drawInfoCard(boulderData);
