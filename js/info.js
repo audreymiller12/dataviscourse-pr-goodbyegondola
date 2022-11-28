@@ -17,17 +17,31 @@ class InfoCard {
     this.chart_height = 250; // Also check CSS
     this.chart_width = 500;
 
-    // Create the info card
-    this.drawInfoCard(this.boulderData);
-
     // Create drop down menu of areas and attach event listener
     this.createDropDown();
     this.selectAreas();
     this.toggle();
+
+    // Create the info card
+    this.drawInfoCard(this.boulderData);
+
+    
   }
 
   // Create infocard
   drawInfoCard(areaData) {
+
+    // change the drop down selection to match the current selection
+    const selections = document.getElementById("selectButton").options;
+    const options = Array.from(selections);
+    if(areaData.name === 'Boulders - Little Cottonwood'){
+        const optionToSelect = options.find((d) => d.text === 'All Areas');
+        optionToSelect.selected = true;
+    }else{
+        const optionToSelect = options.find((d) => d.text === areaData.name);
+        optionToSelect.selected = true;
+    }
+
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
     this.flattenBoulders(areaData);
