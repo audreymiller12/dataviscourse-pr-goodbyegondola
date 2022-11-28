@@ -565,7 +565,7 @@ class GondolaMap {
           })
           .on("click", function (event, d) {
             map.setCenter(new google.maps.LatLng(d.lat, d.long));
-            map.setZoom(16);
+            map.setZoom(19);
             appState.infoInstance.areaSelected(d);
           });
 

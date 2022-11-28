@@ -87,6 +87,7 @@ header > div {
 
 .areabarchart {
   width: 60%;
+  margin: 10px;
 }
 
 .areabarchart > h2 {

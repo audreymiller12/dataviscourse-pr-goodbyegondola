@@ -106,10 +106,13 @@ class InfoCard {
       this.boulders.filter((b) => b.affected === true)
     ).length;
 
+    var height = parseInt(d3.select("#card-1").style("height"))
+    var width = parseInt(d3.select("#card-1").style("width"))
+
     const svg = d3
       .select("#card1-svg")
-      .attr("height", this.chart_height)
-      .attr("width", this.chart_width - 50);
+      .attr("height", height)
+      .attr("width", width);
 
     svg.selectAll("text").remove();
 
@@ -118,7 +121,7 @@ class InfoCard {
       .text("Total boulders problems: ")
       .attr("x", 150)
       .attr("y", 100)
-      .attr("font-size", "24")
+      .attr("font-size", "20")
       .attr("text-anchor", "middle");
 
     svg
@@ -131,10 +134,10 @@ class InfoCard {
 
     svg
       .append("text")
-      .text("Affected boulders problems: ")
+      .text("Affected boulder problems: ")
       .attr("x", 150)
       .attr("y", 200)
-      .attr("font-size", "24")
+      .attr("font-size", "20")
       .attr("text-anchor", "middle")
       .attr("fill", "darkred");
 
