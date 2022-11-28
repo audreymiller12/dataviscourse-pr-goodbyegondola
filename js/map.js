@@ -462,49 +462,6 @@ class GondolaMap {
           );
           return { x: d.x, y: d.y };
         }
-<<<<<<< HEAD
-        mapOverlay.setMap(map)
-
-    }
-
-
-    selectArea(lat,long, zoom) {
-        this.map.setCenter(new google.maps.LatLng(lat, long))
-        this.map.setZoom(zoom)
-    }
-
-
-    zoomEdited(event, bounds){
-
-        console.log(event)
-        // filter out the data that is within the view
-        // var children = this.boulderData.children
-        // var inBoundData = []
-        // var childrenAreas = []
-        // children.forEach(child => {
-        //     if (child.children) {
-        //         child.children.forEach(d => {
-        //             if (d.children) {
-        //                 childrenAreas.push(d)
-        //             }
-        //         })
-        //     }
-        // })
-        // childrenAreas.forEach(d => {
-        //     if(d.lat > bounds.Za.lo && d.lat < bounds.Za.hi){
-        //         if(d.long > bounds.Ia.lo && d.long < bounds.Ia.hi){
-        //             inBoundData.push(d)
-        //         }
-        //     }
-        // })
-        // this.globalAppState.infoInstance.drawInfoCard(inBoundData)
-
-    }
-
-
-
-}
-=======
       };
     };
     mapOverlay.setMap(map);
@@ -704,4 +661,3 @@ class GondolaMap {
     // this.globalAppState.infoInstance.drawInfoCard(inBoundData)
   }
 }
->>>>>>> dcfede22eb8ada9d39951f9c9dc835bc3c9eee25
