@@ -24,23 +24,28 @@ class InfoCard {
 
     // Create the info card
     this.drawInfoCard(this.boulderData);
-
-    
   }
 
   // Create infocard
   drawInfoCard(areaData) {
-
     // change the drop down selection to match the current selection
     const selections = document.getElementById("selectButton").options;
     const options = Array.from(selections);
-    if(areaData.name === 'Boulders - Little Cottonwood'){
-        const optionToSelect = options.find((d) => d.text === 'All Areas');
-        optionToSelect.selected = true;
-    }else{
-        const optionToSelect = options.find((d) => d.text === areaData.name);
-        optionToSelect.selected = true;
+    if (areaData.name === "Boulders - Little Cottonwood") {
+      const optionToSelect = options.find((d) => d.text === "All Areas");
+      optionToSelect.selected = true;
+    } else {
+      const optionToSelect = options.find((d) => d.text === areaData.name);
+      optionToSelect.selected = true;
     }
+
+    let toggle = d3.select("#toggle");
+
+    // Change selection menu to black
+    d3.select("#selectButton").attr("class", "selecter-active");
+
+    // Change toggle to grey
+    toggle.property("checked", "true");
 
     // Create a list of boulders from the nested area/boulder object
     this.boulders = [];
@@ -69,6 +74,14 @@ class InfoCard {
   }
 
   drawInfoFlattened(data) {
+    let toggle = d3.select("#toggle");
+
+    // Change selection menu to black
+    // d3.select("#selectButton").attr("class", "selecter-inactive");
+
+    // Change toggle to purple
+    //toggle.property("checked", "false");
+
     this.boulders = data;
     // Add property on whether each boulder problem is in the affected list
     this.boulders.map((boulder) => {
@@ -387,6 +400,8 @@ class InfoCard {
   toggle() {
     let toggle = d3.select("#toggle");
     let selectButton = d3.select("#selectButton");
+    let boulderData = this.boulderData;
+
 
     let appState = this.globalAppState;
 
@@ -399,8 +414,20 @@ class InfoCard {
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
+        var selectedArea = selectButton.property("value");
         selectButton.attr("class", "selecter-active");
-        //TODO: get value from selection menu and re-run info. Right now it works fine because the map view isn't active
+        // Subset data to selected area and re-draw info card
+        if (selectedArea === "All Areas") {
+          appState.infoInstance.drawInfoCard(boulderData);
+
+          // Call map on original view
+          appState.map.resetMap();
+        } else {
+          let areaData = boulderData.children.filter(
+            (d) => d.name === selectedArea
+          )[0];
+          appState.infoInstance.drawInfoCard(areaData);
+        }
       }
     });
   }
