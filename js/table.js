@@ -14,14 +14,14 @@ class Table {
         sorted: false,
         ascending: false,
         description:
-          "Name of the bouldering route. Boulders can have multiple routes (boulder problems) on them.",
+          "Name of the boulder problem",
       },
       {
         key: "gradeNumber",
         secondKey: "avgRating",
         sorted: false,
         ascending: false,
-        description: "Difficult rating. Ranges from V0 to V17.",
+        description: "Difficulty rating that ranges from V0 (easiest) to V17 (hardest)",
       },
       {
         key: "avgRating",

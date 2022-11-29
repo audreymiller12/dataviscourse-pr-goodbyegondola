@@ -106,13 +106,11 @@ class InfoCard {
       this.boulders.filter((b) => b.affected === true)
     ).length;
 
-    var height = parseInt(d3.select("#card-1").style("height"));
-    var width = parseInt(d3.select("#card-1").style("width"));
 
     const svg = d3
       .select("#card1-svg")
-      .attr("height", height)
-      .attr("width", width);
+      .attr("height", 300)
+      .attr("width", 300);
 
     svg.selectAll("text").remove();
 
@@ -388,7 +386,6 @@ class InfoCard {
 
     toggleDiv
       .on("mouseover", function (event, d) {
-        console.log("yep")
         // Make tooltip visible
         tooltip.style("opacity", 0.8).style("display", "block");
 
