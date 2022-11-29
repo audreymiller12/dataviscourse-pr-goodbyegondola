@@ -359,7 +359,7 @@ class GondolaMap {
               childrenAreas.push(child);
             }
           });
-
+          appState.infoInstance.changeToggle();
           appState.infoInstance.drawInfoFlattened(childrenAreas);
         }
       });
