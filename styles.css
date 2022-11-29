@@ -28,6 +28,12 @@ header > div {
   border-color: rgb(86, 86, 86);
 }
 
+.barheader {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300px;
+}
+
 #about {
   width: 50%;
   height: 400px;
