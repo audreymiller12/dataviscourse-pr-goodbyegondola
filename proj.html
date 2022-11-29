@@ -187,14 +187,18 @@
         <div id="areatooltip"></div>
         <div id="infocard">
           <div class="toolbox" style="margin-top: 15px">
+            <div id="toggletooltip"></div>
             <span>
-              <label>Map Display: </label>
+              <label>Display Map View Data: </label>
               <label class="switch">
-                <input type="checkbox" id="toggle" input="false" />
-                <span class="slider round"></span>
+                <div id="togglediv">
+                  <input type="checkbox" id="toggle" input="false" />
+                  <span class="slider round"></span>
+                </div>
               </label>
             </span>
-            <label>Or choose an area: </label>
+
+            <label>Select an LCC Area: </label>
             <select
               id="selectButton"
               class="selecter-active"
@@ -207,10 +211,10 @@
               <svg id="card1-svg"></svg>
             </div>
 
-            <div id="card-areabar" class="areabarchart" >
+            <div id="card-areabar" class="areabarchart">
               <h2>
                 Total Boulders and
-                <span style="color: darkred;">Affected Boulders</span>
+                <span style="color: darkred">Affected Boulders</span>
               </h2>
               <svg id="area-barchart">
                 <g id="y-axis"></g>

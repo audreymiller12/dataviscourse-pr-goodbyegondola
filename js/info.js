@@ -106,8 +106,8 @@ class InfoCard {
       this.boulders.filter((b) => b.affected === true)
     ).length;
 
-    var height = parseInt(d3.select("#card-1").style("height"))
-    var width = parseInt(d3.select("#card-1").style("width"))
+    var height = parseInt(d3.select("#card-1").style("height"));
+    var width = parseInt(d3.select("#card-1").style("width"));
 
     const svg = d3
       .select("#card1-svg")
@@ -376,9 +376,34 @@ class InfoCard {
    */
   toggle() {
     let toggle = d3.select("#toggle");
+    let toggleDiv = d3.select("#togglediv")
     let selectButton = d3.select("#selectButton");
     let boulderData = this.boulderData;
 
+    let tooltip = d3
+      .select("#toggletooltip")
+      .attr("class", "tooltip")
+      .style("z-index", 120)
+      .style("display", "none");
+
+    toggleDiv
+      .on("mouseover", function (event, d) {
+        console.log("yep")
+        // Make tooltip visible
+        tooltip.style("opacity", 0.8).style("display", "block");
+
+        tooltip
+          .html(
+            "Toggle ON to see the data that is within the map view" +
+              "</br>" +
+              "Toggle OFF to see the data for the selected area in the dropdown"
+          )
+          .style("left", event.pageX + 15 + "px")
+          .style("top", event.pageY - 40 + "px");
+      })
+      .on("mouseleave", function (event, d) {
+        tooltip.style("opacity", 0).style("display", "none");
+      });
     let appState = this.globalAppState;
 
     toggle.on("change", function (event) {
@@ -421,7 +446,7 @@ class InfoCard {
     }
   }
 
-  areaSelected(areaData){
+  areaSelected(areaData) {
     let toggle = d3.select("#toggle");
     let selectButton = d3.select("#selectButton");
 
@@ -431,7 +456,6 @@ class InfoCard {
       selectButton.property("disabled", false);
     }
     this.drawInfoCard(areaData);
-
   }
 
   /**
