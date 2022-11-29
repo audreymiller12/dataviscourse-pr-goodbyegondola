@@ -389,6 +389,7 @@ class InfoCard {
    * Toggle switch
    */
   toggle() {
+
     let toggle = d3.select("#toggle");
     let toggleDiv = d3.select("#togglediv")
     let selectButton = d3.select("#selectButton");
@@ -450,10 +451,19 @@ class InfoCard {
     });
   }
 
-  changeToggle() {
+  changeToggleInit(){
     let toggle = d3.select("#toggle");
     let selectButton = d3.select("#selectButton");
+    // toggle is not changed yet
+    if (toggle.property("checked") === true) {
+      toggle.property("checked", false);
+      selectButton.property("disabled", true);
+    }
+  }
+  changeToggle() {
 
+    let toggle = d3.select("#toggle");
+    let selectButton = d3.select("#selectButton");
     // toggle is not changed yet
     if (toggle.property("checked") === true) {
       toggle.property("checked", false);

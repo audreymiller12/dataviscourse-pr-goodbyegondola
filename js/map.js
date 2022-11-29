@@ -1,24 +1,24 @@
 /**************************************************
- * This class represents the map portion of the 
- * Goodbye Gondola Visualization. It utilizes a 
- * google maps API for Javascript to plot the 
+ * This class represents the map portion of the
+ * Goodbye Gondola Visualization. It utilizes a
+ * google maps API for Javascript to plot the
  * data on the map.
- * 
- * Written by: Marni Epstein, Audrey Miller and 
+ *
+ * Written by: Marni Epstein, Audrey Miller and
  * Michael Eyer
- * 
+ *
  * Date: Novemeber 2022
- * 
- * Course: Introduction to Data Visualization 
- *                  (CS5630/CS6630) 
- * 
- * Code for map overlay data addition adapated from 
+ *
+ * Course: Introduction to Data Visualization
+ *                  (CS5630/CS6630)
+ *
+ * Code for map overlay data addition adapated from
  * Mike Bostock's example found here:
  *                    ||||
- * https://bl.ocks.org/mbostock/899711             
- *                    ||||   
+ * https://bl.ocks.org/mbostock/899711
+ *                    ||||
  * Utilized in plotting boulders, areas, and towers.
- * 
+ *
  **************************************************/
 
 class GondolaMap {
@@ -245,7 +245,6 @@ class GondolaMap {
     this.attachZoomChanged(boulderData, appState, map);
   }
 
-
   /***
    * Attaches an event listener for panning on the map
    * Once the data is filtered to the pan selection, the info
@@ -359,7 +358,10 @@ class GondolaMap {
               childrenAreas.push(child);
             }
           });
-          appState.infoInstance.changeToggle();
+
+          if(map.getZoom() != 13){
+            appState.infoInstance.changeToggleInit();
+          }
           appState.infoInstance.drawInfoFlattened(childrenAreas);
         }
       });
@@ -677,8 +679,8 @@ class GondolaMap {
   }
 
   /***
-   * If the toggle is switched back to map view, 
-   * get the data in the view window and resend it 
+   * If the toggle is switched back to map view,
+   * get the data in the view window and resend it
    * to the info panel
    */
   changeBackToMapView() {
