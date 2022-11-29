@@ -391,11 +391,14 @@ class InfoCard {
 
         tooltip
           .html(
-            "Toggle ON to see the data that is within the map view" +
+            "Toggle ON to see the data "  +
+            "</br>" + "that is within the map view" +
+              "</br>" + 
               "</br>" +
-              "Toggle OFF to see the data for the selected area in the dropdown"
+              "Toggle OFF to see the data "  +
+              "</br>" + "for the selected area in the dropdown"
           )
-          .style("left", event.pageX + 15 + "px")
+          .style("left", event.pageX - 300 + "px")
           .style("top", event.pageY - 40 + "px");
       })
       .on("mouseleave", function (event, d) {
