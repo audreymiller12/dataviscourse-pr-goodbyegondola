@@ -1,3 +1,26 @@
+/**************************************************
+ * This class represents the map portion of the 
+ * Goodbye Gondola Visualization. It utilizes a 
+ * google maps API for Javascript to plot the 
+ * data on the map.
+ * 
+ * Written by: Marni Epstein, Audrey Miller and 
+ * Michael Eyer
+ * 
+ * Date: Novemeber 2022
+ * 
+ * Course: Introduction to Data Visualization 
+ *                  (CS5630/CS6630) 
+ * 
+ * Code for map overlay data addition adapated from 
+ * Mike Bostock's example found here:
+ *                    ||||
+ * https://bl.ocks.org/mbostock/899711             
+ *                    ||||   
+ * Utilized in plotting boulders, areas, and towers.
+ * 
+ **************************************************/
+
 class GondolaMap {
   constructor(globalAppState) {
     // set global variables to use throughout the code
@@ -222,6 +245,12 @@ class GondolaMap {
     this.attachZoomChanged(boulderData, appState, map);
   }
 
+
+  /***
+   * Attaches an event listener for panning on the map
+   * Once the data is filtered to the pan selection, the info
+   * panel is reloaded with the new data
+   */
   attachDragEnd(boulderData, appState, map) {
     // add listener to the zoom button to detect user zoom
     google.maps.event.addListener(map, "dragend", function () {
@@ -275,6 +304,11 @@ class GondolaMap {
     });
   }
 
+  /***
+   * Attaches an event listener for zooming on the map
+   * Once the data is filtered to the pan selection, the info
+   * panel is reloaded with the new data
+   */
   attachZoomChanged(boulderData, appState, map) {
     // attach zoom after map is loaded to avoid initial load zoom
     google.maps.event.addListener(map, "tilesloaded", function () {
@@ -624,11 +658,13 @@ class GondolaMap {
     mapOverlay.setMap(map);
   }
 
+  /***
+   * Method used by info to snap to an area on the map
+   * when the selection is changed in the menu
+   */
   selectArea(area) {
     this.map.setCenter(new google.maps.LatLng(area.lat, area.long));
-    this.map.setZoom(16);
-
-    //this.drawArea(this.climbingAreas, map, area.name);
+    this.map.setZoom(19);
   }
 
   /***
@@ -640,6 +676,11 @@ class GondolaMap {
     this.map.setZoom(this.initZoom);
   }
 
+  /***
+   * If the toggle is switched back to map view, 
+   * get the data in the view window and resend it 
+   * to the info panel
+   */
   changeBackToMapView() {
     var children = this.boulderData.children;
     var secondChildren = [];

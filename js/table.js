@@ -1,4 +1,18 @@
-// Program to build the table of bouldres
+/**************************************************
+ * This class represents the table portion of the 
+ * Goodbye Gondola Visualization. It displays
+ * information on each boulder problem in the 
+ * current selection including grade, name,
+ * rating and views of the page. 
+ * 
+ * Written by: Marni Epstein, Audrey Miller and 
+ * Michael Eyer
+ * 
+ * Date: Novemeber 2022
+ * 
+ * Course: Introduction to Data Visualization 
+ *                  (CS5630/CS6630) 
+ **************************************************/
 
 class Table {
   constructor(globalApplicationState) {
@@ -14,14 +28,14 @@ class Table {
         sorted: false,
         ascending: false,
         description:
-          "Name of the bouldering route. Boulders can have multiple routes (boulder problems) on them.",
+          "Name of the boulder problem",
       },
       {
         key: "gradeNumber",
         secondKey: "avgRating",
         sorted: false,
         ascending: false,
-        description: "Difficult rating. Ranges from V0 to V17.",
+        description: "Difficulty rating that ranges from V0 (easiest) to V17 (hardest)",
       },
       {
         key: "avgRating",

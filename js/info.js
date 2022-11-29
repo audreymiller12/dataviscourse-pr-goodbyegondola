@@ -1,3 +1,19 @@
+/**************************************************
+ * This class represents the info card portion of the 
+ * Goodbye Gondola Visualization. It includes a bar
+ * chart and text to display the total boulders
+ * and affected boulder in the current selection
+ * of data.
+ * 
+ * Written by: Marni Epstein, Audrey Miller and 
+ * Michael Eyer
+ * 
+ * Date: Novemeber 2022
+ * 
+ * Course: Introduction to Data Visualization 
+ *                  (CS5630/CS6630) 
+ **************************************************/
+
 class InfoCard {
   constructor(globalAppState) {
     this.globalAppState = globalAppState;
@@ -106,13 +122,11 @@ class InfoCard {
       this.boulders.filter((b) => b.affected === true)
     ).length;
 
-    var height = parseInt(d3.select("#card-1").style("height"));
-    var width = parseInt(d3.select("#card-1").style("width"));
 
     const svg = d3
       .select("#card1-svg")
-      .attr("height", height)
-      .attr("width", width);
+      .attr("height", 300)
+      .attr("width", 300);
 
     svg.selectAll("text").remove();
 
@@ -388,17 +402,19 @@ class InfoCard {
 
     toggleDiv
       .on("mouseover", function (event, d) {
-        console.log("yep")
         // Make tooltip visible
         tooltip.style("opacity", 0.8).style("display", "block");
 
         tooltip
           .html(
-            "Toggle ON to see the data that is within the map view" +
+            "Toggle ON to see the data "  +
+            "</br>" + "that is within the map view" +
+              "</br>" + 
               "</br>" +
-              "Toggle OFF to see the data for the selected area in the dropdown"
+              "Toggle OFF to see the data "  +
+              "</br>" + "for the selected area in the dropdown"
           )
-          .style("left", event.pageX + 15 + "px")
+          .style("left", event.pageX - 300 + "px")
           .style("top", event.pageY - 40 + "px");
       })
       .on("mouseleave", function (event, d) {
@@ -415,7 +431,6 @@ class InfoCard {
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
-        console.log("here");
         selectButton.property("disabled", false);
         var selectedArea = selectButton.property("value");
         // Subset data to selected area and re-draw info card
