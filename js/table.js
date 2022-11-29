@@ -1,4 +1,18 @@
-// Program to build the table of bouldres
+/**************************************************
+ * This class represents the table portion of the 
+ * Goodbye Gondola Visualization. It displays
+ * information on each boulder problem in the 
+ * current selection including grade, name,
+ * rating and views of the page. 
+ * 
+ * Written by: Marni Epstein, Audrey Miller and 
+ * Michael Eyer
+ * 
+ * Date: Novemeber 2022
+ * 
+ * Course: Introduction to Data Visualization 
+ *                  (CS5630/CS6630) 
+ **************************************************/
 
 class Table {
   constructor(globalApplicationState) {

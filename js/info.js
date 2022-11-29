@@ -1,3 +1,19 @@
+/**************************************************
+ * This class represents the info card portion of the 
+ * Goodbye Gondola Visualization. It includes a bar
+ * chart and text to display the total boulders
+ * and affected boulder in the current selection
+ * of data.
+ * 
+ * Written by: Marni Epstein, Audrey Miller and 
+ * Michael Eyer
+ * 
+ * Date: Novemeber 2022
+ * 
+ * Course: Introduction to Data Visualization 
+ *                  (CS5630/CS6630) 
+ **************************************************/
+
 class InfoCard {
   constructor(globalAppState) {
     this.globalAppState = globalAppState;
@@ -415,7 +431,6 @@ class InfoCard {
       }
       // when toggle is on and turned off, turn on selection menu
       else if (toggle.property("checked") === true) {
-        console.log("here");
         selectButton.property("disabled", false);
         var selectedArea = selectButton.property("value");
         // Subset data to selected area and re-draw info card
