@@ -4,9 +4,7 @@
 *Marni Epstein - Michael Eyer - Audrey Miller*
 
 [Project Website](https://audreymiller12.github.io/dataviscourse-pr-goodbyegondola/)
-
-[Process Book]("./files/Goodbye Gondola Process Book.pdf")
-
+![Process Book](files/Goodbye Gondola Process Book.pdf)
 [Project Video](https://youtu.be/VvUdgnEjtQY)
 
 ## Project Background
