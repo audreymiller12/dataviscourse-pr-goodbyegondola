@@ -1,6 +1,7 @@
 # Goodbye Gondola 
 
 *CS-5630 / CS-6630 Final Project*
+
 *Marni Epstein - Michael Eyer - Audrey Miller*
 
 [Project Website](https://audreymiller12.github.io/dataviscourse-pr-goodbyegondola/)
