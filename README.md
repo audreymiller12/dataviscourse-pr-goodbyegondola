@@ -1,28 +1,13 @@
-# Goodbye Gondola | CS-5630 / CS-6630 Final Project
+# Goodbye Gondola 
+## CS-5630 / CS-6630 Final Project
 
-*Marni Epstein - Michael Eyer - Audrey Miller *
+*Marni Epstein - Michael Eyer - Audrey Miller*
 
 Github Pages Website Link: https://audreymiller12.github.io/dataviscourse-pr-goodbyegondola/
 
-
-
 ## Project Background
 
-        Little Cottonwood Canyon (LCC) is home to world class rock climbing,
-        skiing, and hiking. Located only fifteen minutes from Salt Lake City,
-        UT, locals enjoy year-round access to rock climbing, and more
-        specifically, bouldering. LCC is also a popular destination for climbers
-        from all around the world due to its unique granite climbing. Presently,
-        the Utah Department of Transportation is debating a final transportation
-        recommendation to address traffic in Little Cottonwood Canyon. In the
-        summer of 2022, they identified a gondola from the base of the canyon to
-        Snowbird and Alta, two private ski resorts, as the preferred
-        alternative. This gondola would have extreme and irrevocable impacts on
-        Little Cottonwood Canyon, destroying boulders that climbers have
-        cherished for years. Goodbye Gondola is a visualization displaying the
-        potential boulders that will be affected by the gondola construction,
-        providing a sense of the large-scale impact that the gondola would have
-        on bouldering in LCC.
+Little Cottonwood Canyon (LCC) is home to world class rock climbing, skiing, and hiking. Located only fifteen minutes from Salt Lake City, UT, locals enjoy year-round access to rock climbing, and more specifically, bouldering. LCC is also a popular destination for climbers from all around the world due to its unique granite climbing. Presently, the Utah Department of Transportation is debating a final transportation recommendation to address traffic in Little Cottonwood Canyon. In the summer of 2022, they published their [Final Environmental Impact Statement](https://littlecottonwoodeis.udot.utah.gov/final-eis/), which identified a gondola from the base of the canyon to Snowbird and Alta, two private ski resorts, as the preferred alternative. This gondola would have extreme and irrevocable impacts on Little Cottonwood Canyon, destroying boulders that climbers have cherished for years. Goodbye Gondola is a visualization displaying the potential boulders that will be affected by the gondola construction, providing a sense of the large-scale impact that the gondola would have on bouldering in LCC.
 
 
 ## How to Interact with the Visualization
