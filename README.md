@@ -1,10 +1,12 @@
-# dataviscourse-pr-goodbyegondola
+# Goodbye Gondola | CS-5630 / CS-6630 Final Project
+
+*Marni Epstein - Michael Eyer - Audrey Miller *
 
 Github Pages Website Link: https://audreymiller12.github.io/dataviscourse-pr-goodbyegondola/
 
 
 
-*********************************Project Background*********************************
+## Project Background
 
         Little Cottonwood Canyon (LCC) is home to world class rock climbing,
         skiing, and hiking. Located only fifteen minutes from Salt Lake City,
@@ -21,9 +23,9 @@ Github Pages Website Link: https://audreymiller12.github.io/dataviscourse-pr-goo
         potential boulders that will be affected by the gondola construction,
         providing a sense of the large-scale impact that the gondola would have
         on bouldering in LCC.
-************************************************************************************
 
-*********************************How to Interact with the Visualization*********************************
+
+## How to Interact with the Visualization
 
             *Goodbye Gondola Map*
             The map feature of the visualization includes three varying data
