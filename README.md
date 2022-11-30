@@ -8,7 +8,7 @@
 
 [Process Book](files/Goodbye%20Gondola%20Process%20Book.pdf)
 
-[Project Video](https://youtu.be/VvUdgnEjtQY)
+[Project Video](https://www.youtube.com/watch?v=M9CkiddY6DA)
 
 ## Project Background
 
