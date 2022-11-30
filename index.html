@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Project: Goodbye Gondola</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="js/script.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS73DSFMzDo-CGWZK1cT1rrpNbCngU3Y"
+      defer
+    ></script>
+    <script src="js/map.js"></script>
+    <script src="js/info.js"></script>
+    <script src="js/table.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/568f671c44.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div>
+      <header id="header-wrap">
+        <h1>Project: Goodbye Gondola</h1>
+        <div>Marni Epstein - Michael Eyer - Audrey Miller</div><br>
+        <div>
+            <a href="https://github.com/audreymiller12/dataviscourse-pr-goodbyegondola.git" target="_blank" rel="noopener noreferrer">github</a> -
+            <a href="./files/Goodbye Gondola Process Book.pdf" target="_blank" rel="noopener noreferrer">process book</a> -
+            <a href="./data/data.json" target="_blank" rel="noopener noreferrer">boulder data</a> - 
+            <a href="./data/tower_data.csv" target="_blank" rel="noopener noreferrer">tower data</a> - 
+            <a href="https://youtu.be/VvUdgnEjtQY" target="_blank" rel="noopener noreferrer">project video</a>
+
+        </div><br>
+
+      </header>
+      <div id="background">
+        <h2 style="margin: 10px">Project Background:</h2>
+
+        Little Cottonwood Canyon (LCC) is home to world class rock climbing,
+        skiing, and hiking. Located only fifteen minutes from Salt Lake City,
+        UT, locals enjoy year-round access to rock climbing, and more
+        specifically, bouldering. LCC is also a popular destination for climbers
+        from all around the world due to its unique granite climbing. Presently,
+        the Utah Department of Transportation is debating a final transportation
+        recommendation to address traffic in Little Cottonwood Canyon. 
+        In the summer of 2022, they published their <a href="https://littlecottonwoodeis.udot.utah.gov/final-eis/" target="_blank">Final Environmental Impact Statement</a>, 
+        which identified a gondola from the base of the canyon to Snowbird and Alta, 
+        two private ski resorts, as the preferred alternative. 
+        This gondola would have extreme and irrevocable impacts on
+        Little Cottonwood Canyon, destroying boulders that climbers have
+        cherished for years. Goodbye Gondola is a visualization displaying the
+        potential boulders that will be affected by the gondola construction,
+        providing a sense of the large-scale impact that the gondola would have
+        on bouldering in LCC.
+      </div>
+      <div id="about">
+        <h2 style="margin: 10px">About Goodbye Gondola Visualization:</h2>
+
+        <div style="display: flex; padding: 5px; column-count: auto">
+          <div
+            style="
+              border: 2px;
+              border-color: rgb(86, 86, 86);
+              border-style: solid;
+              padding: 10px;
+              margin: 10px;
+              font-size: 18px;
+            "
+          >
+            <h3 style="text-align: center">Goodbye Gondola Map</h3>
+            The map feature of the visualization includes three varying data
+            point to represent the climbing areas, affected boulders, and
+            gondola towers. To interact with the map, simply hover over the
+            various data points for more information, zoom in and out to narrow
+            the view, or click on an area to zoom to that area. When you zoom
+            in or click on an area, the table and info chart data will change
+            dynamically to the area selected or the data within the zoomed view.
+            <h4
+              style="
+                text-align: center;
+                color: rgb(88, 159, 162);
+                -webkit-text-stroke-color: rgba(116, 162, 164, 0.447);
+                -webkit-text-stroke-width: 1px;
+              "
+            >
+              Areas
+            </h4>
+            Data on climbing areas and boulders was scraped from 
+            <a href="https://www.mountainproject.com/area/105739277/little-cottonwood-canyon" target="_blank">Mountain Project</a>, 
+            an online database of climbing routes and boulders. 
+            Mountain Project contains geographic data on climbing areas and boulders 
+            as well as description of climbs, ratings, page views, which indicate popularity, 
+            and comments. 
+            
+            Climbing areas contain groups of boulders. For example, the Split Boulder 
+            is in the Five Mile area. Areas are represented by blue rectangles on the map. 
+            By hovering over an area, 
+            you can see the location and name, as well as total views of the Mountain Project 
+            page, which represents the popularity of the area. By clicking on the area, 
+            the map will zoom to the area and center on it.
+            <h4
+              style="
+                text-align: center;
+                color: rgb(62, 61, 61);
+                -webkit-text-stroke-color: rgb(49, 49, 49);
+                -webkit-text-stroke-width: 1px;
+              "
+            >
+              Boulders
+            </h4>
+            Boulders are large rocks, generally less than 20 feet tall. 
+            In LCC, boulders are made of granite. Each boulder has various boulder 
+            problems on them, which is a unique path up the boulder. Each problem is 
+            graded on a V-Scale. The V-Scale ranges from V0, the easiest, to V16, 
+            the hardest offered in LCC. The V-Scale is universal to all bouldering 
+            across the world. The boulders that will be destroyed due to the gondola 
+            construction are represented on the map as grey circles.
+            <h4
+              style="
+                text-align: center;
+                color: darkred;
+                -webkit-text-stroke-color: rgb(126, 63, 63);
+                -webkit-text-stroke-width: 1px;
+              "
+            >
+              Gondola Towers
+            </h4>
+            Gondola tower locations are published on UDOT's <a href="https://littlecottonwoodeis.udot.utah.gov/final-eis/" target="_blank">Final EIS</a> Interactive Maps.
+            The gondola towers are large metal poles around 10 feet in diameter that 
+            will be the support beams for the gondola line. There are a total of 22 
+            towers proposed to be constructed. The towers will start at the base of 
+            LCC and extend all the way through the canyon to the two ski resorts at the top. 
+            These towers are represented by a red rectangle nested inside of a circle, 
+            meant to show the area of impact around the tower.
+          </div>
+          <div
+            style="
+              width: 250vw;
+              border: 2px;
+              border-color: rgb(86, 86, 86);
+              border-style: solid;
+              padding: 10px;
+              margin: 10px;
+              font-size: 18px;
+            "
+          >
+            <h3 style="text-align: center">Goodbye Gondola Table/Chart</h3>
+
+            The chart and table feature of the visualization show the current 
+            selection data, displaying the total boulder problems and affected 
+            boulder problems in the stacked bar chart, as well as information on 
+            each boulder problem in the table. Here, it is easy to see the total 
+            impact of the gondola construction as well as the impact to certain areas. 
+            You can select an area using the dropdown meu or by clicking on an area 
+            in the map view.
+
+            <h4 style="text-align: center; color: darkred">Bar Chart</h4>
+
+            The bar chart displays the total boulder problems of each V-grade in the area. 
+            The X-Axis shows the V-grade of the boulder problem, and the Y-Axis shows the 
+            counts of boulder problems. They grey bar shows the total number of boulder 
+            problems in the selected area. The red portion of the stacked bar chart shows 
+            the number of affected boulder problems in the selected area.
+
+            <h4 style="text-align: center; color: rgb(165, 120, 229)">Table</h4>
+
+            The table displays the same data as the bar chart, showing 
+            information on the current selection. The table can be sorted by each column, 
+            both ascending and descending. To interact with the table, you can simply 
+            scroll to see which boulders are affected, indicated by red highlight, 
+            or sort each column by clicking on the header of that column. 
+            When the selection changes, the table changes dynamically to show the 
+            current data.
+
+            <h4 style="text-align: center; color: rgb(62, 61, 61)">
+              Map Display Switch
+            </h4>
+
+            The map display toggle switch is used to switch between the data displayed 
+            in the current map view and area selections from the drop-down menu. When an area 
+            is selected from the drop-down, the map zooms to center on that area and the 
+            table and chart data change to display data for that area. Moving the map or 
+            zooming in or out will change the toggle switch back to map view. To display 
+            all of the data in the current view window, not just the selected area, 
+            change the toggle switch back to map view. When the toggle switch is on, 
+            the current map view data is displayed, and when it is off, the selected area 
+            from the drop-down menu or the clicked area map is displayed.
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="title">
+      <h1 id="vizheader">Gondola Impact Visualization</h1>
+      <div id="content" style="display: flex; column-gap: 50px">
+        <div id="map"></div>
+        <div id="towertooltip"></div>
+        <div id="bouldertooltip"></div>
+        <div id="areatooltip"></div>
+        <div id="infocard">
+          <div class="toolbox" style="margin-top: 15px">
+            <div id="toggletooltip"></div>
+            <span>
+              <label>Display Map View Data: </label>
+              <label class="switch">
+                <div id="togglediv">
+                  <input type="checkbox" id="toggle" input="false" />
+                  <span class="slider round"></span>
+                </div>
+              </label>
+            </span>
+
+            <label>Select an LCC Area: </label>
+            <select
+              id="selectButton"
+              class="selecter-active"
+              disabled="true"
+            ></select>
+          </div>
+
+          <div id="toprow">
+            <div id="card-1" class="overall-nums">
+              <svg id="card1-svg"></svg>
+            </div>
+
+            <div id="card-areabar" class="areabarchart">
+              <h3 class="barheader"> <span style="background-color: rgb(101, 101, 101); color:white">
+                Boulder Problems</span> and
+                <span style="background-color: darkred; color:white">Affected Boulder Problems</span><br> by Grade
+              </h3>
+              <svg id="area-barchart">
+                <g id="y-axis"></g>
+                <g id="x-axis"></g>
+                <g id="all-boulders"></g>
+                <g id="affected-boulders"></g>
+              </svg>
+            </div>
+          </div>
+
+          <div id="tablediv">
+            <table id="boulderTable">
+              <thead>
+                <tr id="columnHeaders">
+                  <th class="sortable">
+                    Boulder Problem Name <i class="fas no-display"></i>
+                  </th>
+                  <th class="sortable">Grade <i class="fas no-display"></i></th>
+                  <th class="sortable">
+                    Rating <i class="fas no-display"></i>
+                  </th>
+                  <th class="sortable">
+                    Page Views <i class="fas no-display"></i>
+                  </th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><svg id="viewsAxis"></svg></td>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="tooltipdiv"></div>
+      </div>
+    </div>
+  </body>
+</html>

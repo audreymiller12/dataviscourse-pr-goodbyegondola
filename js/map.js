@@ -27,7 +27,6 @@ class GondolaMap {
     this.globalAppState = globalAppState;
     this.towerData = globalAppState.towerData;
     this.boulderData = globalAppState.boulderData;
-    this.boulderNames = globalAppState.boulderNames;
 
     // get the affected boulders and climbing areas
     this.affectedBoulders = this.filterAffectedBoulders();

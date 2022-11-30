@@ -1,5 +1,9 @@
 # dataviscourse-pr-goodbyegondola
 
+Github Pages Website Link: https://audreymiller12.github.io/dataviscourse-pr-goodbyegondola/
+
+
+
 *********************************Project Background*********************************
 
         Little Cottonwood Canyon (LCC) is home to world class rock climbing,
@@ -21,7 +25,7 @@
 
 *********************************How to Interact with the Visualization*********************************
 
-            #####################Goodbye Gondola Map#####################
+            *Goodbye Gondola Map*
             The map feature of the visualization includes three varying data
             points to represent the climbing areas, affected boulders, and
             gondola towers. To interact with the map, simply hover over the
@@ -32,7 +36,7 @@
 
             Map features:
             
-            ***Areas***
+            *Areas*
             
             Climbing areas are groups of boulders. Groups of boulders are contained within 
             areas. For example, the Split Boulder is in the Five Mile area. Areas are 
