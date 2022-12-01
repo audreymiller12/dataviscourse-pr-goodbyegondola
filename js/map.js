@@ -261,11 +261,11 @@ class GondolaMap {
         secondChildren.push(child);
       });
       secondChildren.forEach((d) => {
-        if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
-          if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
-            inBoundData.push(d);
+        if (d.lat > bounds.getSouthWest().lat() && d.lat < bounds.getNorthEast().lat()) {
+            if (d.long > bounds.getSouthWest().lng() && d.long < bounds.getNorthEast().lng()) {
+              inBoundData.push(d);
+            }
           }
-        }
       });
 
       // get all of the boulders in the in bounds areas, need to un-nest
@@ -315,14 +315,15 @@ class GondolaMap {
           var children = boulderData.children;
           var secondChildren = [];
           var bounds = map.getBounds();
+
           var inBoundData = [];
 
           children.forEach((child) => {
             secondChildren.push(child);
           });
           secondChildren.forEach((d) => {
-            if (d.lat > bounds.Za.lo && d.lat < bounds.Za.hi) {
-              if (d.long > bounds.Ia.lo && d.long < bounds.Ia.hi) {
+            if (d.lat > bounds.getSouthWest().lat() && d.lat < bounds.getNorthEast().lat()) {
+              if (d.long > bounds.getSouthWest().lng() && d.long < bounds.getNorthEast().lng()) {
                 inBoundData.push(d);
               }
             }
