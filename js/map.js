@@ -210,7 +210,7 @@ class GondolaMap {
 
     // initialize map
     const map = new google.maps.Map(selection.node(), {
-      zoom: 12.6,
+      zoom: 12,
       center: new google.maps.LatLng(40.574215, -111.715113),
       mapTypeId: google.maps.MapTypeId.TERRAIN,
       zoomControl: true,
@@ -359,7 +359,7 @@ class GondolaMap {
             }
           });
 
-          if(map.getZoom() != 13){
+          if(map.getZoom() != 12){
             appState.infoInstance.changeToggleInit();
           }
           appState.infoInstance.drawInfoFlattened(childrenAreas);
